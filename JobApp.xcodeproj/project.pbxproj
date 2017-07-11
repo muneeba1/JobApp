@@ -8,20 +8,28 @@
 
 /* Begin PBXBuildFile section */
 		FAE262B81F15218700CE3551 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE262B71F15218700CE3551 /* AppDelegate.swift */; };
-		FAE262BA1F15218700CE3551 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE262B91F15218700CE3551 /* ViewController.swift */; };
 		FAE262BD1F15218700CE3551 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAE262BB1F15218700CE3551 /* Main.storyboard */; };
 		FAE262BF1F15218700CE3551 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAE262BE1F15218700CE3551 /* Assets.xcassets */; };
 		FAE262C21F15218700CE3551 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAE262C01F15218700CE3551 /* LaunchScreen.storyboard */; };
+		FAE262CC1F1523AD00CE3551 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE262CB1F1523AD00CE3551 /* TabBarController.swift */; };
+		FAE262CF1F152E1000CE3551 /* PTJobsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE262CE1F152E1000CE3551 /* PTJobsViewController.swift */; };
+		FAE262D11F152E2200CE3551 /* InternshipsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE262D01F152E2200CE3551 /* InternshipsViewController.swift */; };
+		FAE262D31F152E4400CE3551 /* SummerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE262D21F152E4400CE3551 /* SummerViewController.swift */; };
+		FAE262D51F15717400CE3551 /* JobPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE262D41F15717400CE3551 /* JobPost.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		FAE262B41F15218700CE3551 /* JobApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JobApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAE262B71F15218700CE3551 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		FAE262B91F15218700CE3551 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		FAE262BC1F15218700CE3551 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FAE262BE1F15218700CE3551 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FAE262C11F15218700CE3551 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FAE262C31F15218700CE3551 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FAE262CB1F1523AD00CE3551 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TabBarController.swift; path = Controllers/TabBarController.swift; sourceTree = SOURCE_ROOT; };
+		FAE262CE1F152E1000CE3551 /* PTJobsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PTJobsViewController.swift; path = Controllers/PTJobsViewController.swift; sourceTree = SOURCE_ROOT; };
+		FAE262D01F152E2200CE3551 /* InternshipsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InternshipsViewController.swift; path = Controllers/InternshipsViewController.swift; sourceTree = SOURCE_ROOT; };
+		FAE262D21F152E4400CE3551 /* SummerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SummerViewController.swift; path = Controllers/SummerViewController.swift; sourceTree = SOURCE_ROOT; };
+		FAE262D41F15717400CE3551 /* JobPost.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JobPost.swift; path = Models/JobPost.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,13 +63,49 @@
 			isa = PBXGroup;
 			children = (
 				FAE262B71F15218700CE3551 /* AppDelegate.swift */,
-				FAE262B91F15218700CE3551 /* ViewController.swift */,
-				FAE262BB1F15218700CE3551 /* Main.storyboard */,
+				FAE262CD1F1523B300CE3551 /* Controllers */,
+				FAE262C91F15237500CE3551 /* Storyboards */,
 				FAE262BE1F15218700CE3551 /* Assets.xcassets */,
-				FAE262C01F15218700CE3551 /* LaunchScreen.storyboard */,
-				FAE262C31F15218700CE3551 /* Info.plist */,
+				FAE262CA1F15238800CE3551 /* Supporting */,
+				FAE262D61F15717A00CE3551 /* Models */,
 			);
 			path = JobApp;
+			sourceTree = "<group>";
+		};
+		FAE262C91F15237500CE3551 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				FAE262C01F15218700CE3551 /* LaunchScreen.storyboard */,
+				FAE262BB1F15218700CE3551 /* Main.storyboard */,
+			);
+			name = Storyboards;
+			sourceTree = "<group>";
+		};
+		FAE262CA1F15238800CE3551 /* Supporting */ = {
+			isa = PBXGroup;
+			children = (
+				FAE262C31F15218700CE3551 /* Info.plist */,
+			);
+			name = Supporting;
+			sourceTree = "<group>";
+		};
+		FAE262CD1F1523B300CE3551 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				FAE262CB1F1523AD00CE3551 /* TabBarController.swift */,
+				FAE262CE1F152E1000CE3551 /* PTJobsViewController.swift */,
+				FAE262D01F152E2200CE3551 /* InternshipsViewController.swift */,
+				FAE262D21F152E4400CE3551 /* SummerViewController.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		FAE262D61F15717A00CE3551 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				FAE262D41F15717400CE3551 /* JobPost.swift */,
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,8 +181,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FAE262BA1F15218700CE3551 /* ViewController.swift in Sources */,
+				FAE262D11F152E2200CE3551 /* InternshipsViewController.swift in Sources */,
+				FAE262D51F15717400CE3551 /* JobPost.swift in Sources */,
 				FAE262B81F15218700CE3551 /* AppDelegate.swift in Sources */,
+				FAE262D31F152E4400CE3551 /* SummerViewController.swift in Sources */,
+				FAE262CF1F152E1000CE3551 /* PTJobsViewController.swift in Sources */,
+				FAE262CC1F1523AD00CE3551 /* TabBarController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
