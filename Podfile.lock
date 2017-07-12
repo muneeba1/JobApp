@@ -1,0 +1,15 @@
+PODS:
+  - Alamofire (4.5.0)
+  - CheatyXML (2.0.0)
+
+DEPENDENCIES:
+  - Alamofire
+  - CheatyXML
+
+SPEC CHECKSUMS:
+  Alamofire: f28cdffd29de33a7bfa022cbd63ae95a27fae140
+  CheatyXML: 094f779fb205b53e7fd180a33c55eee846ca759e
+
+PODFILE CHECKSUM: a0cd066b79761368497a8e9777807917fa28a41d
+
+COCOAPODS: 1.2.1

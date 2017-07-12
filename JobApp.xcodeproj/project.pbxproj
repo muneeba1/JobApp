@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		09398C06C18DFE25327C5183 /* Pods_JobApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B833FA3979DDDDED57E122B5 /* Pods_JobApp.framework */; };
 		FAE262B81F15218700CE3551 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE262B71F15218700CE3551 /* AppDelegate.swift */; };
 		FAE262BD1F15218700CE3551 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAE262BB1F15218700CE3551 /* Main.storyboard */; };
 		FAE262BF1F15218700CE3551 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAE262BE1F15218700CE3551 /* Assets.xcassets */; };
@@ -19,6 +20,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B833FA3979DDDDED57E122B5 /* Pods_JobApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JobApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D24E420A6A830740C29EE437 /* Pods-JobApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JobApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-JobApp/Pods-JobApp.debug.xcconfig"; sourceTree = "<group>"; };
+		D4423828E1520D711C788B1B /* Pods-JobApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JobApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-JobApp/Pods-JobApp.release.xcconfig"; sourceTree = "<group>"; };
 		FAE262B41F15218700CE3551 /* JobApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JobApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAE262B71F15218700CE3551 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FAE262BC1F15218700CE3551 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -37,17 +41,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				09398C06C18DFE25327C5183 /* Pods_JobApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8EC53C9E35905539C1FCED46 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B833FA3979DDDDED57E122B5 /* Pods_JobApp.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		FAE262AB1F15218700CE3551 = {
 			isa = PBXGroup;
 			children = (
 				FAE262B61F15218700CE3551 /* JobApp */,
 				FAE262B51F15218700CE3551 /* Products */,
+				FFE01B52532F28FEBAD1AB3B /* Pods */,
+				8EC53C9E35905539C1FCED46 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -108,6 +123,15 @@
 			name = Models;
 			sourceTree = "<group>";
 		};
+		FFE01B52532F28FEBAD1AB3B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D24E420A6A830740C29EE437 /* Pods-JobApp.debug.xcconfig */,
+				D4423828E1520D711C788B1B /* Pods-JobApp.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -115,9 +139,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FAE262C61F15218700CE3551 /* Build configuration list for PBXNativeTarget "JobApp" */;
 			buildPhases = (
+				00C93B8C39BD76225721B4E1 /* [CP] Check Pods Manifest.lock */,
 				FAE262B01F15218700CE3551 /* Sources */,
 				FAE262B11F15218700CE3551 /* Frameworks */,
 				FAE262B21F15218700CE3551 /* Resources */,
+				44D427B02275B05AD4830F91 /* [CP] Embed Pods Frameworks */,
+				0C4C7A79E504685FB64865B6 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -175,6 +202,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		00C93B8C39BD76225721B4E1 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		0C4C7A79E504685FB64865B6 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-JobApp/Pods-JobApp-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		44D427B02275B05AD4830F91 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-JobApp/Pods-JobApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		FAE262B01F15218700CE3551 /* Sources */ = {
@@ -307,6 +382,7 @@
 		};
 		FAE262C71F15218700CE3551 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D24E420A6A830740C29EE437 /* Pods-JobApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = B8LC78N529;
@@ -320,6 +396,7 @@
 		};
 		FAE262C81F15218700CE3551 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D4423828E1520D711C788B1B /* Pods-JobApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = B8LC78N529;

@@ -50,7 +50,7 @@
             </objects>
             <point key="canvasLocation" x="194" y="192"/>
         </scene>
-        <!--PT-->
+        <!--PT Jobs-->
         <scene sceneID="qtd-8p-uw0">
             <objects>
                 <viewController id="LO1-OY-C6e" customClass="PTJobsViewController" customModule="JobApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -85,7 +85,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="PT" id="AOi-KX-1R8">
+                    <tabBarItem key="tabBarItem" title="PT Jobs" id="AOi-KX-1R8">
                         <inset key="imageInsets" minX="0.0" minY="7" maxX="0.0" maxY="-7"/>
                     </tabBarItem>
                     <connections>
