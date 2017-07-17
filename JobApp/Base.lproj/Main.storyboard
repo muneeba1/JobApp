@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -50,7 +51,7 @@
             </objects>
             <point key="canvasLocation" x="194" y="192"/>
         </scene>
-        <!--PT Jobs-->
+        <!--Jobs View Controller-->
         <scene sceneID="qtd-8p-uw0">
             <objects>
                 <viewController id="LO1-OY-C6e" customClass="PTJobsViewController" customModule="JobApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -108,6 +109,7 @@
                                             <outlet property="compNameLabel" destination="80K-XY-0HC" id="wIS-N2-UJh"/>
                                             <outlet property="jobNameLabel" destination="Lle-Hj-SeA" id="7Hy-EC-AJI"/>
                                             <outlet property="locationLabel" destination="v0F-Iv-nQO" id="C4Q-3q-oK4"/>
+                                            <segue destination="vTZ-aG-sQS" kind="show" identifier="labelPressed" id="BmK-Wd-rkg"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -119,13 +121,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="PT Jobs" id="AOi-KX-1R8">
-                        <inset key="imageInsets" minX="0.0" minY="7" maxX="0.0" maxY="-7"/>
-                    </tabBarItem>
+                    <navigationItem key="navigationItem" id="dA4-AH-Ege"/>
                     <connections>
                         <outlet property="ptTableView" destination="LGv-uL-4pE" id="RYl-tW-iSJ"/>
                         <outlet property="searchDisplayController" destination="W0L-9e-An5" id="ZCg-yY-4r9"/>
-                        <segue destination="vTZ-aG-sQS" kind="show" identifier="labelPressed" id="HJc-y6-prR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="A71-DQ-hBx" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -138,7 +137,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="192.80000000000001" y="-462.8185907046477"/>
+            <point key="canvasLocation" x="1132" y="-462.8185907046477"/>
         </scene>
         <!--Detailed View Controller-->
         <scene sceneID="YRB-Fe-ePT">
@@ -152,61 +151,80 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="jobName" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zhw-4p-ONp">
-                                <rect key="frame" x="96" y="20" width="182" height="63"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="30"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="jobName" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zhw-4p-ONp">
+                                <rect key="frame" x="16" y="64" width="343" height="63"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="63" id="Uf5-WP-4w1"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="compName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F8z-gh-dsx">
-                                <rect key="frame" x="36" y="91" width="301" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="25"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="compName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F8z-gh-dsx">
+                                <rect key="frame" x="36" y="126" width="323" height="31"/>
+                                <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pVa-gN-mfA">
-                                <rect key="frame" x="36" y="133" width="301" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="25"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pVa-gN-mfA">
+                                <rect key="frame" x="36" y="173" width="323" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="2Pz-if-fTx"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="compensation" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u2b-2m-EMx">
-                                <rect key="frame" x="36" y="173" width="196" height="39"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="25"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" text="About" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bsj-j0-VeB">
-                                <rect key="frame" x="36" y="250" width="301" height="250"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="About" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bsj-j0-VeB">
+                                <rect key="frame" x="16" y="216" width="343" height="356"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="25"/>
+                                <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="15"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rOa-uB-jCT">
-                                <rect key="frame" x="53" y="508" width="266" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rOa-uB-jCT">
+                                <rect key="frame" x="54" y="542" width="266" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="qaN-Ob-WRa"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="30"/>
                                 <state key="normal" title="Apply"/>
+                                <connections>
+                                    <action selector="applyButtonPressed:" destination="vTZ-aG-sQS" eventType="touchUpInside" id="ZHx-tj-ILO"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="rOa-uB-jCT" firstAttribute="leading" secondItem="Bms-ar-4iu" secondAttribute="leadingMargin" constant="38" id="86t-Wu-DCs"/>
+                            <constraint firstItem="aon-mk-2F4" firstAttribute="top" secondItem="Bsj-j0-VeB" secondAttribute="bottom" constant="46" id="Cn9-rP-f25"/>
+                            <constraint firstItem="F8z-gh-dsx" firstAttribute="top" secondItem="8yV-FP-fiL" secondAttribute="bottom" constant="62" id="Gbg-QB-8si"/>
+                            <constraint firstItem="rOa-uB-jCT" firstAttribute="centerX" secondItem="Bsj-j0-VeB" secondAttribute="centerX" id="I5E-im-WqL"/>
+                            <constraint firstItem="Zhw-4p-ONp" firstAttribute="leading" secondItem="Bms-ar-4iu" secondAttribute="leadingMargin" id="Jg2-x7-mbX"/>
+                            <constraint firstItem="Zhw-4p-ONp" firstAttribute="trailing" secondItem="Bms-ar-4iu" secondAttribute="trailingMargin" id="KSk-GB-Nwi"/>
+                            <constraint firstItem="Zhw-4p-ONp" firstAttribute="top" secondItem="8yV-FP-fiL" secondAttribute="bottom" id="ODX-y6-1kQ"/>
+                            <constraint firstItem="pVa-gN-mfA" firstAttribute="trailing" secondItem="Zhw-4p-ONp" secondAttribute="trailing" id="S5u-a2-G4k"/>
+                            <constraint firstItem="pVa-gN-mfA" firstAttribute="leading" secondItem="F8z-gh-dsx" secondAttribute="leading" id="U5w-37-tzs"/>
+                            <constraint firstItem="rOa-uB-jCT" firstAttribute="bottom" secondItem="Bsj-j0-VeB" secondAttribute="bottom" id="ZD0-Bg-rJG"/>
+                            <constraint firstItem="F8z-gh-dsx" firstAttribute="leading" secondItem="Bms-ar-4iu" secondAttribute="leadingMargin" constant="20" id="cOd-On-ROI"/>
+                            <constraint firstItem="pVa-gN-mfA" firstAttribute="top" secondItem="Bms-ar-4iu" secondAttribute="top" constant="173" id="dKq-C3-gVE"/>
+                            <constraint firstItem="Bsj-j0-VeB" firstAttribute="top" secondItem="pVa-gN-mfA" secondAttribute="bottom" constant="8" symbolic="YES" id="jcl-Nq-qu8"/>
+                            <constraint firstItem="Bsj-j0-VeB" firstAttribute="trailing" secondItem="pVa-gN-mfA" secondAttribute="trailing" id="o2k-sy-I4S"/>
+                            <constraint firstItem="pVa-gN-mfA" firstAttribute="top" secondItem="F8z-gh-dsx" secondAttribute="bottom" constant="16" id="pGq-8Z-Phz"/>
+                            <constraint firstItem="Bsj-j0-VeB" firstAttribute="leading" secondItem="Zhw-4p-ONp" secondAttribute="leading" id="yD0-6A-xdp"/>
+                            <constraint firstItem="pVa-gN-mfA" firstAttribute="trailing" secondItem="F8z-gh-dsx" secondAttribute="trailing" id="ydm-1c-idF"/>
+                        </constraints>
                     </view>
                     <connections>
-                        <outlet property="aboutTextView" destination="Bsj-j0-VeB" id="7k9-kB-KUk"/>
-                        <outlet property="applyButton" destination="rOa-uB-jCT" id="rOT-JI-lGH"/>
-                        <outlet property="compNameLabel" destination="F8z-gh-dsx" id="bkL-TL-tdQ"/>
-                        <outlet property="compensationLabel" destination="u2b-2m-EMx" id="9eU-qY-z7p"/>
-                        <outlet property="jobNameLabel" destination="Zhw-4p-ONp" id="Rsh-fX-mcS"/>
+                        <outlet property="aboutTextView" destination="Bsj-j0-VeB" id="Rw3-mC-Fdh"/>
+                        <outlet property="applyButton" destination="rOa-uB-jCT" id="gCk-Zy-U21"/>
+                        <outlet property="compNameLabel" destination="F8z-gh-dsx" id="zam-4R-BwC"/>
+                        <outlet property="jobNameLabel" destination="Zhw-4p-ONp" id="u7o-6T-Kjr"/>
+                        <outlet property="locationLabel" destination="pVa-gN-mfA" id="nA7-IL-tkC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uVQ-K4-DSA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="941.60000000000002" y="-468.21589205397305"/>
+            <point key="canvasLocation" x="1880.8" y="-468.21589205397305"/>
         </scene>
         <!--Summer Programs-->
         <scene sceneID="okV-GN-Bpw">
@@ -259,7 +277,7 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="LO1-OY-C6e" kind="relationship" relationship="viewControllers" id="zWD-jU-30r"/>
+                        <segue destination="095-vi-G1v" kind="relationship" relationship="viewControllers" id="zWD-jU-30r"/>
                         <segue destination="DqZ-HF-d3Z" kind="relationship" relationship="viewControllers" id="dON-qc-cn8"/>
                         <segue destination="fAn-Zr-enl" kind="relationship" relationship="viewControllers" id="gnT-x8-yPD"/>
                     </connections>
@@ -267,6 +285,27 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OR4-IP-sM3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-732" y="-95"/>
+        </scene>
+        <!--PT Jobs-->
+        <scene sceneID="ziN-dp-0dO">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="095-vi-G1v" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="PT Jobs" id="AOi-KX-1R8">
+                        <inset key="imageInsets" minX="0.0" minY="7" maxX="0.0" maxY="-7"/>
+                    </tabBarItem>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ilG-4J-DLv">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="LO1-OY-C6e" kind="relationship" relationship="rootViewController" id="jgg-Rm-bGJ"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jkZ-VR-rNs" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="192.80000000000001" y="-462.8185907046477"/>
         </scene>
     </scenes>
 </document>

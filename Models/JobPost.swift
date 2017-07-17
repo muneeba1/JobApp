@@ -16,6 +16,7 @@ class JobPost: NSObject {
     var compName: String?
     var location: String?
     var about: String?
+    var url: String?
     //var userSearch: String?
 
     init(data: CXMLTag)
@@ -24,6 +25,8 @@ class JobPost: NSObject {
         self.compName = data["company"].string
         self.location =  data["formattedLocation"].string
         self.about = data["snippet"].string
+        self.url = data["url"].string
+        
     }
     
     //init(userSearch: String) {
