@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		09398C06C18DFE25327C5183 /* Pods_JobApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B833FA3979DDDDED57E122B5 /* Pods_JobApp.framework */; };
-		FACB65F81F180FC7004A5E19 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACB65F71F180FC7004A5E19 /* HomeViewController.swift */; };
 		FAE262B81F15218700CE3551 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE262B71F15218700CE3551 /* AppDelegate.swift */; };
 		FAE262BD1F15218700CE3551 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAE262BB1F15218700CE3551 /* Main.storyboard */; };
 		FAE262BF1F15218700CE3551 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAE262BE1F15218700CE3551 /* Assets.xcassets */; };
@@ -25,7 +24,6 @@
 		B833FA3979DDDDED57E122B5 /* Pods_JobApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JobApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D24E420A6A830740C29EE437 /* Pods-JobApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JobApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-JobApp/Pods-JobApp.debug.xcconfig"; sourceTree = "<group>"; };
 		D4423828E1520D711C788B1B /* Pods-JobApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JobApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-JobApp/Pods-JobApp.release.xcconfig"; sourceTree = "<group>"; };
-		FACB65F71F180FC7004A5E19 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeViewController.swift; path = Controllers/HomeViewController.swift; sourceTree = SOURCE_ROOT; };
 		FAE262B41F15218700CE3551 /* JobApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JobApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAE262B71F15218700CE3551 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FAE262BC1F15218700CE3551 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -116,7 +114,6 @@
 				FAE262CE1F152E1000CE3551 /* PTJobsViewController.swift */,
 				FAE262D01F152E2200CE3551 /* InternshipsViewController.swift */,
 				FAE262D21F152E4400CE3551 /* SummerViewController.swift */,
-				FACB65F71F180FC7004A5E19 /* HomeViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -273,7 +270,6 @@
 				FAE262D11F152E2200CE3551 /* InternshipsViewController.swift in Sources */,
 				FAE262D51F15717400CE3551 /* JobPost.swift in Sources */,
 				FAE262B81F15218700CE3551 /* AppDelegate.swift in Sources */,
-				FACB65F81F180FC7004A5E19 /* HomeViewController.swift in Sources */,
 				FAE262D31F152E4400CE3551 /* SummerViewController.swift in Sources */,
 				FAE262CF1F152E1000CE3551 /* PTJobsViewController.swift in Sources */,
 				FAE262D81F17C1FA00CE3551 /* PostsTableViewCell.swift in Sources */,

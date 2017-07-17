@@ -1,107 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="HcF-G1-BPY">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="7Ni-J6-V22">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--HomeViewController-->
-        <scene sceneID="6uO-Ff-QSm">
-            <objects>
-                <viewController storyboardIdentifier="locationVC" title="HomeViewController" id="HcF-G1-BPY" customClass="HomeViewController" customModule="JobApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="usn-vV-JIV"/>
-                        <viewControllerLayoutGuide type="bottom" id="gBb-nu-1fp"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="U5d-4z-8mZ">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v9R-g8-KyB">
-                                <rect key="frame" x="3" y="216" width="375" height="216"/>
-                                <connections>
-                                    <outlet property="dataSource" destination="HcF-G1-BPY" id="qrZ-UE-J8O"/>
-                                    <outlet property="delegate" destination="HcF-G1-BPY" id="ZPt-xB-FAH"/>
-                                </connections>
-                            </pickerView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vym-uD-t4e">
-                                <rect key="frame" x="53" y="182" width="274" height="30"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select your location:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6gC-s5-Y1I">
-                                <rect key="frame" x="37" y="57" width="306" height="34"/>
-                                <fontDescription key="fontDescription" name="Arial-BoldMT" family="Arial" pointSize="30"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="State" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hpQ-mb-9Kd">
-                                <rect key="frame" x="64" y="401" width="57" height="23"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="57" id="Ceh-rN-GdE"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="20"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="248" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E2n-wo-I6i">
-                                <rect key="frame" x="121" y="498" width="133" height="46"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="133" id="PFL-go-elE"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="30"/>
-                                <state key="normal" title="Search"/>
-                                <connections>
-                                    <action selector="searchButtonTapped:" destination="HcF-G1-BPY" eventType="touchUpInside" id="gYm-jg-SUS"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="City" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V65-9B-eiu">
-                                <rect key="frame" x="64" y="220" width="86" height="23"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="86" id="LIs-Fv-Fdp"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="20"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="gBb-nu-1fp" firstAttribute="top" secondItem="E2n-wo-I6i" secondAttribute="bottom" constant="123" id="0ik-x7-te4"/>
-                            <constraint firstItem="V65-9B-eiu" firstAttribute="top" secondItem="vym-uD-t4e" secondAttribute="bottom" constant="8" symbolic="YES" id="AQL-yG-xN1"/>
-                            <constraint firstItem="6gC-s5-Y1I" firstAttribute="top" secondItem="usn-vV-JIV" secondAttribute="bottom" constant="37" id="Ald-zq-O4w"/>
-                            <constraint firstItem="gBb-nu-1fp" firstAttribute="top" secondItem="hpQ-mb-9Kd" secondAttribute="bottom" constant="243" id="Cbe-KM-2QE"/>
-                            <constraint firstItem="vym-uD-t4e" firstAttribute="leading" secondItem="U5d-4z-8mZ" secondAttribute="leadingMargin" constant="37" id="Irj-5D-KOv"/>
-                            <constraint firstItem="E2n-wo-I6i" firstAttribute="centerX" secondItem="U5d-4z-8mZ" secondAttribute="centerX" id="Iuu-gb-P8w"/>
-                            <constraint firstItem="v9R-g8-KyB" firstAttribute="top" secondItem="vym-uD-t4e" secondAttribute="bottom" constant="4" id="K4z-bk-7pp"/>
-                            <constraint firstItem="v9R-g8-KyB" firstAttribute="centerX" secondItem="vym-uD-t4e" secondAttribute="centerX" id="NmY-7a-DSp"/>
-                            <constraint firstItem="v9R-g8-KyB" firstAttribute="leading" secondItem="U5d-4z-8mZ" secondAttribute="leadingMargin" constant="-13" id="a9Q-2R-u1e"/>
-                            <constraint firstItem="6gC-s5-Y1I" firstAttribute="centerX" secondItem="vym-uD-t4e" secondAttribute="centerX" id="h35-eg-cV4"/>
-                            <constraint firstItem="hpQ-mb-9Kd" firstAttribute="leading" secondItem="V65-9B-eiu" secondAttribute="leading" id="mKJ-G3-v2P"/>
-                            <constraint firstItem="E2n-wo-I6i" firstAttribute="top" secondItem="v9R-g8-KyB" secondAttribute="bottom" constant="66" id="mMG-dX-T69"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="6gC-s5-Y1I" secondAttribute="trailing" constant="16" id="md2-tz-tNU"/>
-                            <constraint firstItem="6gC-s5-Y1I" firstAttribute="leading" secondItem="U5d-4z-8mZ" secondAttribute="leadingMargin" constant="21" id="yNB-Q7-4Lg"/>
-                            <constraint firstItem="hpQ-mb-9Kd" firstAttribute="leading" secondItem="U5d-4z-8mZ" secondAttribute="leadingMargin" constant="48" id="zdh-W4-24x"/>
-                        </constraints>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="GGU-aK-6Xs"/>
-                    <connections>
-                        <outlet property="cityTextField" destination="vym-uD-t4e" id="sRR-p5-HvC"/>
-                        <outlet property="pickerView" destination="v9R-g8-KyB" id="ljE-cl-fBK"/>
-                        <outlet property="searchButton" destination="E2n-wo-I6i" id="Kjm-JJ-AZh"/>
-                        <segue destination="LO1-OY-C6e" kind="show" identifier="searchButtonTapped" id="7Ob-VR-vn3"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="cXz-Jf-XFC" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-732" y="634"/>
-        </scene>
         <!--Internships-->
         <scene sceneID="bAb-20-k49">
             <objects>
@@ -301,7 +208,4 @@
             <point key="canvasLocation" x="-732" y="-95"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="7Ob-VR-vn3"/>
-    </inferredMetricsTieBreakers>
 </document>
