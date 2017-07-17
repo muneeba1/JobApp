@@ -13,18 +13,27 @@ import CheatyXML
 
 class PTJobsViewController: UIViewController{
     
+    
     var jobsArray: [JobPost] = []
     
     @IBOutlet weak var ptTableView: UITableView!
     
+    
+    
+    var url : String? {
+        didSet{
+            loadData()
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let userLocation: String = "Chicago"
-        
-        var url: String = "http://api.indeed.com/ads/apisearch?publisher=2752372751835619&q=part%20time&l=chicago%2C+il&v=2"
-        
-        Alamofire.request(url).validate().responseData(completionHandler: { (response) in
+        //let userLocation: String = "Chicago"
+
+    }
+    func loadData(){
+        Alamofire.request(url!).validate().responseData(completionHandler: { (response) in
             
             let data: CXMLParser! = CXMLParser(data: response.data)
             
@@ -33,20 +42,23 @@ class PTJobsViewController: UIViewController{
             
             let arrayXML = data["results"]["result"].array
             
+            self.jobsArray.removeAll()
             for result in arrayXML {
                 let post = JobPost(data: result)
                 self.jobsArray.append(post)
                 
             }
             
+            
             // var object = JobPost(data: data)
             //self.jobsArray.append(object)
             self.ptTableView.reloadData()
-            
-            
         })
-
+        
     }
+    
+
+    
 }
 
 extension PTJobsViewController: UITableViewDelegate, UITableViewDataSource{

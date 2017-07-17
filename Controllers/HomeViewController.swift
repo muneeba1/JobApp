@@ -8,27 +8,91 @@
 
 import Foundation
 import UIKit
+import Alamofire
+import CheatyXML
 
 class HomeViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource{
-    
-    @IBOutlet weak var textField: UITextField!
+
+    @IBOutlet weak var cityTextField: UITextField!
     
     @IBOutlet weak var pickerView: UIPickerView!
     
     @IBOutlet weak var searchButton: UIButton!
    
+    
+    
     var pickerData: [String] = [String]()
+    var jobsArray: [JobPost] = []
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+//        let vc = self.storyboard?.instantiateViewController(withIdentifier: "locationVC") as! UIViewController
+//        self.present(vc, animated: true, completion: {})
+        
         
         // Connect data:
         self.pickerView.delegate = self
         self.pickerView.dataSource = self
         
         // Input data into the Array:
-        pickerData = ["Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 6"]
+        pickerData = ["AK",
+                      "AL",
+                      "AR",
+                      "AS",
+                      "AZ",
+                      "CA",
+                      "CO",
+                      "CT",
+                      "DC",
+                      "DE",
+                      "FL",
+                      "GA",
+                      "GU",
+                      "HI",
+                      "IA",
+                      "ID",
+                      "IL",
+                      "IN",
+                      "KS",
+                      "KY",
+                      "LA",
+                      "MA",
+                      "MD",
+                      "ME",
+                      "MI",
+                      "MN",
+                      "MO",
+                      "MS",
+                      "MT",
+                      "NC",
+                      "ND",
+                      "NE",
+                      "NH",
+                      "NJ",
+                      "NM",
+                      "NV",
+                      "NY",
+                      "OH",
+                      "OK",
+                      "OR",
+                      "PA",
+                      "PR",
+                      "RI",
+                      "SC",
+                      "SD",
+                      "TN",
+                      "TX",
+                      "UT",
+                      "VA",
+                      "VI",
+                      "VT",
+                      "WA",
+                      "WI",
+                      "WV",
+                      "WY"]
     }
     
     override func didReceiveMemoryWarning() {
@@ -37,6 +101,30 @@ class HomeViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
     }
     
     
+    @IBAction func searchButtonTapped(_ sender: UIButton) {
+         self.performSegue(withIdentifier: "searchButtonTapped", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // 1
+        if let identifier = segue.identifier {
+            // 2
+            if identifier == "searchButtonTapped" {
+                // 3
+                let PTJobsViewController = segue.destination as! PTJobsViewController
+                let userCity: String = cityTextField.text!
+                let userState: String = self.pickerData[self.pickerView.selectedRow(inComponent: 0)]
+                
+                var url: String = "http://api.indeed.com/ads/apisearch?publisher=2752372751835619&q=part+time&l=\(userCity)%2C+\(userState)&v=2"
+                
+               PTJobsViewController.url = url
+                
+                
+            }
+        }
+    }
+    
+        
     // The number of columns of data
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
         return 1
