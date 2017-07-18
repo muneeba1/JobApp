@@ -11,13 +11,10 @@ import UIKit
 class PostsTableViewCell: UITableViewCell {
 
     
-    @IBOutlet weak var textView: UITextView!
-    
-  
-    
     @IBOutlet weak var jobNameLabel: UILabel!
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var compNameLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

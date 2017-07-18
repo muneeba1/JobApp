@@ -9,15 +9,25 @@
 import Foundation
 import UIKit
 
-class WebViewController: UIViewController{
+class WebViewController: UIViewController, UIWebViewDelegate{
     
+  
     @IBOutlet weak var webView: UIWebView!
+    
+     var url: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-       // webView.loadRequest(//url)
-        
+    }
+    override func viewWillAppear(_ animated: Bool)
+    {
+        let urlLoad = URLRequest(url:URL(string:url!)!)
+        webView.loadRequest(urlLoad)
+//
+//        let url = URL(string: self.url!)
+//        let requestObj = URLRequest(url: url!)
+//        webView.loadRequest(requestObj)
     }
     
 }

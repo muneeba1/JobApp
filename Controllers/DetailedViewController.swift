@@ -34,6 +34,21 @@ class DetailedViewController: UIViewController{
             locationLabel.text = post.location
             aboutTextView.text = post.about
         }
-    }    
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // 1
+        if let identifier = segue.identifier {
+            // 2
+            if identifier == "applyButtonPressed" {
+                
+                let urlString = post?.url
+                
+                let webViewController = segue.destination as! WebViewController
+                webViewController.url = urlString
+                
+            }
+        }
+    }
     
 }
