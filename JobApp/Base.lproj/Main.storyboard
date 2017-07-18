@@ -71,15 +71,15 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="70" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="LGv-uL-4pE">
-                                <rect key="frame" x="16" y="76" width="343" height="534"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="563"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="postsCell" rowHeight="70" id="YeT-sW-KtB" customClass="PostsTableViewCell" customModule="JobApp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="343" height="70"/>
+                                        <rect key="frame" x="0.0" y="28" width="375" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YeT-sW-KtB" id="cit-qJ-Xxn">
-                                            <rect key="frame" x="0.0" y="0.0" width="343" height="69.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="69.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="compName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="80K-XY-0HC">
@@ -124,18 +124,9 @@
                     <navigationItem key="navigationItem" id="dA4-AH-Ege"/>
                     <connections>
                         <outlet property="ptTableView" destination="LGv-uL-4pE" id="RYl-tW-iSJ"/>
-                        <outlet property="searchDisplayController" destination="W0L-9e-An5" id="ZCg-yY-4r9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="A71-DQ-hBx" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <searchDisplayController id="W0L-9e-An5">
-                    <connections>
-                        <outlet property="delegate" destination="LO1-OY-C6e" id="eHq-dP-soj"/>
-                        <outlet property="searchContentsController" destination="LO1-OY-C6e" id="NCc-gx-KzY"/>
-                        <outlet property="searchResultsDataSource" destination="LO1-OY-C6e" id="P8T-lm-cVw"/>
-                        <outlet property="searchResultsDelegate" destination="LO1-OY-C6e" id="RPc-Gd-u8o"/>
-                    </connections>
-                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="1132" y="-462.8185907046477"/>
         </scene>

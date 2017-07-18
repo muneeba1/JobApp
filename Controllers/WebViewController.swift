@@ -20,11 +20,12 @@ class WebViewController: UIViewController, UIWebViewDelegate{
         super.viewDidLoad()
         
     }
+    
     override func viewWillAppear(_ animated: Bool)
     {
         let urlLoad = URLRequest(url:URL(string:url!)!)
         webView.loadRequest(urlLoad)
-//
+        
 //        let url = URL(string: self.url!)
 //        let requestObj = URLRequest(url: url!)
 //        webView.loadRequest(requestObj)

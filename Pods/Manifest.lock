@@ -1,15 +1,18 @@
 PODS:
   - Alamofire (4.5.0)
   - CheatyXML (2.0.0)
+  - ModernSearchBar (1.4)
 
 DEPENDENCIES:
   - Alamofire
   - CheatyXML
+  - ModernSearchBar (~> 1.4)
 
 SPEC CHECKSUMS:
   Alamofire: f28cdffd29de33a7bfa022cbd63ae95a27fae140
   CheatyXML: 094f779fb205b53e7fd180a33c55eee846ca759e
+  ModernSearchBar: d888b62f960c4d91f8662f0720e1544d19847e7f
 
-PODFILE CHECKSUM: a0cd066b79761368497a8e9777807917fa28a41d
+PODFILE CHECKSUM: ad7e40360cc4ca9d08ba3cf58bb767301a532f87
 
 COCOAPODS: 1.2.1
