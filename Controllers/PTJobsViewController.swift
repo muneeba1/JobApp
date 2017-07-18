@@ -11,6 +11,8 @@ import UIKit
 import Alamofire
 import CheatyXML
 
+
+
 class PTJobsViewController: UIViewController, UISearchResultsUpdating, UISearchControllerDelegate{
     
     var jobsArray: [JobPost] = []
@@ -23,7 +25,7 @@ class PTJobsViewController: UIViewController, UISearchResultsUpdating, UISearchC
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let url: String = "http://api.indeed.com/ads/apisearch?publisher=2752372751835619&q=part%20time&l=&v=2"
+        let url: String = "http://api.indeed.com/ads/apisearch?publisher=2752372751835619&q=part%20&l=&sort=&radius=&st=&jt=parttime&start=&limit=200&fromage=&filter=&latlong=&co=&chnl=&userip=1.2.3.4&useragent=&v=2"
         
         //searchbar stuff
         searchController.searchResultsUpdater = self as! UISearchResultsUpdating
@@ -32,6 +34,8 @@ class PTJobsViewController: UIViewController, UISearchResultsUpdating, UISearchC
         searchController.searchBar.sizeToFit()
         self.ptTableView.tableHeaderView = searchController.searchBar
         searchController.delegate = self
+        
+
         
         Alamofire.request(url).validate().responseData(completionHandler: { (response) in
             
@@ -76,7 +80,8 @@ class PTJobsViewController: UIViewController, UISearchResultsUpdating, UISearchC
     func didDismissSearchController(_ searchController: UISearchController)
     {
         self.jobsArray.removeAll()
-        let url: String = "http://api.indeed.com/ads/apisearch?publisher=2752372751835619&q=part%20time&l=&v=2"
+        let url: String = "http://api.indeed.com/ads/apisearch?publisher=2752372751835619&q=part%20&l=&sort=&radius=&st=&jt=parttime&start=&limit=200&fromage=&filter=&latlong=&co=&chnl=&userip=1.2.3.4&useragent=&v=2"
+        
         Alamofire.request(url).validate().responseData(completionHandler: { (response) in
             
             let data: CXMLParser! = CXMLParser(data: response.data)
@@ -115,6 +120,7 @@ extension PTJobsViewController: UITableViewDelegate, UITableViewDataSource{
         
         let post = jobsArray[indexPath.row]
         
+        
         cell.jobNameLabel.text = post.jobName
         cell.compNameLabel.text = post.compName
         cell.locationLabel.text = post.location
@@ -122,11 +128,12 @@ extension PTJobsViewController: UITableViewDelegate, UITableViewDataSource{
         return cell
     }
     
+    
     func updateSearchResults(for searchController: UISearchController) {
         
         let userSearch: String = searchController.searchBar.text ?? "temp"
         
-        let url: String = "http://api.indeed.com/ads/apisearch?publisher=2752372751835619&q=\(userSearch)&l=&v=2"
+        let url: String = "http://api.indeed.com/ads/apisearch?publisher=2752372751835619&q=part%20&l=&sort=&radius=&st=&jt=parttime&start=&limit=200&fromage=&filter=&latlong=&co=&chnl=&userip=1.2.3.4&useragent=&v=2"
         
         Alamofire.request(url).validate().responseData(completionHandler: { (response) in
             
@@ -155,5 +162,7 @@ extension PTJobsViewController: UITableViewDelegate, UITableViewDataSource{
         
     }
     
+    
 }
+
 

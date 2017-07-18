@@ -10,6 +10,8 @@
 		09398C06C18DFE25327C5183 /* Pods_JobApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B833FA3979DDDDED57E122B5 /* Pods_JobApp.framework */; };
 		FADEFEBB1F1D095300C3548D /* DetailedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADEFEBA1F1D095300C3548D /* DetailedViewController.swift */; };
 		FADEFEBD1F1D674F00C3548D /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADEFEBC1F1D674F00C3548D /* WebViewController.swift */; };
+		FADEFEC51F1EACB300C3548D /* InternPostsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADEFEC41F1EACB300C3548D /* InternPostsCell.swift */; };
+		FADEFEC71F1EAE5300C3548D /* SpPostsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADEFEC61F1EAE5300C3548D /* SpPostsCell.swift */; };
 		FAE262B81F15218700CE3551 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE262B71F15218700CE3551 /* AppDelegate.swift */; };
 		FAE262BD1F15218700CE3551 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAE262BB1F15218700CE3551 /* Main.storyboard */; };
 		FAE262BF1F15218700CE3551 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAE262BE1F15218700CE3551 /* Assets.xcassets */; };
@@ -28,6 +30,8 @@
 		D4423828E1520D711C788B1B /* Pods-JobApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JobApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-JobApp/Pods-JobApp.release.xcconfig"; sourceTree = "<group>"; };
 		FADEFEBA1F1D095300C3548D /* DetailedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DetailedViewController.swift; path = Controllers/DetailedViewController.swift; sourceTree = SOURCE_ROOT; };
 		FADEFEBC1F1D674F00C3548D /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WebViewController.swift; path = Controllers/WebViewController.swift; sourceTree = SOURCE_ROOT; };
+		FADEFEC41F1EACB300C3548D /* InternPostsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InternPostsCell.swift; path = Views/InternPostsCell.swift; sourceTree = SOURCE_ROOT; };
+		FADEFEC61F1EAE5300C3548D /* SpPostsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SpPostsCell.swift; path = Views/SpPostsCell.swift; sourceTree = SOURCE_ROOT; };
 		FAE262B41F15218700CE3551 /* JobApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JobApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAE262B71F15218700CE3551 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FAE262BC1F15218700CE3551 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -136,6 +140,8 @@
 			isa = PBXGroup;
 			children = (
 				FAE262D71F17C1FA00CE3551 /* PostsTableViewCell.swift */,
+				FADEFEC41F1EACB300C3548D /* InternPostsCell.swift */,
+				FADEFEC61F1EAE5300C3548D /* SpPostsCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -273,11 +279,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FADEFEC71F1EAE5300C3548D /* SpPostsCell.swift in Sources */,
 				FAE262D11F152E2200CE3551 /* InternshipsViewController.swift in Sources */,
 				FADEFEBD1F1D674F00C3548D /* WebViewController.swift in Sources */,
 				FAE262D51F15717400CE3551 /* JobPost.swift in Sources */,
 				FADEFEBB1F1D095300C3548D /* DetailedViewController.swift in Sources */,
 				FAE262B81F15218700CE3551 /* AppDelegate.swift in Sources */,
+				FADEFEC51F1EACB300C3548D /* InternPostsCell.swift in Sources */,
 				FAE262D31F152E4400CE3551 /* SummerViewController.swift in Sources */,
 				FAE262CF1F152E1000CE3551 /* PTJobsViewController.swift in Sources */,
 				FAE262D81F17C1FA00CE3551 /* PostsTableViewCell.swift in Sources */,
