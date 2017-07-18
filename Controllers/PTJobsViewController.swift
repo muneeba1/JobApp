@@ -88,17 +88,9 @@ extension PTJobsViewController: UITableViewDelegate, UITableViewDataSource{
         cell.compNameLabel.text = post.compName
         cell.locationLabel.text = post.location
         
-        
-//        let tap = UITapGestureRecognizer(target: self, action: #selector(PTJobsViewController.tapFunction))
-//        cell.jobNameLabel.isUserInteractionEnabled = true
-//        cell.jobNameLabel.addGestureRecognizer(tap)
-        
         return cell
     }
     
-//    func tapFunction(sender:UITapGestureRecognizer) {
-//        self.performSegue(withIdentifier: "labelPressed", sender: self)
-//    }
     
 }
 

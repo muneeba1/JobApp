@@ -17,17 +17,13 @@ class DetailedViewController: UIViewController{
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var aboutTextView: UITextView!
     @IBOutlet weak var applyButton: UIButton!
-    @IBAction func applyButtonPressed(_ sender: UIButton) {
-    }
+    
     
     var post: JobPost?
     
     override func viewDidLoad() {
         super.viewDidLoad()
     
-        
-      //jobNameLabel.text = post?.jobName
-     // print(post?.jobName)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -38,5 +34,6 @@ class DetailedViewController: UIViewController{
             locationLabel.text = post.location
             aboutTextView.text = post.about
         }
-    }
+    }    
+    
 }
