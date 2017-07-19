@@ -22,10 +22,10 @@ class SummerViewController: UIViewController, UISearchResultsUpdating, UISearchC
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let url: String = "http://api.indeed.com/ads/apisearch?publisher=2752372751835619&q=summer&l=&v=2"
+        let url: String = "http://api.indeed.com/ads/apisearch?publisher=2752372751835619&q=summer&start=&limit=200&l=&v=2"
         
         //searchbar stuff
-        searchController.searchResultsUpdater = self as! UISearchResultsUpdating
+        searchController.searchResultsUpdater = self as UISearchResultsUpdating
         searchController.hidesNavigationBarDuringPresentation = false
         searchController.dimsBackgroundDuringPresentation = false
         searchController.searchBar.sizeToFit()
@@ -76,7 +76,7 @@ class SummerViewController: UIViewController, UISearchResultsUpdating, UISearchC
     func didDismissSearchController(_ searchController: UISearchController)
     {
         self.jobsArray.removeAll()
-        let url: String = "http://api.indeed.com/ads/apisearch?publisher=2752372751835619&q=summer&l=&v=2"
+        let url: String = "http://api.indeed.com/ads/apisearch?publisher=2752372751835619&q=summer&start=&limit=200&l=&v=2"
         Alamofire.request(url).validate().responseData(completionHandler: { (response) in
             
             let data: CXMLParser! = CXMLParser(data: response.data)
@@ -128,7 +128,7 @@ extension SummerViewController: UITableViewDelegate, UITableViewDataSource{
         
         let userSearch: String = searchController.searchBar.text ?? "summer"
         
-        let url: String = "http://api.indeed.com/ads/apisearch?publisher=2752372751835619&q=\(userSearch)&l=&v=2"
+        let url: String = "http://api.indeed.com/ads/apisearch?publisher=2752372751835619&q=\(userSearch)&start=&limit=200&l=&v=2"
         
         Alamofire.request(url).validate().responseData(completionHandler: { (response) in
             

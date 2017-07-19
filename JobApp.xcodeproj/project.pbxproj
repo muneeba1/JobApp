@@ -66,6 +66,13 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		FADEFECA1F1F9F4000C3548D /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Helpers;
+			sourceTree = "<group>";
+		};
 		FAE262AB1F15218700CE3551 = {
 			isa = PBXGroup;
 			children = (
@@ -94,6 +101,7 @@
 				FAE262CA1F15238800CE3551 /* Supporting */,
 				FAE262D61F15717A00CE3551 /* Models */,
 				FAE262D91F17C20200CE3551 /* Views */,
+				FADEFECA1F1F9F4000C3548D /* Helpers */,
 			);
 			path = JobApp;
 			sourceTree = "<group>";

@@ -18,7 +18,7 @@ class JobPost: NSObject {
     var about: String?
     var url: String?
     //var userSearch: String?
-
+    
     init(data: CXMLTag)
     {
         self.jobName = data["jobtitle"].string
