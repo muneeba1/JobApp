@@ -37,6 +37,9 @@ class SummerViewController: UIViewController, UISearchResultsUpdating, UISearchC
         
         loadData(url: url)
         
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 80
+        
     }
     func loadData(url: String)  {
         
@@ -71,6 +74,12 @@ class SummerViewController: UIViewController, UISearchResultsUpdating, UISearchC
                 
             }
         }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        
+        tableView.reloadData()
+        
     }
     
     func didDismissSearchController(_ searchController: UISearchController)

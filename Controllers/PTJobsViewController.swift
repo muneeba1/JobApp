@@ -38,6 +38,9 @@ class PTJobsViewController: UIViewController, UISearchResultsUpdating, UISearchC
         self.scrollView.delegate = self
         
         loadData(url: url)
+        
+        ptTableView.rowHeight = UITableViewAutomaticDimension
+        ptTableView.estimatedRowHeight = 80
     }
     
     func loadData(url: String){
@@ -73,7 +76,11 @@ class PTJobsViewController: UIViewController, UISearchResultsUpdating, UISearchC
             }
         }
     }
-    
+    override func viewDidAppear(_ animated: Bool) {
+        
+        ptTableView.reloadData()
+        
+    }
     //cancel button stuff
     func didDismissSearchController(_ searchController: UISearchController)
     {
@@ -106,6 +113,7 @@ extension PTJobsViewController: UITableViewDelegate, UITableViewDataSource{
         return cell
     }
     
+   
     //searchbar
     func updateSearchResults(for searchController: UISearchController) {
         
@@ -148,8 +156,6 @@ extension PTJobsViewController: UIScrollViewDelegate{
         start += 25
         
         if userSearch == ""{
-            
-            print(start)
             
             let url = "http://api.indeed.com/ads/apisearch?publisher=2752372751835619&q=part&start=\(start)&limit=25&jt=parttime&l=&v=2"
             

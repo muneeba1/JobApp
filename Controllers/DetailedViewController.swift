@@ -13,6 +13,7 @@ class DetailedViewController: UIViewController{
     
     
     @IBOutlet weak var jobNameLabel: UILabel!
+    @IBOutlet weak var titleLabel: UINavigationItem!
     @IBOutlet weak var compNameLabel: UILabel!
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var aboutTextView: UITextView!
@@ -33,6 +34,7 @@ class DetailedViewController: UIViewController{
             compNameLabel.text = post.compName
             locationLabel.text = post.location
             aboutTextView.text = post.about
+            titleLabel.title = post.jobName
         }
     }
     

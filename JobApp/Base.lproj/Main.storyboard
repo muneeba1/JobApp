@@ -6,13 +6,11 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
-        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
-        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Internships View Controller-->
+        <!--Internships-->
         <scene sceneID="bAb-20-k49">
             <objects>
                 <viewController id="DqZ-HF-d3Z" customClass="InternshipsViewController" customModule="JobApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -32,28 +30,25 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ny7-9y-vHv" id="hc8-5u-4W3">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="69.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="70"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="jobName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bm9-9o-LgE">
-                                                    <rect key="frame" x="21" y="0.0" width="346" height="21"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="21" id="oDA-lx-tKW"/>
-                                                    </constraints>
+                                                    <rect key="frame" x="18" y="10" width="325" height="17"/>
                                                     <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="compName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qqp-6y-8pd">
-                                                    <rect key="frame" x="21" y="29" width="181" height="36"/>
+                                                    <rect key="frame" x="17" y="43" width="185" height="17"/>
                                                     <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ekK-UG-n7k">
-                                                    <rect key="frame" x="222" y="29" width="145" height="36"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ekK-UG-n7k">
+                                                    <rect key="frame" x="216" y="42" width="144" height="18.5"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="145" id="UNd-J7-2sL"/>
+                                                        <constraint firstAttribute="width" constant="144" id="6vk-bg-Uhp"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="15"/>
                                                     <nil key="textColor"/>
@@ -61,16 +56,16 @@
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="qqp-6y-8pd" firstAttribute="top" secondItem="Bm9-9o-LgE" secondAttribute="bottom" constant="8" symbolic="YES" id="BiZ-Ud-5qe"/>
-                                                <constraint firstItem="qqp-6y-8pd" firstAttribute="leading" secondItem="Bm9-9o-LgE" secondAttribute="leading" id="N1i-nu-Cen"/>
-                                                <constraint firstItem="ekK-UG-n7k" firstAttribute="trailing" secondItem="Bm9-9o-LgE" secondAttribute="trailing" id="QJ0-zc-Ry1"/>
-                                                <constraint firstItem="Bm9-9o-LgE" firstAttribute="trailing" secondItem="hc8-5u-4W3" secondAttribute="trailingMargin" id="c2E-Qa-Ww3"/>
-                                                <constraint firstItem="qqp-6y-8pd" firstAttribute="firstBaseline" secondItem="ekK-UG-n7k" secondAttribute="firstBaseline" id="cYZ-9j-cW3"/>
-                                                <constraint firstItem="ekK-UG-n7k" firstAttribute="leading" secondItem="qqp-6y-8pd" secondAttribute="trailing" constant="20" id="e6C-hC-EJC"/>
-                                                <constraint firstItem="Bm9-9o-LgE" firstAttribute="leading" secondItem="hc8-5u-4W3" secondAttribute="leadingMargin" constant="13" id="qDn-Sg-DIn"/>
-                                                <constraint firstItem="qqp-6y-8pd" firstAttribute="baseline" secondItem="ekK-UG-n7k" secondAttribute="baseline" id="rDV-6s-gYi"/>
-                                                <constraint firstItem="Bm9-9o-LgE" firstAttribute="top" secondItem="hc8-5u-4W3" secondAttribute="top" id="tBZ-7w-QeM"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="qqp-6y-8pd" secondAttribute="bottom" constant="-3.5" id="vSh-lk-n55"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="ekK-UG-n7k" secondAttribute="trailing" constant="7" id="2ct-4t-Y9V"/>
+                                                <constraint firstItem="ekK-UG-n7k" firstAttribute="leading" secondItem="qqp-6y-8pd" secondAttribute="trailing" constant="14" id="3Z1-JP-ueI"/>
+                                                <constraint firstItem="ekK-UG-n7k" firstAttribute="top" secondItem="Bm9-9o-LgE" secondAttribute="bottom" constant="15" id="4QA-fQ-f7J"/>
+                                                <constraint firstItem="Bm9-9o-LgE" firstAttribute="leading" secondItem="hc8-5u-4W3" secondAttribute="leadingMargin" constant="10" id="8Lh-cF-dhf"/>
+                                                <constraint firstItem="qqp-6y-8pd" firstAttribute="leading" secondItem="hc8-5u-4W3" secondAttribute="leadingMargin" constant="9" id="AeE-Ii-mAN"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="ekK-UG-n7k" secondAttribute="bottom" constant="1" id="G7L-V1-Qf3"/>
+                                                <constraint firstItem="qqp-6y-8pd" firstAttribute="top" secondItem="Bm9-9o-LgE" secondAttribute="bottom" constant="16" id="QEN-D0-r73"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="qqp-6y-8pd" secondAttribute="bottom" constant="1" id="RKW-h0-KRj"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="Bm9-9o-LgE" secondAttribute="trailing" constant="24" id="hhK-DC-px1"/>
+                                                <constraint firstItem="Bm9-9o-LgE" firstAttribute="top" secondItem="hc8-5u-4W3" secondAttribute="topMargin" constant="2" id="meg-GZ-idv"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -95,7 +90,7 @@
                             <constraint firstAttribute="trailing" secondItem="FTx-BN-0lq" secondAttribute="trailing" id="Zlv-pW-UVE"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="mbu-v7-nJ5"/>
+                    <navigationItem key="navigationItem" title="Internships" id="XoM-bz-7r2"/>
                     <connections>
                         <outlet property="tableView" destination="FTx-BN-0lq" id="EIY-dJ-9QB"/>
                     </connections>
@@ -104,7 +99,7 @@
             </objects>
             <point key="canvasLocation" x="1132" y="190.25487256371815"/>
         </scene>
-        <!--Jobs View Controller-->
+        <!--Part Time Jobs-->
         <scene sceneID="qtd-8p-uw0">
             <objects>
                 <viewController id="LO1-OY-C6e" customClass="PTJobsViewController" customModule="JobApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -124,47 +119,42 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YeT-sW-KtB" id="cit-qJ-Xxn">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="69.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="70"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="compName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="80K-XY-0HC">
-                                                    <rect key="frame" x="17" y="40" width="204" height="21"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="204" id="EdW-kE-Ly4"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="16"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="compName" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="80K-XY-0HC">
+                                                    <rect key="frame" x="17" y="44" width="185" height="17"/>
+                                                    <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v0F-Iv-nQO">
-                                                    <rect key="frame" x="212" y="40" width="131" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v0F-Iv-nQO">
+                                                    <rect key="frame" x="216" y="43" width="144" height="18"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="131" id="fKD-dU-Mcl"/>
+                                                        <constraint firstAttribute="width" constant="144" id="5aB-1h-uRV"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="jobName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lle-Hj-SeA">
-                                                    <rect key="frame" x="17" y="14" width="318" height="21"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="21" id="5Yl-dq-5bw"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="15"/>
-                                                    <nil key="textColor"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="jobName" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lle-Hj-SeA">
+                                                    <rect key="frame" x="18" y="10" width="325" height="18"/>
+                                                    <fontDescription key="fontDescription" name="Arial-BoldMT" family="Arial" pointSize="15"/>
+                                                    <color key="textColor" red="0.21568627450980393" green="0.53333333333333333" blue="0.69803921568627447" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="80K-XY-0HC" firstAttribute="baseline" secondItem="v0F-Iv-nQO" secondAttribute="baseline" id="7BE-89-bzi"/>
-                                                <constraint firstItem="Lle-Hj-SeA" firstAttribute="top" secondItem="cit-qJ-Xxn" secondAttribute="topMargin" constant="6" id="7hd-A6-9Fs"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="v0F-Iv-nQO" secondAttribute="trailing" constant="24" id="OzI-7u-qWT"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="v0F-Iv-nQO" secondAttribute="bottom" constant="0.5" id="Sac-Tn-FRO"/>
-                                                <constraint firstItem="80K-XY-0HC" firstAttribute="top" secondItem="v0F-Iv-nQO" secondAttribute="top" id="U3k-sU-iiG"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="Lle-Hj-SeA" secondAttribute="trailing" constant="32" id="Wdb-g7-CIK"/>
-                                                <constraint firstItem="v0F-Iv-nQO" firstAttribute="top" secondItem="Lle-Hj-SeA" secondAttribute="bottom" constant="5" id="YzN-8C-hJ6"/>
-                                                <constraint firstItem="80K-XY-0HC" firstAttribute="leading" secondItem="Lle-Hj-SeA" secondAttribute="leading" id="hVe-lc-gHF"/>
-                                                <constraint firstItem="Lle-Hj-SeA" firstAttribute="leading" secondItem="cit-qJ-Xxn" secondAttribute="leadingMargin" constant="9" id="hdF-j9-qfj"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="v0F-Iv-nQO" secondAttribute="trailing" constant="7" id="5Ni-uC-Rui"/>
+                                                <constraint firstItem="80K-XY-0HC" firstAttribute="top" secondItem="Lle-Hj-SeA" secondAttribute="bottom" constant="16" id="7tm-hC-BM0"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="Lle-Hj-SeA" secondAttribute="trailing" constant="24" id="B8i-bn-QJ9"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="80K-XY-0HC" secondAttribute="bottom" constant="1" id="ICS-LX-BmJ"/>
+                                                <constraint firstItem="Lle-Hj-SeA" firstAttribute="top" secondItem="cit-qJ-Xxn" secondAttribute="topMargin" constant="2" id="LeB-v8-ywJ"/>
+                                                <constraint firstItem="Lle-Hj-SeA" firstAttribute="leading" secondItem="cit-qJ-Xxn" secondAttribute="leadingMargin" constant="10" id="aL9-H4-Y5r"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="v0F-Iv-nQO" secondAttribute="bottom" constant="1" id="eTa-RW-BcA"/>
+                                                <constraint firstItem="80K-XY-0HC" firstAttribute="leading" secondItem="cit-qJ-Xxn" secondAttribute="leadingMargin" constant="9" id="pNT-vc-B64"/>
+                                                <constraint firstItem="v0F-Iv-nQO" firstAttribute="top" secondItem="Lle-Hj-SeA" secondAttribute="bottom" constant="15" id="pNm-iW-Ddb"/>
+                                                <constraint firstItem="v0F-Iv-nQO" firstAttribute="leading" secondItem="80K-XY-0HC" secondAttribute="trailing" constant="14" id="qSo-4t-cWF"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -189,7 +179,7 @@
                             <constraint firstItem="LGv-uL-4pE" firstAttribute="top" secondItem="Fhu-5M-w2k" secondAttribute="top" id="jdd-gf-k5i"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="dA4-AH-Ege"/>
+                    <navigationItem key="navigationItem" title="Part Time Jobs" id="4VE-Ga-8Yl"/>
                     <connections>
                         <outlet property="ptTableView" destination="LGv-uL-4pE" id="RYl-tW-iSJ"/>
                     </connections>
@@ -198,7 +188,7 @@
             </objects>
             <point key="canvasLocation" x="1132" y="-462.8185907046477"/>
         </scene>
-        <!--Detailed View Controller-->
+        <!--Title-->
         <scene sceneID="YRB-Fe-ePT">
             <objects>
                 <viewController id="vTZ-aG-sQS" customClass="DetailedViewController" customModule="JobApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -273,12 +263,14 @@
                             <constraint firstItem="pVa-gN-mfA" firstAttribute="trailing" secondItem="F8z-gh-dsx" secondAttribute="trailing" id="ydm-1c-idF"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Title" id="aPy-nW-M51"/>
                     <connections>
                         <outlet property="aboutTextView" destination="Bsj-j0-VeB" id="Rw3-mC-Fdh"/>
                         <outlet property="applyButton" destination="rOa-uB-jCT" id="gCk-Zy-U21"/>
                         <outlet property="compNameLabel" destination="F8z-gh-dsx" id="zam-4R-BwC"/>
                         <outlet property="jobNameLabel" destination="Zhw-4p-ONp" id="u7o-6T-Kjr"/>
                         <outlet property="locationLabel" destination="pVa-gN-mfA" id="nA7-IL-tkC"/>
+                        <outlet property="titleLabel" destination="aPy-nW-M51" id="a0q-zF-bga"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uVQ-K4-DSA" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -321,7 +313,7 @@
             </objects>
             <point key="canvasLocation" x="2581.5999999999999" y="-468.21589205397305"/>
         </scene>
-        <!--Summer View Controller-->
+        <!--Summer Programs-->
         <scene sceneID="okV-GN-Bpw">
             <objects>
                 <viewController id="fAn-Zr-enl" customClass="SummerViewController" customModule="JobApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -345,37 +337,38 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="jobName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n5Z-7t-WKi">
-                                                    <rect key="frame" x="30" y="12" width="315" height="17"/>
+                                                    <rect key="frame" x="18" y="10.5" width="325" height="17"/>
                                                     <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="compName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mO9-rE-K0o">
-                                                    <rect key="frame" x="30" y="40" width="163" height="21"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="163" id="ZmI-wv-8sy"/>
-                                                        <constraint firstAttribute="height" constant="21" id="bcS-pi-flO"/>
-                                                    </constraints>
+                                                    <rect key="frame" x="17" y="43.5" width="185" height="17"/>
                                                     <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W3G-fY-Fhe">
-                                                    <rect key="frame" x="227" y="40" width="141" height="17"/>
+                                                    <rect key="frame" x="216" y="42.5" width="144" height="18"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="144" id="hR3-i7-5VT"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="n5Z-7t-WKi" firstAttribute="top" secondItem="jS6-zJ-Lnf" secondAttribute="topMargin" constant="4" id="PQf-RD-nje"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="n5Z-7t-WKi" secondAttribute="trailing" constant="22" id="Y7b-91-NXh"/>
-                                                <constraint firstItem="mO9-rE-K0o" firstAttribute="leading" secondItem="n5Z-7t-WKi" secondAttribute="leading" id="Z0m-hP-SU2"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="W3G-fY-Fhe" secondAttribute="trailing" constant="-1" id="bRU-SI-3er"/>
-                                                <constraint firstItem="mO9-rE-K0o" firstAttribute="top" secondItem="n5Z-7t-WKi" secondAttribute="bottom" constant="11" id="hxe-iQ-KHR"/>
-                                                <constraint firstItem="W3G-fY-Fhe" firstAttribute="baseline" secondItem="mO9-rE-K0o" secondAttribute="firstBaseline" id="jyW-vO-q0p"/>
-                                                <constraint firstItem="n5Z-7t-WKi" firstAttribute="leading" secondItem="jS6-zJ-Lnf" secondAttribute="leadingMargin" constant="22" id="nEH-Iq-iZb"/>
-                                                <constraint firstItem="W3G-fY-Fhe" firstAttribute="leading" secondItem="mO9-rE-K0o" secondAttribute="trailing" constant="34" id="qvz-tX-i1G"/>
+                                                <constraint firstItem="mO9-rE-K0o" firstAttribute="top" secondItem="n5Z-7t-WKi" secondAttribute="bottom" constant="16" id="4We-lN-LgM"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="n5Z-7t-WKi" secondAttribute="trailing" constant="24" id="5ZC-vn-oei"/>
+                                                <constraint firstItem="W3G-fY-Fhe" firstAttribute="leading" secondItem="mO9-rE-K0o" secondAttribute="trailing" constant="14" id="75T-RA-QTD"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="mO9-rE-K0o" secondAttribute="bottom" constant="1" id="D9B-QN-Gct"/>
+                                                <constraint firstItem="mO9-rE-K0o" firstAttribute="leading" secondItem="jS6-zJ-Lnf" secondAttribute="leadingMargin" constant="9" id="HVM-hD-DPU"/>
+                                                <constraint firstItem="n5Z-7t-WKi" firstAttribute="top" secondItem="jS6-zJ-Lnf" secondAttribute="topMargin" constant="2" id="Mgh-KB-jtN"/>
+                                                <constraint firstItem="n5Z-7t-WKi" firstAttribute="leading" secondItem="jS6-zJ-Lnf" secondAttribute="leadingMargin" constant="10" id="Mxf-FG-qPW"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="W3G-fY-Fhe" secondAttribute="trailing" constant="7" id="bOH-cU-GUa"/>
+                                                <constraint firstItem="W3G-fY-Fhe" firstAttribute="top" secondItem="n5Z-7t-WKi" secondAttribute="bottom" constant="15" id="iOd-gV-cGz"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="W3G-fY-Fhe" secondAttribute="bottom" constant="1" id="oE8-Es-NBv"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -400,7 +393,7 @@
                             <constraint firstAttribute="trailing" secondItem="OQ2-jB-AsH" secondAttribute="trailing" id="uOf-dT-ejM"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="grJ-97-Bhe"/>
+                    <navigationItem key="navigationItem" title="Summer Programs" id="fTS-Oy-K8l"/>
                     <connections>
                         <outlet property="tableView" destination="OQ2-jB-AsH" id="9UR-qE-RtY"/>
                     </connections>
@@ -489,6 +482,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="qR0-NE-9nZ"/>
+        <segue reference="HjL-Bf-MxL"/>
     </inferredMetricsTieBreakers>
 </document>

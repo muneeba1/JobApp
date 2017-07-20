@@ -39,6 +39,9 @@ class InternshipsViewController: UIViewController, UISearchResultsUpdating, UISe
         self.scrollView.delegate = self
         
         loadData(url: url)
+        
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 80
     }
     
     func loadData(url: String){
@@ -72,6 +75,12 @@ class InternshipsViewController: UIViewController, UISearchResultsUpdating, UISe
                 
             }
         }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        
+        tableView.reloadData()
+        
     }
     
     func didDismissSearchController(_ searchController: UISearchController)
