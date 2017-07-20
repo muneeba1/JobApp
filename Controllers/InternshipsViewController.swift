@@ -35,6 +35,15 @@ class InternshipsViewController: UIViewController, UISearchResultsUpdating, UISe
         self.tableView.tableHeaderView = searchController.searchBar
         searchController.delegate = self
         
+        //styling searchbar
+        searchController.searchBar.barTintColor = UIColor.white
+        
+        let textField = searchController.searchBar.value(forKey: "searchField") as! UITextField
+        
+        let glassIconView = textField.leftView as! UIImageView
+        glassIconView.image = glassIconView.image?.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
+        glassIconView.tintColor = UIColor.green
+        
         //scrollview stuff
         self.scrollView.delegate = self
         
