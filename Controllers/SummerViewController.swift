@@ -13,11 +13,14 @@ import CheatyXML
 
 class SummerViewController: UIViewController, UISearchResultsUpdating, UISearchControllerDelegate{
     
-   
+    
     @IBOutlet weak var tableView: UITableView!
+    
     var jobsArray: [JobPost] = []
+    var start: Int = 0
     
     let searchController = UISearchController(searchResultsController: nil)
+    let scrollView = UIScrollView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,16 +35,15 @@ class SummerViewController: UIViewController, UISearchResultsUpdating, UISearchC
         self.tableView.tableHeaderView = searchController.searchBar
         searchController.delegate = self
         
+        loadData(url: url)
+        
+    }
+    func loadData(url: String)  {
         
         Alamofire.request(url).validate().responseData(completionHandler: { (response) in
             
             let data: CXMLParser! = CXMLParser(data: response.data)
             
-            //            print(data["query"].string)
-            //print(data["query"].string)
-            //  print(data["results"]["result"][0]["formattedLocation"].string)
-            
-            // var object = JobPost(data: data)
             let arrayXML = data["results"]["result"].array
             
             for result in arrayXML {
@@ -50,54 +52,34 @@ class SummerViewController: UIViewController, UISearchResultsUpdating, UISearchC
                 
             }
             
-            // var object = JobPost(data: data)
-            //self.jobsArray.append(object)
             self.tableView.reloadData()
             
         })
         
     }
-        override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-            // 1
-            if let identifier = segue.identifier {
-                // 2
-                if identifier == "cellPressed" {
-                    let indexPath = tableView.indexPathForSelectedRow
-    
-                    let post = jobsArray[(indexPath?.row)!]
-    
-                    let detailedViewController = segue.destination as! DetailedViewController
-                    detailedViewController.post = post
-    
-                }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // 1
+        if let identifier = segue.identifier {
+            // 2
+            if identifier == "cellPressed" {
+                let indexPath = tableView.indexPathForSelectedRow
+                
+                let post = jobsArray[(indexPath?.row)!]
+                
+                let detailedViewController = segue.destination as! DetailedViewController
+                detailedViewController.post = post
+                
             }
         }
+    }
     
     func didDismissSearchController(_ searchController: UISearchController)
     {
         self.jobsArray.removeAll()
+        
         let url: String = "http://api.indeed.com/ads/apisearch?publisher=2752372751835619&q=summer&start=&limit=200&l=&v=2"
-        Alamofire.request(url).validate().responseData(completionHandler: { (response) in
-            
-            let data: CXMLParser! = CXMLParser(data: response.data)
-            
-            //            print(data["query"].string)
-            //print(data["query"].string)
-            //  print(data["results"]["result"][0]["formattedLocation"].string)
-            
-            // var object = JobPost(data: data)
-            let arrayXML = data["results"]["result"].array
-            
-            for result in arrayXML {
-                let post = JobPost(data: result)
-                self.jobsArray.append(post)
-                
-            }
-            // var object = JobPost(data: data)
-            //self.jobsArray.append(object)
-            self.tableView.reloadData()
-            
-        })
+        
+        loadData(url: url)
     }
 }
 
@@ -134,9 +116,6 @@ extension SummerViewController: UITableViewDelegate, UITableViewDataSource{
             
             let data: CXMLParser! = CXMLParser(data: response.data)
             
-            //print(data["query"].string)
-            //  print(data["results"]["result"][0]["formattedLocation"].string)
-            
             let arrayXML = data["results"]["result"].array
             
             if (arrayXML.count > 0)
@@ -148,13 +127,33 @@ extension SummerViewController: UITableViewDelegate, UITableViewDataSource{
                 }
             }
             
-            // var object = JobPost(data: data)
-            //self.jobsArray.append(object)
             self.tableView.reloadData()
             
         })
         
     }
-    
-    
 }
+
+//scrollviewdelegate
+extension SummerViewController: UIScrollViewDelegate{
+    
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        
+        let userSearch: String = searchController.searchBar.text ?? "summer"
+        
+        start += 25
+        
+        if userSearch == ""{
+            
+            let url = "http://api.indeed.com/ads/apisearch?publisher=2752372751835619&q=summer&start=\(start)&limit=25&l=&v=2"
+            
+            loadData(url: url)
+            
+        }else{
+            let url = "http://api.indeed.com/ads/apisearch?publisher=2752372751835619&q=\(userSearch)&start=\(start)&limit=25&l=&v=2"
+            
+            loadData(url: url)
+        }
+    }
+}
+

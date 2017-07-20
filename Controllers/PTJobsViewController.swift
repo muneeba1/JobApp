@@ -37,6 +37,10 @@ class PTJobsViewController: UIViewController, UISearchResultsUpdating, UISearchC
         //scrollview stuff
         self.scrollView.delegate = self
         
+        loadData(url: url)
+    }
+    
+    func loadData(url: String){
         Alamofire.request(url).validate().responseData(completionHandler: { (response) in
             
             let data: CXMLParser! = CXMLParser(data: response.data)
@@ -53,7 +57,6 @@ class PTJobsViewController: UIViewController, UISearchResultsUpdating, UISearchC
             
         })
     }
-    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // 1
@@ -75,22 +78,10 @@ class PTJobsViewController: UIViewController, UISearchResultsUpdating, UISearchC
     func didDismissSearchController(_ searchController: UISearchController)
     {
         self.jobsArray.removeAll()
+       
         let url: String = "http://api.indeed.com/ads/apisearch?publisher=2752372751835619&q=part&start=&limit=25&jt=parttime&l=&v=2"
         
-        Alamofire.request(url).validate().responseData(completionHandler: { (response) in
-            
-            let data: CXMLParser! = CXMLParser(data: response.data)
-            
-            let arrayXML = data["results"]["result"].array
-            
-            for result in arrayXML {
-                let post = JobPost(data: result)
-                self.jobsArray.append(post)
-                
-            }
-            self.ptTableView.reloadData()
-            
-        })
+        loadData(url: url)
     }
 }
 
@@ -121,10 +112,11 @@ extension PTJobsViewController: UITableViewDelegate, UITableViewDataSource{
         let userSearch: String = searchController.searchBar.text ?? "temp"
         
         let url: String = "http://api.indeed.com/ads/apisearch?publisher=2752372751835619&q=\(userSearch)&start=&limit=25&jt=parttime&l=&v=2"
-        
+      
         Alamofire.request(url).validate().responseData(completionHandler: { (response) in
             
             let data: CXMLParser! = CXMLParser(data: response.data)
+            
             
             let arrayXML = data["results"]["result"].array
             
@@ -134,9 +126,9 @@ extension PTJobsViewController: UITableViewDelegate, UITableViewDataSource{
                 for result in arrayXML {
                     let post = JobPost(data: result)
                     self.jobsArray.append(post)
-                    
                 }
             }
+            
             
             self.ptTableView.reloadData()
             
@@ -152,47 +144,21 @@ extension PTJobsViewController: UIScrollViewDelegate{
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         
         let userSearch: String = searchController.searchBar.text ?? "temp"
-        
-        var start = self.start
             
         start += 25
         
         if userSearch == ""{
             
-            let url = "http://api.indeed.com/ads/apisearch?publisher=2752372751835619&q=part&start=\(start)&limit=25&jt=parttime&l=&v=2"
-            
             print(start)
             
-            Alamofire.request(url).validate().responseData(completionHandler: { (response) in
-                
-                let data: CXMLParser! = CXMLParser(data: response.data)
-                
-                let arrayXML = data["results"]["result"].array
-                
-                for result in arrayXML {
-                    let post = JobPost(data: result)
-                    self.jobsArray.append(post)
-                    
-                }
-                self.ptTableView.reloadData()
-                
-            })
+            let url = "http://api.indeed.com/ads/apisearch?publisher=2752372751835619&q=part&start=\(start)&limit=25&jt=parttime&l=&v=2"
+            
+           loadData(url: url)
+       
         }else{
             let url = "http://api.indeed.com/ads/apisearch?publisher=2752372751835619&q=\(userSearch)&start=\(start)&limit=25&jt=parttime&l=&v=2"
             
-            Alamofire.request(url).validate().responseData(completionHandler: { (response) in
-                
-                let data: CXMLParser! = CXMLParser(data: response.data)
-                
-                let arrayXML = data["results"]["result"].array
-                
-                for result in arrayXML {
-                    let post = JobPost(data: result)
-                    self.jobsArray.append(post)
-                }
-                self.ptTableView.reloadData()
-                
-            })
+           loadData(url: url)
             
         }
     }
