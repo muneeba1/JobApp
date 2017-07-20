@@ -1,18 +1,18 @@
 PODS:
   - Alamofire (4.5.0)
   - CheatyXML (2.0.0)
-  - ModernSearchBar (1.4)
+  - RAMAnimatedTabBarController (2.0.13)
 
 DEPENDENCIES:
   - Alamofire
   - CheatyXML
-  - ModernSearchBar (~> 1.4)
+  - RAMAnimatedTabBarController (~> 2.0.13)
 
 SPEC CHECKSUMS:
   Alamofire: f28cdffd29de33a7bfa022cbd63ae95a27fae140
   CheatyXML: 094f779fb205b53e7fd180a33c55eee846ca759e
-  ModernSearchBar: d888b62f960c4d91f8662f0720e1544d19847e7f
+  RAMAnimatedTabBarController: 2510f3b66954c3f77ea1042a35d34df8f5f3b604
 
-PODFILE CHECKSUM: ad7e40360cc4ca9d08ba3cf58bb767301a532f87
+PODFILE CHECKSUM: b3468d36153426c9dfda64f969178951fcbe6654
 
 COCOAPODS: 1.2.1

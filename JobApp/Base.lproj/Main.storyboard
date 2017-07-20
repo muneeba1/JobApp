@@ -30,7 +30,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ny7-9y-vHv" id="hc8-5u-4W3">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="70"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="69.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="jobName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bm9-9o-LgE">
@@ -119,7 +119,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YeT-sW-KtB" id="cit-qJ-Xxn">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="70"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="69.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="compName" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="80K-XY-0HC">
@@ -224,7 +224,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="About" textAlignment="center" adjustsFontForContentSizeCategory="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bsj-j0-VeB">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="About" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bsj-j0-VeB">
                                 <rect key="frame" x="16" y="216" width="343" height="356"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="15"/>
@@ -335,7 +335,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fnc-fl-ZR1" id="jS6-zJ-Lnf">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="70"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="69.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="jobName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n5Z-7t-WKi">
@@ -404,10 +404,10 @@
             </objects>
             <point key="canvasLocation" x="2852" y="190.25487256371815"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Animated Tab Bar Controller-->
         <scene sceneID="FgC-li-qDI">
             <objects>
-                <tabBarController id="7Ni-J6-V22" customClass="TabBarController" customModule="JobApp" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController id="7Ni-J6-V22" customClass="RAMAnimatedTabBarController" customModule="RAMAnimatedTabBarController" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" id="gTJ-6X-pgk">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -423,15 +423,19 @@
             </objects>
             <point key="canvasLocation" x="-732" y="-95"/>
         </scene>
-        <!--PT Jobs-->
+        <!--Part Time Jobs-->
         <scene sceneID="ziN-dp-0dO">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="095-vi-G1v" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="PT Jobs" id="AOi-KX-1R8">
+                    <tabBarItem key="tabBarItem" title="Part Time Jobs" image="Image" id="AOi-KX-1R8" customClass="RAMAnimatedTabBarItem" customModule="RAMAnimatedTabBarController">
                         <inset key="imageInsets" minX="0.0" minY="7" maxX="0.0" maxY="-7"/>
+                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
+                        <connections>
+                            <outlet property="animation" destination="U4m-hA-ooC" id="yx7-3j-tzp"/>
+                        </connections>
                     </tabBarItem>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" id="ilG-4J-DLv">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="ilG-4J-DLv">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.039215686270000001" green="0.66274509800000003" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
@@ -445,6 +449,7 @@
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jkZ-VR-rNs" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <customObject id="U4m-hA-ooC" customClass="RAMFlipRightTransitionItemAnimations" customModule="RAMAnimatedTabBarController"/>
             </objects>
             <point key="canvasLocation" x="192.80000000000001" y="-462.8185907046477"/>
         </scene>
@@ -452,9 +457,13 @@
         <scene sceneID="Tac-nj-bpV">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Ose-LM-j6P" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Internships" id="Lu3-dU-ib0"/>
+                    <tabBarItem key="tabBarItem" title="Internships" image="intern" id="Lu3-dU-ib0" customClass="RAMAnimatedTabBarItem" customModule="RAMAnimatedTabBarController">
+                        <connections>
+                            <outlet property="animation" destination="akP-03-dzl" id="418-db-m9x"/>
+                        </connections>
+                    </tabBarItem>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" id="ItF-fC-2BZ">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="ItF-fC-2BZ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.039215686270000001" green="0.66274509800000003" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
@@ -465,6 +474,7 @@
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aF9-BJ-Zdu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <customObject id="akP-03-dzl" customClass="RAMFlipRightTransitionItemAnimations" customModule="RAMAnimatedTabBarController"/>
             </objects>
             <point key="canvasLocation" x="192.80000000000001" y="191.1544227886057"/>
         </scene>
@@ -472,9 +482,13 @@
         <scene sceneID="pwv-Kg-Rc5">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="20z-bD-nta" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Summer Programs" id="rnd-V8-GPM"/>
+                    <tabBarItem key="tabBarItem" title="Summer Programs" image="summer" id="rnd-V8-GPM" customClass="RAMAnimatedTabBarItem" customModule="RAMAnimatedTabBarController">
+                        <connections>
+                            <outlet property="animation" destination="Eg3-w4-niA" id="07g-lE-CIB"/>
+                        </connections>
+                    </tabBarItem>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" id="TwB-Pp-XxT">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="TwB-Pp-XxT">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.039215686270000001" green="0.66274509800000003" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
@@ -485,10 +499,16 @@
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U6s-aI-Nf9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <customObject id="Eg3-w4-niA" customClass="RAMFlipRightTransitionItemAnimations" customModule="RAMAnimatedTabBarController"/>
             </objects>
             <point key="canvasLocation" x="1912.8" y="190.25487256371815"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Image" width="37" height="37"/>
+        <image name="intern" width="37" height="37"/>
+        <image name="summer" width="37" height="37"/>
+    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="HjL-Bf-MxL"/>
     </inferredMetricsTieBreakers>

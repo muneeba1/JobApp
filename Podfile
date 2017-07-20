@@ -8,7 +8,7 @@ target 'JobApp' do
   # Pods for JobApp
 	pod ‘Alamofire’
         pod ‘CheatyXML’
-        pod 'ModernSearchBar', '~> 1.4'
+        pod 'RAMAnimatedTabBarController', "~> 2.0.13"
 
 
 end
