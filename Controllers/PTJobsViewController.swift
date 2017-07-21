@@ -130,8 +130,10 @@ extension PTJobsViewController: UITableViewDelegate, UITableViewDataSource{
         let userSearch: String = searchController.searchBar.text ?? "temp"
         
         let url: String = "http://api.indeed.com/ads/apisearch?publisher=2752372751835619&q=\(userSearch)&start=&limit=25&jt=parttime&l=&v=2"
+        
+        let urlEncoder = url.addingPercentEncoding( withAllowedCharacters: .urlQueryAllowed)
       
-        Alamofire.request(url).validate().responseData(completionHandler: { (response) in
+        Alamofire.request(urlEncoder!).validate().responseData(completionHandler: { (response) in
             
             let data: CXMLParser! = CXMLParser(data: response.data)
             

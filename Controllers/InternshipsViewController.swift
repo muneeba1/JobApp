@@ -130,7 +130,9 @@ extension InternshipsViewController: UITableViewDelegate, UITableViewDataSource{
         
         let url: String = "http://api.indeed.com/ads/apisearch?publisher=2752372751835619&q=\(userSearch)&jt=intern&start=&limit=25&l=&v=2"
         
-        Alamofire.request(url).validate().responseData(completionHandler: { (response) in
+        let urlEncoder = url.addingPercentEncoding( withAllowedCharacters: .urlQueryAllowed)
+        
+        Alamofire.request(urlEncoder!).validate().responseData(completionHandler: { (response) in
             
             let data: CXMLParser! = CXMLParser(data: response.data)
             
