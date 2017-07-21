@@ -111,8 +111,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <searchBar contentMode="redraw" placeholder="Location" translatesAutoresizingMaskIntoConstraints="NO" id="uo3-7I-D03" customClass="ModernSearchBar" customModule="ModernSearchBar">
+                                <rect key="frame" x="0.0" y="64" width="375" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="5So-Fa-3Pq"/>
+                                </constraints>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="70" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="LGv-uL-4pE">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="711"/>
+                                <rect key="frame" x="0.0" y="108" width="375" height="515"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="postsCell" rowHeight="70" id="YeT-sW-KtB" customClass="PostsTableViewCell" customModule="JobApp" customModuleProvider="target">
@@ -174,19 +181,66 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="LGv-uL-4pE" secondAttribute="trailing" id="2QP-yX-V5U"/>
-                            <constraint firstAttribute="bottomMargin" secondItem="LGv-uL-4pE" secondAttribute="bottom" constant="-44" id="Wfz-Ji-8YS"/>
+                            <constraint firstAttribute="trailing" secondItem="uo3-7I-D03" secondAttribute="trailing" id="3n0-FB-L9X"/>
+                            <constraint firstItem="uo3-7I-D03" firstAttribute="top" secondItem="duG-mW-2pz" secondAttribute="bottom" id="O9n-P3-HVN"/>
+                            <constraint firstItem="uo3-7I-D03" firstAttribute="leading" secondItem="Fhu-5M-w2k" secondAttribute="leading" id="Se1-AO-2kO"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="LGv-uL-4pE" secondAttribute="bottom" constant="44" id="Wfz-Ji-8YS"/>
                             <constraint firstItem="LGv-uL-4pE" firstAttribute="leading" secondItem="Fhu-5M-w2k" secondAttribute="leading" id="fEh-tg-tfS"/>
-                            <constraint firstItem="LGv-uL-4pE" firstAttribute="top" secondItem="Fhu-5M-w2k" secondAttribute="top" id="jdd-gf-k5i"/>
+                            <constraint firstItem="LGv-uL-4pE" firstAttribute="top" secondItem="Fhu-5M-w2k" secondAttribute="top" constant="108" id="jdd-gf-k5i"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Part Time Jobs" id="4VE-Ga-8Yl" colorLabel="IBBuiltInLabel-Blue" propertyAccessControl="none"/>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Part Time Jobs" id="4VE-Ga-8Yl" colorLabel="IBBuiltInLabel-Blue" propertyAccessControl="none">
+                        <barButtonItem key="rightBarButtonItem" image="settings" id="fC7-2L-BEQ">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <segue destination="ZlP-lG-niw" kind="show" identifier="settingsButtonPressed" id="1OQ-Et-wNv"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="modernSearchBar" destination="uo3-7I-D03" id="Bk0-rc-7hQ"/>
                         <outlet property="ptTableView" destination="LGv-uL-4pE" id="RYl-tW-iSJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="A71-DQ-hBx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1132" y="-462.8185907046477"/>
+        </scene>
+        <!--Settings View Controller-->
+        <scene sceneID="UQI-2Q-Ewg">
+            <objects>
+                <viewController id="ZlP-lG-niw" customClass="SettingsViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="8d4-yy-a8p"/>
+                        <viewControllerLayoutGuide type="bottom" id="z0a-TF-zUG"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="beS-B1-YWy">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" text="API from Indeed:" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QAd-UA-wyH">
+                                <rect key="frame" x="67" y="72" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="30"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" text="All Icons from Icons8: https://icons8.com" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QJe-Gl-KLZ">
+                                <rect key="frame" x="16" y="320" width="343" height="94"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="30"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="e0v-fv-Xrh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1880.8" y="-1125.7871064467768"/>
         </scene>
         <!--Title-->
         <scene sceneID="YRB-Fe-ePT">
@@ -225,13 +279,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="About" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bsj-j0-VeB">
-                                <rect key="frame" x="16" y="216" width="343" height="356"/>
+                                <rect key="frame" x="16" y="216" width="343" height="361"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="15"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rOa-uB-jCT">
-                                <rect key="frame" x="54" y="542" width="266" height="30"/>
+                                <rect key="frame" x="54" y="547" width="266" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="qaN-Ob-WRa"/>
                                 </constraints>
@@ -243,6 +297,13 @@
                                     <segue destination="IWe-2p-r9Q" kind="show" identifier="applyButtonPressed" id="dj4-hv-wlk"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bHC-t8-PEk">
+                                <rect key="frame" x="217" y="646" width="42" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -292,7 +353,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nuU-rN-U9b">
-                                <rect key="frame" x="0.0" y="64" width="375" height="546"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="551"/>
                                 <color key="backgroundColor" red="0.99989169840000003" green="1" blue="0.99988096950000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <outlet property="delegate" destination="IWe-2p-r9Q" id="JvX-6C-6nX"/>
@@ -429,7 +490,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="095-vi-G1v" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Part Time Jobs" image="Image" id="AOi-KX-1R8" customClass="RAMAnimatedTabBarItem" customModule="RAMAnimatedTabBarController">
                         <inset key="imageInsets" minX="0.0" minY="7" maxX="0.0" maxY="-7"/>
-                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
+                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="6"/>
                         <connections>
                             <outlet property="animation" destination="U4m-hA-ooC" id="yx7-3j-tzp"/>
                         </connections>
@@ -507,9 +568,10 @@
     <resources>
         <image name="Image" width="37" height="37"/>
         <image name="intern" width="37" height="37"/>
+        <image name="settings" width="25" height="25"/>
         <image name="summer" width="37" height="37"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="HjL-Bf-MxL"/>
+        <segue reference="BmK-Wd-rkg"/>
     </inferredMetricsTieBreakers>
 </document>

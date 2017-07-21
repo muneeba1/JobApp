@@ -14,6 +14,16 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>ModernSearchBar-ModernSearchBar.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>ModernSearchBar.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-JobApp.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -27,22 +37,32 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>1FC094DCD74B789E068F2DF3AA0480DC</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>3947CFF5C2B3AE8B6E09B96A5789E59E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>5AD7B8AF641D66E0D60F5040F37607DA</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>840AFA8D85C5B9D3A59797AA9F6BB90D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>84228A04E2A4E217D5026D8659E012CA</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>88E9EC28B8B46C3631E6B242B50F4442</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>A4F96D7BBF2877CF5D0C536B6F69779A</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>B385F804F9294BBC07EB760D169F59F0</key>
 		<dict>
 			<key>primary</key>
 			<true/>

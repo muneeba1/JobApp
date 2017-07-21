@@ -10,14 +10,22 @@ import Foundation
 import UIKit
 import Alamofire
 import CheatyXML
+import MapKit
+import ModernSearchBar
 
-class PTJobsViewController: UIViewController, UISearchResultsUpdating, UISearchControllerDelegate{
+class PTJobsViewController: UIViewController, UISearchResultsUpdating, UISearchControllerDelegate, ModernSearchBarDelegate{
     
+    @IBOutlet weak var modernSearchBar: ModernSearchBar!
+   
     var jobsArray: [JobPost] = []
+    var searchCompleter = MKLocalSearchCompleter()
+    var searchResults = [MKLocalSearchCompletion]()
     
     let scrollView = UIScrollView()
     let searchController = UISearchController(searchResultsController: nil)
     var start: Int = 0
+    
+    var suggestionList = Array<String>()
     
     @IBOutlet weak var ptTableView: UITableView!
     
@@ -33,16 +41,21 @@ class PTJobsViewController: UIViewController, UISearchResultsUpdating, UISearchC
         searchController.searchBar.sizeToFit()
         self.ptTableView.tableHeaderView = searchController.searchBar
         searchController.delegate = self
+        searchController.searchBar.placeholder = "keyword"
+        
+        //modernsearchbar
+        self.modernSearchBar.delegateModernSearchBar = self
         
         //styling searchbar
         searchController.searchBar.barTintColor = UIColor.white
+        
+        searchCompleter.delegate = self as! MKLocalSearchCompleterDelegate
         
         let textField = searchController.searchBar.value(forKey: "searchField") as! UITextField
         
         let glassIconView = textField.leftView as! UIImageView
         glassIconView.image = glassIconView.image?.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
         glassIconView.tintColor = UIColor.green
-        
         
         //scrollview stuff
         self.scrollView.delegate = self
@@ -51,6 +64,8 @@ class PTJobsViewController: UIViewController, UISearchResultsUpdating, UISearchC
         
         ptTableView.rowHeight = UITableViewAutomaticDimension
         ptTableView.estimatedRowHeight = 80
+        
+        //ptTableView.isHidden = true
     }
     
     func loadData(url: String){
@@ -123,6 +138,19 @@ extension PTJobsViewController: UITableViewDelegate, UITableViewDataSource{
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let completion = searchResults[indexPath.row]
+        
+        let searchRequest = MKLocalSearchRequest(completion: completion)
+        let search = MKLocalSearch(request: searchRequest)
+        search.start { (response, error) in
+            let coordinate = response?.mapItems[0].placemark.coordinate
+            print(String(describing: coordinate))
+        }
+
+    }
+    
    
     //searchbar
     func updateSearchResults(for searchController: UISearchController) {
@@ -148,8 +176,6 @@ extension PTJobsViewController: UITableViewDelegate, UITableViewDataSource{
                     self.jobsArray.append(post)
                 }
             }
-            
-            
             self.ptTableView.reloadData()
             
         })
@@ -182,10 +208,36 @@ extension PTJobsViewController: UIScrollViewDelegate{
     }
 }
 
+extension PTJobsViewController: UISearchBarDelegate {
+    
+    
+    
+    func searchBar(_ searchBar: ModernSearchBar, textDidChange searchText: String) {
+        
+        searchCompleter.queryFragment = searchText
+    }
+}
+
+extension PTJobsViewController: MKLocalSearchCompleterDelegate {
+    
+    func completerDidUpdateResults(_ completer: MKLocalSearchCompleter) {
+        for location in completer.results
+        {
+            let locationName  = location.title
+            suggestionList.append(locationName)
+        }
+        self.modernSearchBar.setDatas(datas: suggestionList)
+        
+    }
+    
+    func completer(_ completer: MKLocalSearchCompleter, didFailWithError error: Error) {
+        // handle error
+    }
+}
 
 
-
-
+    
+    
 
 
 
