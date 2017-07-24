@@ -43,12 +43,11 @@ class PTJobsViewController: UIViewController, UISearchResultsUpdating, UISearchC
         searchController.delegate = self
         searchController.searchBar.placeholder = "keyword"
         
-        //modernsearchbar
-        self.modernSearchBar.delegateModernSearchBar = self
-        
         //styling searchbar
         searchController.searchBar.barTintColor = UIColor.white
         
+        //modernsearchbar
+        self.modernSearchBar.delegateModernSearchBar = self
         searchCompleter.delegate = self as! MKLocalSearchCompleterDelegate
         
         let textField = searchController.searchBar.value(forKey: "searchField") as! UITextField
@@ -60,12 +59,13 @@ class PTJobsViewController: UIViewController, UISearchResultsUpdating, UISearchC
         //scrollview stuff
         self.scrollView.delegate = self
         
+        //viewdidload
+        
         loadData(url: url)
         
         ptTableView.rowHeight = UITableViewAutomaticDimension
         ptTableView.estimatedRowHeight = 80
         
-        //ptTableView.isHidden = true
     }
     
     func loadData(url: String){
@@ -106,6 +106,7 @@ class PTJobsViewController: UIViewController, UISearchResultsUpdating, UISearchC
         ptTableView.reloadData()
         
     }
+    
     //cancel button stuff
     func didDismissSearchController(_ searchController: UISearchController)
     {
@@ -117,6 +118,7 @@ class PTJobsViewController: UIViewController, UISearchResultsUpdating, UISearchC
     }
 }
 
+//tableview stuff
 extension PTJobsViewController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
@@ -182,6 +184,21 @@ extension PTJobsViewController: UITableViewDelegate, UITableViewDataSource{
         
     }
     
+    func onClickItemSuggestionsView(item: String) {
+        
+        var item = item.components(separatedBy: ",")
+        
+        let city = item[0]
+        let state = item[1].trimmingCharacters(in: .whitespaces)
+        
+        print("\(city),\(state)")
+
+        let url = "http://api.indeed.com/ads/apisearch?publisher=2752372751835619&q=part&start=&limit=25&jt=parttime&l=\(city)%2C\(state)&v=2"
+        
+        self.jobsArray.removeAll()
+        loadData(url: url)
+    }
+    
 }
 
 //scrollviewdelegate
@@ -209,8 +226,6 @@ extension PTJobsViewController: UIScrollViewDelegate{
 }
 
 extension PTJobsViewController: UISearchBarDelegate {
-    
-    
     
     func searchBar(_ searchBar: ModernSearchBar, textDidChange searchText: String) {
         
