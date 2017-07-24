@@ -44,6 +44,8 @@ class InternshipsViewController: UIViewController, UISearchResultsUpdating, UISe
         glassIconView.image = glassIconView.image?.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
         glassIconView.tintColor = UIColor.green
         
+        self.navigationController?.navigationBar.tintColor = UIColor.white
+  
         //scrollview stuff
         self.scrollView.delegate = self
         
