@@ -16,21 +16,25 @@ import ModernSearchBar
 class PTJobsViewController: UIViewController, UISearchResultsUpdating, UISearchControllerDelegate, ModernSearchBarDelegate{
     
     @IBOutlet weak var modernSearchBar: ModernSearchBar!
-   
+    @IBOutlet weak var ptTableView: UITableView!
+    
     var jobsArray: [JobPost] = []
     var searchCompleter = MKLocalSearchCompleter()
     var searchResults = [MKLocalSearchCompletion]()
     
-    var url: String = "http://api.indeed.com/ads/apisearch?publisher=2752372751835619&q=part&start=&limit=25&jt=parttime&l=&v=2"
-    
     let scrollView = UIScrollView()
     let searchController = UISearchController(searchResultsController: nil)
+    
+    var url: String = "http://api.indeed.com/ads/apisearch?publisher=2752372751835619&q=part&start=&limit=25&jt=parttime&l=&v=2"
+    
+    //url variables
+    var userSearch: String = ""
+    var city: String = ""
+    var state: String = ""
     var start: Int = 0
     
     
     var suggestionList = Array<String>()
-    
-    @IBOutlet weak var ptTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,7 +47,7 @@ class PTJobsViewController: UIViewController, UISearchResultsUpdating, UISearchC
         self.ptTableView.tableHeaderView = searchController.searchBar
         searchController.delegate = self
         searchController.searchBar.placeholder = "keyword"
-
+        
         //styling searchbar
         searchController.searchBar.barTintColor = UIColor.white
         
@@ -150,10 +154,10 @@ extension PTJobsViewController: UITableViewDelegate, UITableViewDataSource{
             let coordinate = response?.mapItems[0].placemark.coordinate
             print(String(describing: coordinate))
         }
-
+        
     }
     
-   
+    
     //searchbar
     func updateSearchResults(for searchController: UISearchController) {
         
@@ -162,7 +166,7 @@ extension PTJobsViewController: UITableViewDelegate, UITableViewDataSource{
         let url = "http://api.indeed.com/ads/apisearch?publisher=2752372751835619&q=\(userSearch)&start=&limit=25&jt=parttime&l=&v=2"
         
         let urlEncoder = url.addingPercentEncoding( withAllowedCharacters: .urlQueryAllowed)
-      
+        
         Alamofire.request(urlEncoder!).validate().responseData(completionHandler: { (response) in
             
             let data: CXMLParser! = CXMLParser(data: response.data)
@@ -192,7 +196,11 @@ extension PTJobsViewController: UITableViewDelegate, UITableViewDataSource{
         
         print("\(city),\(state)")
         
-        let url = "http://api.indeed.com/ads/apisearch?publisher=2752372751835619&q=part&start=&limit=25&jt=parttime&l=\(city)%2C\(state)&v=2"
+        self.start = 0
+        
+        let url = "http://api.indeed.com/ads/apisearch?publisher=2752372751835619&q=part&start\(start)=&limit=25&jt=parttime&l=\(city)%2C\(state)&v=2"
+        
+        self.url = url
         
         self.jobsArray.removeAll()
         loadData(url: url)
@@ -204,23 +212,20 @@ extension PTJobsViewController: UIScrollViewDelegate{
     
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         
-        let userSearch: String = searchController.searchBar.text ?? "temp"
+        // Increase the starting position for querying api
+        self.start += 25
         
-        start += 25
-        
-        if userSearch == ""{
+        guard let userSearch: String = searchController.searchBar.text! else {
             
-           let url = "http://api.indeed.com/ads/apisearch?publisher=2752372751835619&q=part&start=\(start)&limit=25&jt=parttime&l=&v=2"
+            let url = "http://api.indeed.com/ads/apisearch?publisher=2752372751835619&q=part&start=\(start)&limit=25&jt=parttime&l=&v=2"
             
             loadData(url: url)
-     
-        }else{
-            
-            let url = "http://api.indeed.com/ads/apisearch?publisher=2752372751835619&q=\(userSearch)&start=\(start)&limit=25&jt=parttime&l=&v=2"
-            
-           loadData(url: url)
-            
         }
+        
+        let url = "http://api.indeed.com/ads/apisearch?publisher=2752372751835619&q=\(userSearch)&start=\(start)&limit=25&jt=parttime&l=&v=2"
+        
+        loadData(url: url)
+        
     }
 }
 
@@ -250,8 +255,8 @@ extension PTJobsViewController: MKLocalSearchCompleterDelegate {
 }
 
 
-    
-    
+
+
 
 
 
