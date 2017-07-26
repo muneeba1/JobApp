@@ -11,11 +11,11 @@ class PTJobsViewController {
     
     var url: String = "http://api.indeed.com/ads/apisearch?publisher=2752372751835619&q=part&start=&limit=25&jt=parttime&l=&v=2"
     
-    var userSearch: String
-    var city: String
-    var state: String
+    var userSearch: String?
+    var city: String?
+    var state: String?
     var jobType: JobType = .partTime
-    var paginationStart: Int
+    var paginationStart: Int = 0
     
     // userSearch
     

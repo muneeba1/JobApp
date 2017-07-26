@@ -27,10 +27,10 @@ class PTJobsViewController: UIViewController, UISearchResultsUpdating, UISearchC
     
     var url: String = "http://api.indeed.com/ads/apisearch?publisher=2752372751835619&q=part&start=&limit=25&jt=parttime&l=&v=2"
     
-    //url variables
-    var userSearch: String = ""
-    var city: String = ""
-    var state: String = ""
+    //    //url variables
+    //    var userSearch: String? = ""
+    //var city: String?
+    //var state: String?
     var start: Int = 0
     
     
@@ -56,6 +56,7 @@ class PTJobsViewController: UIViewController, UISearchResultsUpdating, UISearchC
         searchCompleter.delegate = self as! MKLocalSearchCompleterDelegate
         self.modernSearchBar.barTintColor = UIColor.white
         
+        //styling searchbar icon
         let textField = searchController.searchBar.value(forKey: "searchField") as! UITextField
         
         let glassIconView = textField.leftView as! UIImageView
@@ -66,7 +67,6 @@ class PTJobsViewController: UIViewController, UISearchResultsUpdating, UISearchC
         self.scrollView.delegate = self
         
         //viewdidload
-        
         loadData(url: url)
         
         ptTableView.rowHeight = UITableViewAutomaticDimension
@@ -91,6 +91,7 @@ class PTJobsViewController: UIViewController, UISearchResultsUpdating, UISearchC
             
         })
     }
+    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // 1
@@ -122,6 +123,36 @@ class PTJobsViewController: UIViewController, UISearchResultsUpdating, UISearchC
     }
 }
 
+//location searchbar
+extension PTJobsViewController: UISearchBarDelegate {
+    
+    func searchBar(_ searchBar: ModernSearchBar, textDidChange searchText: String) {
+        
+        searchCompleter.queryFragment = searchText
+    }
+}
+
+//locationsearchbar
+extension PTJobsViewController: MKLocalSearchCompleterDelegate {
+    
+    func completerDidUpdateResults(_ completer: MKLocalSearchCompleter) {
+        self.searchResults = completer.results
+        
+        for location in completer.results
+        {
+            let locationName  = location.title
+            suggestionList.append(locationName)
+        }
+        self.modernSearchBar.setDatas(datas: suggestionList)
+        
+    }
+    
+    func completer(_ completer: MKLocalSearchCompleter, didFailWithError error: Error) {
+        // handle error
+    }
+}
+
+
 //tableview stuff
 extension PTJobsViewController: UITableViewDelegate, UITableViewDataSource{
     
@@ -136,7 +167,6 @@ extension PTJobsViewController: UITableViewDelegate, UITableViewDataSource{
         
         let post = jobsArray[indexPath.row]
         
-        
         cell.jobNameLabel.text = post.jobName
         cell.compNameLabel.text = post.compName
         cell.locationLabel.text = post.location
@@ -146,24 +176,25 @@ extension PTJobsViewController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let completion = searchResults[indexPath.row]
-        
-        let searchRequest = MKLocalSearchRequest(completion: completion)
-        let search = MKLocalSearch(request: searchRequest)
-        search.start { (response, error) in
-            let coordinate = response?.mapItems[0].placemark.coordinate
-            print(String(describing: coordinate))
+        if searchResults.count >= 1 {
+            
+            let completion = self.searchResults[indexPath.row]
+            
+            let searchRequest = MKLocalSearchRequest(completion: completion)
+            let search = MKLocalSearch(request: searchRequest)
+            search.start { (response, error) in
+                let coordinate = response?.mapItems[0].placemark.coordinate
+                print(String(describing: coordinate))
+            }
         }
-        
     }
-    
     
     //searchbar
     func updateSearchResults(for searchController: UISearchController) {
         
-        let userSearch: String = searchController.searchBar.text ?? "temp"
+        let userSearch = searchController.searchBar.text!
         
-        let url = "http://api.indeed.com/ads/apisearch?publisher=2752372751835619&q=\(userSearch)&start=&limit=25&jt=parttime&l=&v=2"
+        url = "http://api.indeed.com/ads/apisearch?publisher=2752372751835619&q=\(userSearch)&start=&limit=25&jt=parttime&l=&v=2"
         
         let urlEncoder = url.addingPercentEncoding( withAllowedCharacters: .urlQueryAllowed)
         
@@ -186,7 +217,7 @@ extension PTJobsViewController: UITableViewDelegate, UITableViewDataSource{
         })
         
     }
-    
+    //location searchbar
     func onClickItemSuggestionsView(item: String) {
         
         let item = item.components(separatedBy: ",")
@@ -194,20 +225,18 @@ extension PTJobsViewController: UITableViewDelegate, UITableViewDataSource{
         let city = item[0]
         let state = item[1].trimmingCharacters(in: .whitespaces)
         
-        print("\(city),\(state)")
+        //print("\(city),\(state)")
         
-        self.start = 0
-        
-        let url = "http://api.indeed.com/ads/apisearch?publisher=2752372751835619&q=part&start\(start)=&limit=25&jt=parttime&l=\(city)%2C\(state)&v=2"
-        
-        self.url = url
+        let url = "http://api.indeed.com/ads/apisearch?publisher=2752372751835619&q=part&start=&limit=25&jt=parttime&l=\(city)%2C\(state)&v=2"
         
         self.jobsArray.removeAll()
         loadData(url: url)
     }
 }
 
-//scrollviewdelegate
+
+
+//scrollview
 extension PTJobsViewController: UIScrollViewDelegate{
     
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
@@ -215,42 +244,20 @@ extension PTJobsViewController: UIScrollViewDelegate{
         // Increase the starting position for querying api
         self.start += 25
         
-        guard let userSearch: String = searchController.searchBar.text! else {
+        let userSearch: String = searchController.searchBar.text!
+        
+        if userSearch == ""
+        {
+            //   print("\(city),\(state)")
             
-            let url = "http://api.indeed.com/ads/apisearch?publisher=2752372751835619&q=part&start=\(start)&limit=25&jt=parttime&l=&v=2"
+            let url = "http://api.indeed.com/ads/apisearch?publisher=2752372751835619&q=part&start=\(self.start)&limit=25&jt=parttime&l=&v=2"
+            
+            loadData(url: url)
+        }else{
+            let url = "http://api.indeed.com/ads/apisearch?publisher=2752372751835619&q=\(userSearch)&start=\(self.start)&limit=25&jt=parttime&l=&v=2"
             
             loadData(url: url)
         }
-        
-        let url = "http://api.indeed.com/ads/apisearch?publisher=2752372751835619&q=\(userSearch)&start=\(start)&limit=25&jt=parttime&l=&v=2"
-        
-        loadData(url: url)
-        
-    }
-}
-
-extension PTJobsViewController: UISearchBarDelegate {
-    
-    func searchBar(_ searchBar: ModernSearchBar, textDidChange searchText: String) {
-        
-        searchCompleter.queryFragment = searchText
-    }
-}
-
-extension PTJobsViewController: MKLocalSearchCompleterDelegate {
-    
-    func completerDidUpdateResults(_ completer: MKLocalSearchCompleter) {
-        for location in completer.results
-        {
-            let locationName  = location.title
-            suggestionList.append(locationName)
-        }
-        self.modernSearchBar.setDatas(datas: suggestionList)
-        
-    }
-    
-    func completer(_ completer: MKLocalSearchCompleter, didFailWithError error: Error) {
-        // handle error
     }
 }
 
