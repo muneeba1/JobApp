@@ -10,11 +10,14 @@ import Foundation
 import UIKit
 import Alamofire
 import CheatyXML
+import ModernSearchBar
 
-class SummerViewController: UIViewController, UISearchResultsUpdating, UISearchControllerDelegate{
+class SummerViewController: UIViewController, UISearchResultsUpdating, UISearchControllerDelegate, ModernSearchBarDelegate{
     
     
     @IBOutlet weak var tableView: UITableView!
+    
+    @IBOutlet weak var modernSearchBar: ModernSearchBar!
     
     var jobsArray: [JobPost] = []
     var start: Int = 0

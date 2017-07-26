@@ -261,8 +261,6 @@ extension PTJobsViewController: UITableViewDelegate, UITableViewDataSource{
         self.city = item[0]
         self.state = item[1].trimmingCharacters(in: .whitespaces)
         
-        print("\(self.city),\(self.state)")
-        
         self.createURL()
         
         self.jobsArray.removeAll()
@@ -274,10 +272,6 @@ extension PTJobsViewController: UITableViewDelegate, UITableViewDataSource{
 extension PTJobsViewController: UIScrollViewDelegate{
     
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        
-        self.userSearch = searchController.searchBar.text!
-        
-        print("\(userSearch), \(start), \(city), \(state)")
         
         self.createURL()
         

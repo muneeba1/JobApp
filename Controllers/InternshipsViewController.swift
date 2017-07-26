@@ -10,17 +10,32 @@ import Foundation
 import UIKit
 import Alamofire
 import CheatyXML
+import ModernSearchBar
+import MapKit
 
 
-class InternshipsViewController: UIViewController, UISearchResultsUpdating, UISearchControllerDelegate{
+class InternshipsViewController: UIViewController, UISearchResultsUpdating, UISearchControllerDelegate, ModernSearchBarDelegate{
     
     @IBOutlet weak var tableView: UITableView!
     
-    var jobsArray: [JobPost] = []
-    var start: Int = 0
+    @IBOutlet weak var modernSearchBar: ModernSearchBar!
     
+    var jobsArray: [JobPost] = []
+    var searchCompleter = MKLocalSearchCompleter()
+    var searchResults = [MKLocalSearchCompletion]()
+
     let scrollView = UIScrollView()
     let searchController = UISearchController(searchResultsController: nil)
+    
+    var url: String = "http://api.indeed.com/ads/apisearch?publisher=2752372751835619&q=intern&start=&limit=25&jt=intern&l=&v=2"
+    
+    //url variables
+    var userSearch: String = ""
+    var city: String = ""
+    var state: String = ""
+    var start: Int = 0
+    
+    var suggestionList = Array<String>()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,6 +53,12 @@ class InternshipsViewController: UIViewController, UISearchResultsUpdating, UISe
         //styling searchbar
         searchController.searchBar.barTintColor = UIColor.white
         
+        
+        //modernsearchbar
+        self.modernSearchBar.delegateModernSearchBar = self
+        searchCompleter.delegate = self as! MKLocalSearchCompleterDelegate
+        self.modernSearchBar.barTintColor = UIColor.white
+        
         let textField = searchController.searchBar.value(forKey: "searchField") as! UITextField
         
         let glassIconView = textField.leftView as! UIImageView
@@ -49,6 +70,7 @@ class InternshipsViewController: UIViewController, UISearchResultsUpdating, UISe
         //scrollview stuff
         self.scrollView.delegate = self
         
+        //viewdidload
         loadData(url: url)
         
         tableView.rowHeight = UITableViewAutomaticDimension
@@ -56,21 +78,54 @@ class InternshipsViewController: UIViewController, UISearchResultsUpdating, UISe
     }
     
     func loadData(url: String){
+        
         Alamofire.request(url).validate().responseData(completionHandler: { (response) in
-            
-            let data: CXMLParser! = CXMLParser(data: response.data)
-            
-            let arrayXML = data["results"]["result"].array
-            
-            for result in arrayXML {
-                let post = JobPost(data: result)
-                self.jobsArray.append(post)
+            switch response.result {
+            case .success:
+                print("Request Successful")
                 
+                let data: CXMLParser! = CXMLParser(data: response.data)
+                
+                let arrayXML = data["results"]["result"].array
+                
+                print("\n\nNumber of Results:", arrayXML.count)
+                
+                for result in arrayXML {
+                    let post = JobPost(data: result)
+                    self.jobsArray.append(post)
+                }
+                self.tableView.reloadData()
+                
+            case .failure(let error):
+                print(error)
             }
-            self.tableView.reloadData()
             
         })
-
+    }
+    
+    func createURL() {
+        
+        var location: String = ""
+        
+        var query: String = "intern"
+        
+        // Increase the starting position for querying api
+        self.start += 25
+        
+        if self.city == ""{
+            location = ""
+        }else{
+            location = self.city + "%2C" + self.state
+        }
+        
+        if self.userSearch == ""{
+            query = "intern"
+        }else{
+            query = self.userSearch
+        }
+        
+        self.url = "http://api.indeed.com/ads/apisearch?publisher=2752372751835619&q=\(query)&start=\(self.start)&limit=25&jt=intern&l=\(location)&v=2"
+        
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // 1
@@ -94,15 +149,46 @@ class InternshipsViewController: UIViewController, UISearchResultsUpdating, UISe
         
     }
     
+    //cancel button stuff
     func didDismissSearchController(_ searchController: UISearchController)
     {
         self.jobsArray.removeAll()
-        let url: String = "http://api.indeed.com/ads/apisearch?publisher=2752372751835619&q=intern&jt=intern&start=&limit=25&l=&v=2"
-        
+        self.url = "http://api.indeed.com/ads/apisearch?publisher=2752372751835619&q=intern&start=&limit=25&jt=intern&l=&v=2"
         loadData(url: url)
     }
 }
 
+//location searchbar
+extension InternshipsViewController: UISearchBarDelegate {
+    
+    func searchBar(_ searchBar: ModernSearchBar, textDidChange searchText: String) {
+        
+        searchCompleter.queryFragment = searchText
+    }
+}
+
+//locationsearchbar
+extension InternshipsViewController: MKLocalSearchCompleterDelegate {
+    
+    func completerDidUpdateResults(_ completer: MKLocalSearchCompleter) {
+        self.searchResults = completer.results
+        
+        for location in completer.results
+        {
+            let locationName  = location.title
+            suggestionList.append(locationName)
+        }
+        self.modernSearchBar.setDatas(datas: suggestionList)
+        
+    }
+    
+    func completer(_ completer: MKLocalSearchCompleter, didFailWithError error: Error) {
+        // handle error
+    }
+}
+
+
+//tableview stuff
 extension InternshipsViewController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
@@ -126,18 +212,19 @@ extension InternshipsViewController: UITableViewDelegate, UITableViewDataSource{
     }
     
     
+    
+    //searchbar
     func updateSearchResults(for searchController: UISearchController) {
         
-        let userSearch: String = searchController.searchBar.text ?? "intern"
+        self.userSearch = searchController.searchBar.text!
         
-        let url: String = "http://api.indeed.com/ads/apisearch?publisher=2752372751835619&q=\(userSearch)&jt=intern&start=&limit=25&l=&v=2"
+        url = "http://api.indeed.com/ads/apisearch?publisher=2752372751835619&q=\(userSearch)&start=&limit=25&jt=intern&l=&v=2"
         
         let urlEncoder = url.addingPercentEncoding( withAllowedCharacters: .urlQueryAllowed)
         
         Alamofire.request(urlEncoder!).validate().responseData(completionHandler: { (response) in
             
             let data: CXMLParser! = CXMLParser(data: response.data)
-            
             
             let arrayXML = data["results"]["result"].array
             
@@ -149,36 +236,34 @@ extension InternshipsViewController: UITableViewDelegate, UITableViewDataSource{
                     self.jobsArray.append(post)
                 }
             }
-            
-            
             self.tableView.reloadData()
             
         })
         
     }
-    
-    
+    //location searchbar
+    func onClickItemSuggestionsView(item: String) {
+        
+        let item = item.components(separatedBy: ",")
+        
+        self.city = item[0]
+        self.state = item[1].trimmingCharacters(in: .whitespaces)
+        
+        self.createURL()
+        
+        self.jobsArray.removeAll()
+        loadData(url: self.url)
+    }
 }
-//scrollviewdelegate
+
+//scrollview
 extension InternshipsViewController: UIScrollViewDelegate{
     
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         
-        let userSearch: String = searchController.searchBar.text ?? "intern"
+        self.createURL()
         
-        start += 25
+        loadData(url: self.url)
         
-        if userSearch == ""{
-            
-            let url = "http://api.indeed.com/ads/apisearch?publisher=2752372751835619&q=intern&jt=intern&start=\(start)&limit=25&l=&v=2"
-            
-           loadData(url: url)
-            
-        }else{
-            let url = "http://api.indeed.com/ads/apisearch?publisher=2752372751835619&q=\(userSearch)&start=\(start)&limit=25&l=&v=2"
-            
-          loadData(url: url)
-            
-        }
     }
 }
