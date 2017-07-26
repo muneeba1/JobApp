@@ -23,7 +23,7 @@ class PTJobsViewController {
     
     // start point of pagination
     
-    func createURL() {
+    func createURL() -> String {
         
         self.url =  "http://api.indeed.com/ads/apisearch?publisher=2752372751835619&q=\(self.userSearch)&start=\(self.paginationStart)&limit=25&jt=\(self.jobType.rawValue)&l=\(self.city)%2C\(self.state)&v=2"
         

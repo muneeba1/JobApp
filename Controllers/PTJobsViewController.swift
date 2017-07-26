@@ -13,6 +13,8 @@ import CheatyXML
 import MapKit
 import ModernSearchBar
 
+
+
 class PTJobsViewController: UIViewController, UISearchResultsUpdating, UISearchControllerDelegate, ModernSearchBarDelegate{
     
     @IBOutlet weak var modernSearchBar: ModernSearchBar!
@@ -27,10 +29,10 @@ class PTJobsViewController: UIViewController, UISearchResultsUpdating, UISearchC
     
     var url: String = "http://api.indeed.com/ads/apisearch?publisher=2752372751835619&q=part&start=&limit=25&jt=parttime&l=&v=2"
     
-    //    //url variables
-    //    var userSearch: String? = ""
-    //var city: String?
-    //var state: String?
+    //url variables
+    var userSearch: String = ""
+    var city: String = ""
+    var state: String = ""
     var start: Int = 0
     
     
@@ -75,23 +77,57 @@ class PTJobsViewController: UIViewController, UISearchResultsUpdating, UISearchC
     }
     
     func loadData(url: String){
+        
+        print(url)
+        
         Alamofire.request(url).validate().responseData(completionHandler: { (response) in
-            
-            let data: CXMLParser! = CXMLParser(data: response.data)
-            
-            let arrayXML = data["results"]["result"].array
-            
-            for result in arrayXML {
-                let post = JobPost(data: result)
-                self.jobsArray.append(post)
+            switch response.result {
+            case .success:
+                print("Request Successful")
                 
+                let data: CXMLParser! = CXMLParser(data: response.data)
+                
+                let arrayXML = data["results"]["result"].array
+                
+                print("\n\nNumber of Results:", arrayXML.count)
+                
+                for result in arrayXML {
+                    let post = JobPost(data: result)
+                    self.jobsArray.append(post)
+                }
+                self.ptTableView.reloadData()
+                
+            case .failure(let error):
+                print(error)
             }
-            
-            self.ptTableView.reloadData()
             
         })
     }
     
+    func createURL() {
+        
+        var location: String = ""
+        
+        var query: String = "part"
+        
+        // Increase the starting position for querying api
+        self.start += 25
+        
+        if self.city == ""{
+            location = ""
+        }else{
+            location = self.city + "%2C" + self.state
+        }
+        
+        if self.userSearch == ""{
+            query = "part"
+        }else{
+            query = self.userSearch
+        }
+        
+        self.url = "http://api.indeed.com/ads/apisearch?publisher=2752372751835619&q=\(query)&start=\(self.start)&limit=25&jt=parttime&l=\(location)&v=2"
+        
+    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // 1
@@ -118,7 +154,7 @@ class PTJobsViewController: UIViewController, UISearchResultsUpdating, UISearchC
     func didDismissSearchController(_ searchController: UISearchController)
     {
         self.jobsArray.removeAll()
-        
+        self.url = "http://api.indeed.com/ads/apisearch?publisher=2752372751835619&q=part&start=&limit=25&jt=parttime&l=&v=2"
         loadData(url: url)
     }
 }
@@ -192,7 +228,7 @@ extension PTJobsViewController: UITableViewDelegate, UITableViewDataSource{
     //searchbar
     func updateSearchResults(for searchController: UISearchController) {
         
-        let userSearch = searchController.searchBar.text!
+        self.userSearch = searchController.searchBar.text!
         
         url = "http://api.indeed.com/ads/apisearch?publisher=2752372751835619&q=\(userSearch)&start=&limit=25&jt=parttime&l=&v=2"
         
@@ -222,44 +258,35 @@ extension PTJobsViewController: UITableViewDelegate, UITableViewDataSource{
         
         let item = item.components(separatedBy: ",")
         
-        let city = item[0]
-        let state = item[1].trimmingCharacters(in: .whitespaces)
+        self.city = item[0]
+        self.state = item[1].trimmingCharacters(in: .whitespaces)
         
-        //print("\(city),\(state)")
+        print("\(self.city),\(self.state)")
         
-        let url = "http://api.indeed.com/ads/apisearch?publisher=2752372751835619&q=part&start=&limit=25&jt=parttime&l=\(city)%2C\(state)&v=2"
+        self.createURL()
         
         self.jobsArray.removeAll()
-        loadData(url: url)
+        loadData(url: self.url)
     }
 }
-
-
 
 //scrollview
 extension PTJobsViewController: UIScrollViewDelegate{
     
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         
-        // Increase the starting position for querying api
-        self.start += 25
+        self.userSearch = searchController.searchBar.text!
         
-        let userSearch: String = searchController.searchBar.text!
+        print("\(userSearch), \(start), \(city), \(state)")
         
-        if userSearch == ""
-        {
-            //   print("\(city),\(state)")
-            
-            let url = "http://api.indeed.com/ads/apisearch?publisher=2752372751835619&q=part&start=\(self.start)&limit=25&jt=parttime&l=&v=2"
-            
-            loadData(url: url)
-        }else{
-            let url = "http://api.indeed.com/ads/apisearch?publisher=2752372751835619&q=\(userSearch)&start=\(self.start)&limit=25&jt=parttime&l=&v=2"
-            
-            loadData(url: url)
-        }
+        self.createURL()
+        
+        loadData(url: self.url)
+        
     }
 }
+
+
 
 
 
