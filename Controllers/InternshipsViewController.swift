@@ -10,20 +10,22 @@ import Foundation
 import UIKit
 import Alamofire
 import CheatyXML
-import ModernSearchBar
 import MapKit
+import ModernSearchBar
+
 
 
 class InternshipsViewController: UIViewController, UISearchResultsUpdating, UISearchControllerDelegate, ModernSearchBarDelegate{
     
-    @IBOutlet weak var tableView: UITableView!
-    
+    //IBOutlets
     @IBOutlet weak var modernSearchBar: ModernSearchBar!
+    @IBOutlet weak var tableView: UITableView!
+   
     
     var jobsArray: [JobPost] = []
     var searchCompleter = MKLocalSearchCompleter()
     var searchResults = [MKLocalSearchCompletion]()
-
+    
     let scrollView = UIScrollView()
     let searchController = UISearchController(searchResultsController: nil)
     
@@ -40,8 +42,6 @@ class InternshipsViewController: UIViewController, UISearchResultsUpdating, UISe
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let url: String = "http://api.indeed.com/ads/apisearch?publisher=2752372751835619&q=intern&jt=intern&start=&limit=25&l=&v=2"
-        
         //searchbar stuff
         searchController.searchResultsUpdater = self as UISearchResultsUpdating
         searchController.hidesNavigationBarDuringPresentation = false
@@ -49,6 +49,7 @@ class InternshipsViewController: UIViewController, UISearchResultsUpdating, UISe
         searchController.searchBar.sizeToFit()
         self.tableView.tableHeaderView = searchController.searchBar
         searchController.delegate = self
+        searchController.searchBar.placeholder = "keyword"
         
         //styling searchbar
         searchController.searchBar.barTintColor = UIColor.white
@@ -65,8 +66,8 @@ class InternshipsViewController: UIViewController, UISearchResultsUpdating, UISe
         glassIconView.image = glassIconView.image?.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
         glassIconView.tintColor = UIColor.green
         
-        self.navigationController?.navigationBar.tintColor = UIColor.white
-  
+        //self.navigationController?.navigationBar.tintColor = UIColor.white
+        
         //scrollview stuff
         self.scrollView.delegate = self
         
@@ -127,6 +128,7 @@ class InternshipsViewController: UIViewController, UISearchResultsUpdating, UISe
         self.url = "http://api.indeed.com/ads/apisearch?publisher=2752372751835619&q=\(query)&start=\(self.start)&limit=25&jt=intern&l=\(location)&v=2"
         
     }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // 1
         if let identifier = segue.identifier {
@@ -211,6 +213,20 @@ extension InternshipsViewController: UITableViewDelegate, UITableViewDataSource{
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        if searchResults.count >= 1 {
+            
+            let completion = self.searchResults[indexPath.row]
+            
+            let searchRequest = MKLocalSearchRequest(completion: completion)
+            let search = MKLocalSearch(request: searchRequest)
+            search.start { (response, error) in
+                let coordinate = response?.mapItems[0].placemark.coordinate
+                print(String(describing: coordinate))
+            }
+        }
+    }
     
     
     //searchbar
@@ -246,7 +262,7 @@ extension InternshipsViewController: UITableViewDelegate, UITableViewDataSource{
         
         let item = item.components(separatedBy: ",")
         
-        self.city = item[0]
+        self.city = item[0].removeWhitespace()
         self.state = item[1].trimmingCharacters(in: .whitespaces)
         
         self.createURL()
@@ -267,3 +283,5 @@ extension InternshipsViewController: UIScrollViewDelegate{
         
     }
 }
+
+

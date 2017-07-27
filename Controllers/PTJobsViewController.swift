@@ -49,6 +49,7 @@ class PTJobsViewController: UIViewController, UISearchResultsUpdating, UISearchC
         self.ptTableView.tableHeaderView = searchController.searchBar
         searchController.delegate = self
         searchController.searchBar.placeholder = "keyword"
+        //modernSearchBar.showsCancelButton = true
         
         //styling searchbar
         searchController.searchBar.barTintColor = UIColor.white
@@ -257,8 +258,9 @@ extension PTJobsViewController: UITableViewDelegate, UITableViewDataSource{
     func onClickItemSuggestionsView(item: String) {
         
         let item = item.components(separatedBy: ",")
-        
-        self.city = item[0]
+
+        self.city = item[0].removeWhitespace()
+        print(city)
         self.state = item[1].trimmingCharacters(in: .whitespaces)
         
         self.createURL()
@@ -267,6 +269,7 @@ extension PTJobsViewController: UITableViewDelegate, UITableViewDataSource{
         loadData(url: self.url)
     }
 }
+
 
 //scrollview
 extension PTJobsViewController: UIScrollViewDelegate{
@@ -277,6 +280,17 @@ extension PTJobsViewController: UIScrollViewDelegate{
         
         loadData(url: self.url)
         
+    }
+}
+
+//removing space
+extension String {
+    func replace(string:String, replacement:String) -> String {
+        return self.replacingOccurrences(of: string, with: replacement, options: NSString.CompareOptions.literal, range: nil)
+    }
+    
+    func removeWhitespace() -> String {
+        return self.replace(string: " ", replacement: "")
     }
 }
 

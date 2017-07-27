@@ -28,9 +28,6 @@
                                     <constraint firstAttribute="height" constant="44" id="x3a-GF-gxV"/>
                                 </constraints>
                                 <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <outlet property="delegate" destination="DqZ-HF-d3Z" id="gBu-o9-du3"/>
-                                </connections>
                             </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="55" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="FTx-BN-0lq">
                                 <rect key="frame" x="0.0" y="108" width="375" height="515"/>
@@ -408,9 +405,6 @@
                                     <constraint firstAttribute="height" constant="44" id="kOM-7c-Lqk"/>
                                 </constraints>
                                 <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <outlet property="delegate" destination="fAn-Zr-enl" id="vMV-xk-oXG"/>
-                                </connections>
                             </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="71" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="OQ2-jB-AsH">
                                 <rect key="frame" x="0.0" y="108" width="375" height="515"/>

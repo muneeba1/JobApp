@@ -10,25 +10,34 @@ import Foundation
 import UIKit
 import Alamofire
 import CheatyXML
+import MapKit
 import ModernSearchBar
 
 class SummerViewController: UIViewController, UISearchResultsUpdating, UISearchControllerDelegate, ModernSearchBarDelegate{
     
-    
+    //IBOutlets
     @IBOutlet weak var tableView: UITableView!
-    
     @IBOutlet weak var modernSearchBar: ModernSearchBar!
     
     var jobsArray: [JobPost] = []
+    var searchCompleter = MKLocalSearchCompleter()
+    var searchResults = [MKLocalSearchCompletion]()
+    
+    let scrollView = UIScrollView()
+    let searchController = UISearchController(searchResultsController: nil)
+    
+    var url: String = "http://api.indeed.com/ads/apisearch?publisher=2752372751835619&q=summer&start=&limit=25&jt=summer&l=&v=2"
+    
+    //url variables
+    var userSearch: String = ""
+    var city: String = ""
+    var state: String = ""
     var start: Int = 0
     
-    let searchController = UISearchController(searchResultsController: nil)
-    let scrollView = UIScrollView()
+    var suggestionList = Array<String>()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let url: String = "http://api.indeed.com/ads/apisearch?publisher=2752372751835619&q=summer&start=&limit=200&l=&v=2"
         
         //searchbar stuff
         searchController.searchResultsUpdater = self as UISearchResultsUpdating
@@ -37,9 +46,15 @@ class SummerViewController: UIViewController, UISearchResultsUpdating, UISearchC
         searchController.searchBar.sizeToFit()
         self.tableView.tableHeaderView = searchController.searchBar
         searchController.delegate = self
+        searchController.searchBar.placeholder = "keyword"
         
         //styling searchbar
         searchController.searchBar.barTintColor = UIColor.white
+        
+        //modernsearchbar
+        self.modernSearchBar.delegateModernSearchBar = self
+        searchCompleter.delegate = self as! MKLocalSearchCompleterDelegate
+        self.modernSearchBar.barTintColor = UIColor.white
         
         let textField = searchController.searchBar.value(forKey: "searchField") as! UITextField
         
@@ -47,31 +62,71 @@ class SummerViewController: UIViewController, UISearchResultsUpdating, UISearchC
         glassIconView.image = glassIconView.image?.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
         glassIconView.tintColor = UIColor.green
         
+        //self.navigationController?.navigationBar.tintColor = UIColor.white
+        
+        //scrollview stuff
+        self.scrollView.delegate = self
+        
+        //viewdidload
         loadData(url: url)
         
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 80
-        
     }
+    
     func loadData(url: String)  {
         
+        
         Alamofire.request(url).validate().responseData(completionHandler: { (response) in
-            
-            let data: CXMLParser! = CXMLParser(data: response.data)
-            
-            let arrayXML = data["results"]["result"].array
-            
-            for result in arrayXML {
-                let post = JobPost(data: result)
-                self.jobsArray.append(post)
+            switch response.result {
+            case .success:
+                print("Request Successful")
                 
+                let data: CXMLParser! = CXMLParser(data: response.data)
+                
+                let arrayXML = data["results"]["result"].array
+                
+                print("\n\nNumber of Results:", arrayXML.count)
+                
+                for result in arrayXML {
+                    let post = JobPost(data: result)
+                    self.jobsArray.append(post)
+                }
+                self.tableView.reloadData()
+                
+            case .failure(let error):
+                print(error)
             }
-            
-            self.tableView.reloadData()
             
         })
         
     }
+    
+    func createURL() {
+        
+        var location: String = ""
+        
+        var query: String = "summer"
+        
+        // Increase the starting position for querying api
+        self.start += 25
+        
+        if self.city == ""{
+            location = ""
+        }else{
+            location = self.city + "%2C" + self.state
+        }
+        
+        if self.userSearch == ""{
+            query = "summer"
+        }else{
+            query = self.userSearch
+        }
+        
+        self.url = "http://api.indeed.com/ads/apisearch?publisher=2752372751835619&q=\(query)&start=\(self.start)&limit=25&jt=summer&l=\(location)&v=2"
+        
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // 1
         if let identifier = segue.identifier {
@@ -94,13 +149,41 @@ class SummerViewController: UIViewController, UISearchResultsUpdating, UISearchC
         
     }
     
+    //cancel button stuff
     func didDismissSearchController(_ searchController: UISearchController)
     {
         self.jobsArray.removeAll()
-        
-        let url: String = "http://api.indeed.com/ads/apisearch?publisher=2752372751835619&q=summer&start=&limit=200&l=&v=2"
-        
+        self.url = "http://api.indeed.com/ads/apisearch?publisher=2752372751835619&q=summer&start=&limit=25&jt=summer&l=&v=2"
         loadData(url: url)
+    }
+}
+
+//location searchbar
+extension SummerViewController: UISearchBarDelegate {
+    
+    func searchBar(_ searchBar: ModernSearchBar, textDidChange searchText: String) {
+        
+        searchCompleter.queryFragment = searchText
+    }
+}
+
+//locationsearchbar
+extension SummerViewController: MKLocalSearchCompleterDelegate {
+    
+    func completerDidUpdateResults(_ completer: MKLocalSearchCompleter) {
+        self.searchResults = completer.results
+        
+        for location in completer.results
+        {
+            let locationName  = location.title
+            suggestionList.append(locationName)
+        }
+        self.modernSearchBar.setDatas(datas: suggestionList)
+        
+    }
+    
+    func completer(_ completer: MKLocalSearchCompleter, didFailWithError error: Error) {
+        // handle error
     }
 }
 
@@ -126,12 +209,27 @@ extension SummerViewController: UITableViewDelegate, UITableViewDataSource{
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        if searchResults.count >= 1 {
+            
+            let completion = self.searchResults[indexPath.row]
+            
+            let searchRequest = MKLocalSearchRequest(completion: completion)
+            let search = MKLocalSearch(request: searchRequest)
+            search.start { (response, error) in
+                let coordinate = response?.mapItems[0].placemark.coordinate
+                print(String(describing: coordinate))
+            }
+        }
+    }
     
+    //searchbar
     func updateSearchResults(for searchController: UISearchController) {
         
-        let userSearch: String = searchController.searchBar.text ?? "summer"
+        self.userSearch = searchController.searchBar.text!
         
-        let url: String = "http://api.indeed.com/ads/apisearch?publisher=2752372751835619&q=\(userSearch)&start=&limit=200&l=&v=2"
+        url = "http://api.indeed.com/ads/apisearch?publisher=2752372751835619&q=\(userSearch)&start=&limit=25&jt=summer&l=&v=2"
         
         let urlEncoder = url.addingPercentEncoding( withAllowedCharacters: .urlQueryAllowed)
         
@@ -149,34 +247,34 @@ extension SummerViewController: UITableViewDelegate, UITableViewDataSource{
                     self.jobsArray.append(post)
                 }
             }
-            
             self.tableView.reloadData()
             
         })
         
     }
+    //location searchbar
+    func onClickItemSuggestionsView(item: String) {
+        
+        let item = item.components(separatedBy: ",")
+        
+        self.city = item[0].removeWhitespace()
+        self.state = item[1].trimmingCharacters(in: .whitespaces)
+        
+        self.createURL()
+        
+        self.jobsArray.removeAll()
+        loadData(url: self.url)
+    }
 }
 
-//scrollviewdelegate
+//scrollview
 extension SummerViewController: UIScrollViewDelegate{
     
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         
-        let userSearch: String = searchController.searchBar.text ?? "summer"
+        self.createURL()
         
-        start += 25
+        loadData(url: self.url)
         
-        if userSearch == ""{
-            
-            let url = "http://api.indeed.com/ads/apisearch?publisher=2752372751835619&q=summer&start=\(start)&limit=25&l=&v=2"
-            
-            loadData(url: url)
-            
-        }else{
-            let url = "http://api.indeed.com/ads/apisearch?publisher=2752372751835619&q=\(userSearch)&start=\(start)&limit=25&l=&v=2"
-            
-            loadData(url: url)
-        }
     }
 }
-
