@@ -14,7 +14,6 @@ import MapKit
 import ModernSearchBar
 
 
-
 class PTJobsViewController: UIViewController, UISearchResultsUpdating, UISearchControllerDelegate, ModernSearchBarDelegate{
     
     @IBOutlet weak var modernSearchBar: ModernSearchBar!
@@ -49,7 +48,6 @@ class PTJobsViewController: UIViewController, UISearchResultsUpdating, UISearchC
         self.ptTableView.tableHeaderView = searchController.searchBar
         searchController.delegate = self
         searchController.searchBar.placeholder = "keyword"
-        //modernSearchBar.showsCancelButton = true
         
         //styling searchbar
         searchController.searchBar.barTintColor = UIColor.white
@@ -58,6 +56,7 @@ class PTJobsViewController: UIViewController, UISearchResultsUpdating, UISearchC
         self.modernSearchBar.delegateModernSearchBar = self
         searchCompleter.delegate = self as! MKLocalSearchCompleterDelegate
         self.modernSearchBar.barTintColor = UIColor.white
+        self.modernSearchBar.suggestionsView_searchIcon_isRound = true
         
         //styling searchbar icon
         let textField = searchController.searchBar.value(forKey: "searchField") as! UITextField
@@ -65,6 +64,8 @@ class PTJobsViewController: UIViewController, UISearchResultsUpdating, UISearchC
         let glassIconView = textField.leftView as! UIImageView
         glassIconView.image = glassIconView.image?.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
         glassIconView.tintColor = UIColor.green
+        
+        self.navigationController?.navigationBar.tintColor = UIColor.white
         
         //scrollview stuff
         self.scrollView.delegate = self
@@ -130,6 +131,7 @@ class PTJobsViewController: UIViewController, UISearchResultsUpdating, UISearchC
         
     }
     
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // 1
         if let identifier = segue.identifier {
@@ -141,17 +143,15 @@ class PTJobsViewController: UIViewController, UISearchResultsUpdating, UISearchC
                 
                 let detailedViewController = segue.destination as! DetailedViewController
                 detailedViewController.post = post
-                
             }
         }
     }
+    
     override func viewDidAppear(_ animated: Bool) {
-        
         ptTableView.reloadData()
-        
     }
     
-    //cancel button stuff
+    //keywordBar cancel
     func didDismissSearchController(_ searchController: UISearchController)
     {
         self.jobsArray.removeAll()
@@ -166,6 +166,16 @@ extension PTJobsViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: ModernSearchBar, textDidChange searchText: String) {
         
         searchCompleter.queryFragment = searchText
+        modernSearchBar.showsCancelButton = true
+    }
+    
+    //locationBar cancel button
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        self.jobsArray.removeAll()
+        self.url = "http://api.indeed.com/ads/apisearch?publisher=2752372751835619&q=part&start=&limit=25&jt=parttime&l=&v=2"
+        loadData(url: url)
+        
+        modernSearchBar.showsCancelButton = false
     }
 }
 
@@ -258,7 +268,7 @@ extension PTJobsViewController: UITableViewDelegate, UITableViewDataSource{
     func onClickItemSuggestionsView(item: String) {
         
         let item = item.components(separatedBy: ",")
-
+        
         self.city = item[0].removeWhitespace()
         print(city)
         self.state = item[1].trimmingCharacters(in: .whitespaces)

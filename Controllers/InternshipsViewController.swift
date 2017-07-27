@@ -20,7 +20,7 @@ class InternshipsViewController: UIViewController, UISearchResultsUpdating, UISe
     //IBOutlets
     @IBOutlet weak var modernSearchBar: ModernSearchBar!
     @IBOutlet weak var tableView: UITableView!
-   
+    
     
     var jobsArray: [JobPost] = []
     var searchCompleter = MKLocalSearchCompleter()
@@ -66,7 +66,7 @@ class InternshipsViewController: UIViewController, UISearchResultsUpdating, UISe
         glassIconView.image = glassIconView.image?.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
         glassIconView.tintColor = UIColor.green
         
-        //self.navigationController?.navigationBar.tintColor = UIColor.white
+        self.navigationController?.navigationBar.tintColor = UIColor.white
         
         //scrollview stuff
         self.scrollView.delegate = self
@@ -146,9 +146,7 @@ class InternshipsViewController: UIViewController, UISearchResultsUpdating, UISe
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        
         tableView.reloadData()
-        
     }
     
     //cancel button stuff
@@ -160,12 +158,21 @@ class InternshipsViewController: UIViewController, UISearchResultsUpdating, UISe
     }
 }
 
-//location searchbar
+
 extension InternshipsViewController: UISearchBarDelegate {
-    
     func searchBar(_ searchBar: ModernSearchBar, textDidChange searchText: String) {
         
         searchCompleter.queryFragment = searchText
+        modernSearchBar.showsCancelButton = true
+    }
+    
+    //locationBar cancel button
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        self.jobsArray.removeAll()
+        self.url = "http://api.indeed.com/ads/apisearch?publisher=2752372751835619&q=part&start=&limit=25&jt=parttime&l=&v=2"
+        loadData(url: url)
+        
+        modernSearchBar.showsCancelButton = false
     }
 }
 

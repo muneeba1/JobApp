@@ -62,7 +62,7 @@ class SummerViewController: UIViewController, UISearchResultsUpdating, UISearchC
         glassIconView.image = glassIconView.image?.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
         glassIconView.tintColor = UIColor.green
         
-        //self.navigationController?.navigationBar.tintColor = UIColor.white
+        self.navigationController?.navigationBar.tintColor = UIColor.white
         
         //scrollview stuff
         self.scrollView.delegate = self
@@ -143,10 +143,9 @@ class SummerViewController: UIViewController, UISearchResultsUpdating, UISearchC
         }
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        
+    override func viewDidAppear(_ animated: Bool)
+    {
         tableView.reloadData()
-        
     }
     
     //cancel button stuff
@@ -158,14 +157,25 @@ class SummerViewController: UIViewController, UISearchResultsUpdating, UISearchC
     }
 }
 
-//location searchbar
+
 extension SummerViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: ModernSearchBar, textDidChange searchText: String) {
         
         searchCompleter.queryFragment = searchText
+        modernSearchBar.showsCancelButton = true
+    }
+    
+    //locationBar cancel button
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        self.jobsArray.removeAll()
+        self.url = "http://api.indeed.com/ads/apisearch?publisher=2752372751835619&q=part&start=&limit=25&jt=parttime&l=&v=2"
+        loadData(url: url)
+        
+        modernSearchBar.showsCancelButton = false
     }
 }
+
 
 //locationsearchbar
 extension SummerViewController: MKLocalSearchCompleterDelegate {
