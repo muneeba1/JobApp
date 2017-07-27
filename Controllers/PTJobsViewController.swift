@@ -34,7 +34,6 @@ class PTJobsViewController: UIViewController, UISearchResultsUpdating, UISearchC
     var state: String = ""
     var start: Int = 0
     
-    
     var suggestionList = Array<String>()
     
     override func viewDidLoad() {
@@ -178,7 +177,6 @@ extension PTJobsViewController: UISearchBarDelegate {
         modernSearchBar.showsCancelButton = false
     }
 }
-
 //locationsearchbar
 extension PTJobsViewController: MKLocalSearchCompleterDelegate {
     
