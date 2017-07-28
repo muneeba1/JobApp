@@ -56,13 +56,27 @@ class SummerViewController: UIViewController, UISearchResultsUpdating, UISearchC
         searchCompleter.delegate = self as! MKLocalSearchCompleterDelegate
         self.modernSearchBar.barTintColor = UIColor.white
         
+        //keywordSB Icon
         let textField = searchController.searchBar.value(forKey: "searchField") as! UITextField
         
         let glassIconView = textField.leftView as! UIImageView
         glassIconView.image = glassIconView.image?.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
         glassIconView.tintColor = UIColor.green
         
+        //locationSB icon
+        if let textFieldInsideSearchBar = self.modernSearchBar.value(forKey: "searchField") as? UITextField,
+            let glassIconView = textFieldInsideSearchBar.leftView as? UIImageView {
+            
+            //Magnifying glass
+            glassIconView.image = glassIconView.image?.withRenderingMode(.alwaysTemplate)
+            glassIconView.tintColor = .green
+        }
+        
+        //Navigation Bar
         self.navigationController?.navigationBar.tintColor = UIColor.white
+        if let font = UIFont(name: "Futura", size: 20) {
+            UINavigationBar.appearance().titleTextAttributes = [NSFontAttributeName: font]
+        }
         
         //scrollview stuff
         self.scrollView.delegate = self
@@ -157,7 +171,7 @@ class SummerViewController: UIViewController, UISearchResultsUpdating, UISearchC
     }
 }
 
-
+//locationbar stuff
 extension SummerViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: ModernSearchBar, textDidChange searchText: String) {
@@ -166,12 +180,16 @@ extension SummerViewController: UISearchBarDelegate {
         modernSearchBar.showsCancelButton = true
     }
     
-    //locationBar cancel button
+    func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
+        modernSearchBar.showsCancelButton = true
+        return true
+    }
+  
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         self.jobsArray.removeAll()
-        self.url = "http://api.indeed.com/ads/apisearch?publisher=2752372751835619&q=part&start=&limit=25&jt=parttime&l=&v=2"
+        self.url = "http://api.indeed.com/ads/apisearch?publisher=2752372751835619&q=summer&start=&limit=25&jt=summer&l=&v=2"
         loadData(url: url)
-        
+        searchBar.text = ""
         modernSearchBar.showsCancelButton = false
     }
 }
@@ -186,7 +204,11 @@ extension SummerViewController: MKLocalSearchCompleterDelegate {
         for location in completer.results
         {
             let locationName  = location.title
-            suggestionList.append(locationName)
+            
+            if locationName.contains(",")
+            {
+                suggestionList.append(locationName)
+            }
         }
         self.modernSearchBar.setDatas(datas: suggestionList)
         

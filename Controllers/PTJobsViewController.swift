@@ -46,7 +46,7 @@ class PTJobsViewController: UIViewController, UISearchResultsUpdating, UISearchC
         searchController.searchBar.sizeToFit()
         self.ptTableView.tableHeaderView = searchController.searchBar
         searchController.delegate = self
-        searchController.searchBar.placeholder = "keyword"
+        searchController.searchBar.placeholder = "Job Title"
         
         //styling searchbar
         searchController.searchBar.barTintColor = UIColor.white
@@ -57,14 +57,27 @@ class PTJobsViewController: UIViewController, UISearchResultsUpdating, UISearchC
         self.modernSearchBar.barTintColor = UIColor.white
         self.modernSearchBar.suggestionsView_searchIcon_isRound = true
         
-        //styling searchbar icon
+        //styling keywordSB icon
         let textField = searchController.searchBar.value(forKey: "searchField") as! UITextField
         
         let glassIconView = textField.leftView as! UIImageView
         glassIconView.image = glassIconView.image?.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
         glassIconView.tintColor = UIColor.green
         
+        //locationSB icon
+        if let textFieldInsideSearchBar = self.modernSearchBar.value(forKey: "searchField") as? UITextField,
+            let glassIconView = textFieldInsideSearchBar.leftView as? UIImageView {
+            
+            //Magnifying glass
+            glassIconView.image = glassIconView.image?.withRenderingMode(.alwaysTemplate)
+            glassIconView.tintColor = .green
+        }
+        
+        //navigation Bar
         self.navigationController?.navigationBar.tintColor = UIColor.white
+        if let font = UIFont(name: "Futura", size: 20) {
+            UINavigationBar.appearance().titleTextAttributes = [NSFontAttributeName: font]
+        }
         
         //scrollview stuff
         self.scrollView.delegate = self
@@ -79,7 +92,7 @@ class PTJobsViewController: UIViewController, UISearchResultsUpdating, UISearchC
     
     func loadData(url: String){
         
-        print(url)
+        //print(url)
         
         Alamofire.request(url).validate().responseData(completionHandler: { (response) in
             switch response.result {
@@ -90,7 +103,7 @@ class PTJobsViewController: UIViewController, UISearchResultsUpdating, UISearchC
                 
                 let arrayXML = data["results"]["result"].array
                 
-                print("\n\nNumber of Results:", arrayXML.count)
+               // print("\n\nNumber of Results:", arrayXML.count)
                 
                 for result in arrayXML {
                     let post = JobPost(data: result)
@@ -163,9 +176,12 @@ class PTJobsViewController: UIViewController, UISearchResultsUpdating, UISearchC
 extension PTJobsViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: ModernSearchBar, textDidChange searchText: String) {
-        
         searchCompleter.queryFragment = searchText
+    }
+    
+    func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
         modernSearchBar.showsCancelButton = true
+        return true
     }
     
     //locationBar cancel button
@@ -173,7 +189,7 @@ extension PTJobsViewController: UISearchBarDelegate {
         self.jobsArray.removeAll()
         self.url = "http://api.indeed.com/ads/apisearch?publisher=2752372751835619&q=part&start=&limit=25&jt=parttime&l=&v=2"
         loadData(url: url)
-        
+        searchBar.text = ""
         modernSearchBar.showsCancelButton = false
     }
 }
@@ -186,14 +202,20 @@ extension PTJobsViewController: MKLocalSearchCompleterDelegate {
         for location in completer.results
         {
             let locationName  = location.title
-            suggestionList.append(locationName)
+            
+            if locationName.contains(",") && !suggestionList.contains(locationName)
+            {
+                suggestionList.append(locationName)
+            }
+            
         }
         self.modernSearchBar.setDatas(datas: suggestionList)
         
     }
     
-    func completer(_ completer: MKLocalSearchCompleter, didFailWithError error: Error) {
-        // handle error
+    func completer(_ completer: MKLocalSearchCompleter, didFailWithError error: Error)
+    {
+        print("Could not find location")
     }
 }
 

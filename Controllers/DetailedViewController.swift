@@ -19,7 +19,6 @@ class DetailedViewController: UIViewController{
     @IBOutlet weak var aboutTextView: UITextView!
     @IBOutlet weak var applyButton: UIButton!
     
-    
     var post: JobPost?
     
     override func viewDidLoad() {
