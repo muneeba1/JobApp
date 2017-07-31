@@ -14,17 +14,18 @@ import MapKit
 import ModernSearchBar
 
 
-class PTJobsViewController: UIViewController, UISearchResultsUpdating, ModernSearchBarDelegate, UISearchControllerDelegate{
+class PTJobsViewController: UIViewController, ModernSearchBarDelegate{
     
     @IBOutlet weak var modernSearchBar: ModernSearchBar!
     @IBOutlet weak var ptTableView: UITableView!
+    
+    @IBOutlet weak var jtSearchBar: UISearchBar!
     
     var jobsArray: [JobPost] = []
     var searchCompleter = MKLocalSearchCompleter()
     var searchResults = [MKLocalSearchCompletion]()
     
     let scrollView = UIScrollView()
-    let searchController = UISearchController(searchResultsController: nil)
     
     var url: String = "http://api.indeed.com/ads/apisearch?publisher=2752372751835619&q=part&start=&limit=25&jt=parttime&l=&v=2"
     
@@ -39,42 +40,22 @@ class PTJobsViewController: UIViewController, UISearchResultsUpdating, ModernSea
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //searchbar stuff
-        searchController.searchResultsUpdater = self as UISearchResultsUpdating
-        searchController.hidesNavigationBarDuringPresentation = false
-        searchController.dimsBackgroundDuringPresentation = false
-        searchController.searchBar.sizeToFit()
-        self.ptTableView.tableHeaderView = searchController.searchBar
-        searchController.delegate = self
-        searchController.searchBar.delegate = self
-        searchController.searchBar.placeholder = "Job Title"
         
         definesPresentationContext = true
-        
-        //styling searchbar
-        searchController.searchBar.barTintColor = UIColor.white
         
         //modernsearchbar
         self.modernSearchBar.delegateModernSearchBar = self
         searchCompleter.delegate = self as! MKLocalSearchCompleterDelegate
-        self.modernSearchBar.barTintColor = UIColor.white
+        //self.modernSearchBar.barTintColor = UIColor.white
         self.modernSearchBar.suggestionsView_searchIcon_isRound = true
         
-        //styling keywordSB icon
-        let textField = searchController.searchBar.value(forKey: "searchField") as! UITextField
-        
+        //keywordSB Icon
+        let textField = jtSearchBar.value(forKey: "searchField") as! UITextField
         let glassIconView = textField.leftView as! UIImageView
         glassIconView.image = glassIconView.image?.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
         glassIconView.tintColor = UIColor.green
         
-        //locationSB icon
-        if let textFieldInsideSearchBar = self.modernSearchBar.value(forKey: "searchField") as? UITextField,
-            let glassIconView = textFieldInsideSearchBar.leftView as? UIImageView {
-            
-            //Magnifying glass
-            glassIconView.image = glassIconView.image?.withRenderingMode(.alwaysTemplate)
-            glassIconView.tintColor = .green
-        }
+        modernSearchBar.setImage(UIImage(named: "location"), for: .search, state: .normal)
         
         //navigation Bar
         self.navigationController?.navigationBar.tintColor = UIColor.white
@@ -95,8 +76,6 @@ class PTJobsViewController: UIViewController, UISearchResultsUpdating, ModernSea
     
     func loadData(url: String){
         
-        //print(url)
-        
         Alamofire.request(url).validate().responseData(completionHandler: { (response) in
             switch response.result {
             case .success:
@@ -106,7 +85,7 @@ class PTJobsViewController: UIViewController, UISearchResultsUpdating, ModernSea
                 
                 let arrayXML = data["results"]["result"].array
                 
-               // print("\n\nNumber of Results:", arrayXML.count)
+                // print("\n\nNumber of Results:", arrayXML.count)
                 
                 for result in arrayXML {
                     let post = JobPost(data: result)
@@ -136,14 +115,14 @@ class PTJobsViewController: UIViewController, UISearchResultsUpdating, ModernSea
             location = self.city + "%2C" + self.state
         }
         
-      //  self.url.addingPercentEncoding( withAllowedCharacters: .urlQueryAllowed)
-
+        //  self.url.addingPercentEncoding( withAllowedCharacters: .urlQueryAllowed)
+        
         
         if self.userSearch == ""{
             query = "part"
         }else{
             query = self.userSearch.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
-           // query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+            // query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
         }
         print("search stuff city \(self.city) state \(self.state) search \(self.userSearch)")
         self.url = "http://api.indeed.com/ads/apisearch?publisher=2752372751835619&q=\(query)&start=\(self.start)&limit=25&jt=parttime&l=\(location)&v=2"
@@ -151,7 +130,6 @@ class PTJobsViewController: UIViewController, UISearchResultsUpdating, ModernSea
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        self.searchController.isActive = false
         // 1
         
         if let identifier = segue.identifier {
@@ -171,43 +149,6 @@ class PTJobsViewController: UIViewController, UISearchResultsUpdating, ModernSea
         ptTableView.reloadData()
     }
     
-    //keywordBar cancel
-    func didDismissSearchController(_ searchController: UISearchController)
-    {
-        self.jobsArray.removeAll()
-        self.url = "http://api.indeed.com/ads/apisearch?publisher=2752372751835619&q=part&start=&limit=25&jt=parttime&l=&v=2"
-        loadData(url: url)
-    }
-}
-
-//location searchbar
-extension PTJobsViewController: UISearchBarDelegate
-{
-    
-    func searchBarTextDidEndEditing(_ searchBar: UISearchBar)
-    {
-        if searchBar == self.modernSearchBar
-        {
-            //location stuff
-        }
-        else
-        {
-           //job search
-            //self.searchController.isActive = false
-           // self.searchController.dismiss(animated: true, completion: nil)
-            
-        }
-    }
-    
-    func searchBar(_ searchBar: ModernSearchBar, textDidChange searchText: String) {
-        searchCompleter.queryFragment = searchText
-    }
-    
-    func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
-        modernSearchBar.showsCancelButton = true
-        return true
-    }
-    
     //locationBar cancel button
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         self.jobsArray.removeAll()
@@ -215,6 +156,7 @@ extension PTJobsViewController: UISearchBarDelegate
         loadData(url: url)
         searchBar.text = ""
         modernSearchBar.showsCancelButton = false
+        searchBar.showsCancelButton = false
     }
 }
 //locationsearchbar
@@ -281,36 +223,6 @@ extension PTJobsViewController: UITableViewDelegate, UITableViewDataSource{
         }
     }
     
-    
-    //searchbar
-    func updateSearchResults(for searchController: UISearchController) {
-        
-        self.userSearch = searchController.searchBar.text!
-        
-     //url = "http://api.indeed.com/ads/apisearch?publisher=2752372751835619&q=\(userSearch)&start=&limit=25&jt=parttime&l=&v=2"
-        
-        self.createURL()
-        
-        Alamofire.request(self.url).validate().responseData(completionHandler: { (response) in
-            
-            let data: CXMLParser! = CXMLParser(data: response.data)
-            
-            let arrayXML = data["results"]["result"].array
-            
-            if (arrayXML.count > 0)
-            {
-                self.jobsArray.removeAll()
-                for result in arrayXML {
-                    let post = JobPost(data: result)
-                    self.jobsArray.append(post)
-                }
-            }
-            self.ptTableView.reloadData()
-            print("COUNT \(self.jobsArray.count)")
-            print(self.start)
-        })
-        
-    }
     //location searchbar
     func onClickItemSuggestionsView(item: String) {
         
@@ -351,6 +263,73 @@ extension String {
     }
 }
 
+extension PTJobsViewController: UISearchBarDelegate
+{
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar)
+    {
+        if searchBar == self.modernSearchBar
+        {
+            //location stuff
+        }
+        else
+        {
+            //job search
+            //self.searchController.isActive = false
+            // self.searchController.dismiss(animated: true, completion: nil)
+            
+        }
+    }
+    
+    func searchBar(_ searchBar: ModernSearchBar, textDidChange searchText: String)
+    {
+        
+        if searchBar == self.modernSearchBar
+        {
+            searchCompleter.queryFragment = searchText
+        }
+        else
+        {
+            self.userSearch = searchBar.text!
+            
+            self.createURL()
+            
+            Alamofire.request(self.url).validate().responseData(completionHandler: { (response) in
+                
+                let data: CXMLParser! = CXMLParser(data: response.data)
+                
+                let arrayXML = data["results"]["result"].array
+                
+                if (arrayXML.count > 0)
+                {
+                    self.jobsArray.removeAll()
+                    for result in arrayXML {
+                        let post = JobPost(data: result)
+                        self.jobsArray.append(post)
+                    }
+                }
+                self.ptTableView.reloadData()
+                print("COUNT \(self.jobsArray.count)")
+                print(self.start)
+            })
+            
+        }
+    }
+    
+    func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool
+    {
+        if searchBar == self.modernSearchBar
+        {
+        modernSearchBar.showsCancelButton = true
+        }
+        else
+        {
+         searchBar.showsCancelButton = true
+        }
+        
+        return true
+    }
+
+}
 
 
 

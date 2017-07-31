@@ -27,10 +27,11 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="x3a-GF-gxV"/>
                                 </constraints>
+                                <color key="barTintColor" red="1" green="1" blue="0.99215686270000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="55" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="FTx-BN-0lq">
-                                <rect key="frame" x="0.0" y="108" width="375" height="515"/>
+                                <rect key="frame" x="0.0" y="152" width="375" height="471"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="internPostsCell" rowHeight="70" id="ny7-9y-vHv" customClass="InternPostsCell" customModule="JobApp" customModuleProvider="target">
@@ -88,10 +89,19 @@
                                     <outlet property="delegate" destination="DqZ-HF-d3Z" id="IWS-8h-Br7"/>
                                 </connections>
                             </tableView>
+                            <searchBar contentMode="redraw" fixedFrame="YES" placeholder="Job Title" translatesAutoresizingMaskIntoConstraints="NO" id="isW-1H-h7k">
+                                <rect key="frame" x="0.0" y="108" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <color key="barTintColor" red="1" green="1" blue="0.99215686270000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="DqZ-HF-d3Z" id="YB9-hn-bd8"/>
+                                </connections>
+                            </searchBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="FTx-BN-0lq" firstAttribute="top" secondItem="gwS-nl-tyt" secondAttribute="top" constant="108" id="4Ye-S5-cfA"/>
+                            <constraint firstItem="FTx-BN-0lq" firstAttribute="top" secondItem="gwS-nl-tyt" secondAttribute="top" constant="152" id="4Ye-S5-cfA"/>
                             <constraint firstItem="9Ff-VR-PqO" firstAttribute="leading" secondItem="gwS-nl-tyt" secondAttribute="leading" id="Kob-bG-jAM"/>
                             <constraint firstItem="FTx-BN-0lq" firstAttribute="leading" secondItem="gwS-nl-tyt" secondAttribute="leading" id="M6U-oG-bJt"/>
                             <constraint firstAttribute="trailing" secondItem="9Ff-VR-PqO" secondAttribute="trailing" id="PqH-x0-3go"/>
@@ -102,6 +112,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Internships" id="XoM-bz-7r2"/>
                     <connections>
+                        <outlet property="jtSearchBar" destination="isW-1H-h7k" id="BdF-ae-Bfr"/>
                         <outlet property="modernSearchBar" destination="9Ff-VR-PqO" id="q3i-pd-VL5"/>
                         <outlet property="tableView" destination="FTx-BN-0lq" id="EIY-dJ-9QB"/>
                     </connections>
@@ -127,10 +138,11 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="5So-Fa-3Pq"/>
                                 </constraints>
+                                <color key="barTintColor" red="1" green="1" blue="0.99215686270000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="70" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="LGv-uL-4pE">
-                                <rect key="frame" x="0.0" y="108" width="375" height="515"/>
+                                <rect key="frame" x="0.0" y="152" width="375" height="471"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="postsCell" rowHeight="70" id="YeT-sW-KtB" customClass="PostsTableViewCell" customModule="JobApp" customModuleProvider="target">
@@ -188,6 +200,15 @@
                                     <outlet property="delegate" destination="LO1-OY-C6e" id="IxH-MC-8aC"/>
                                 </connections>
                             </tableView>
+                            <searchBar contentMode="redraw" fixedFrame="YES" placeholder="Job Title" translatesAutoresizingMaskIntoConstraints="NO" id="JnX-Mw-7Fj">
+                                <rect key="frame" x="0.0" y="108" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <color key="barTintColor" red="1" green="1" blue="0.99215686270000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="LO1-OY-C6e" id="5Rz-z4-QnI"/>
+                                </connections>
+                            </searchBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -197,7 +218,7 @@
                             <constraint firstItem="uo3-7I-D03" firstAttribute="leading" secondItem="Fhu-5M-w2k" secondAttribute="leading" id="Se1-AO-2kO"/>
                             <constraint firstAttribute="bottomMargin" secondItem="LGv-uL-4pE" secondAttribute="bottom" constant="44" id="Wfz-Ji-8YS"/>
                             <constraint firstItem="LGv-uL-4pE" firstAttribute="leading" secondItem="Fhu-5M-w2k" secondAttribute="leading" id="fEh-tg-tfS"/>
-                            <constraint firstItem="LGv-uL-4pE" firstAttribute="top" secondItem="Fhu-5M-w2k" secondAttribute="top" constant="108" id="jdd-gf-k5i"/>
+                            <constraint firstItem="LGv-uL-4pE" firstAttribute="top" secondItem="Fhu-5M-w2k" secondAttribute="top" constant="152" id="jdd-gf-k5i"/>
                         </constraints>
                     </view>
                     <toolbarItems/>
@@ -211,6 +232,7 @@
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="jtSearchBar" destination="JnX-Mw-7Fj" id="Ulo-FE-0me"/>
                         <outlet property="modernSearchBar" destination="uo3-7I-D03" id="Bk0-rc-7hQ"/>
                         <outlet property="ptTableView" destination="LGv-uL-4pE" id="RYl-tW-iSJ"/>
                     </connections>
@@ -405,10 +427,11 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="kOM-7c-Lqk"/>
                                 </constraints>
+                                <color key="barTintColor" red="1" green="1" blue="0.99215686270000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="71" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="OQ2-jB-AsH">
-                                <rect key="frame" x="0.0" y="108" width="375" height="515"/>
+                                <rect key="frame" x="0.0" y="156" width="375" height="467"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="spPostsCell" rowHeight="70" id="fnc-fl-ZR1" customClass="SpPostsCell" customModule="JobApp" customModuleProvider="target">
@@ -466,12 +489,21 @@
                                     <outlet property="delegate" destination="fAn-Zr-enl" id="SDd-yl-3VB"/>
                                 </connections>
                             </tableView>
+                            <searchBar contentMode="redraw" fixedFrame="YES" placeholder="Job Title" translatesAutoresizingMaskIntoConstraints="NO" id="1hO-5W-BO9">
+                                <rect key="frame" x="0.0" y="108" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <color key="barTintColor" red="1" green="1" blue="0.99215686270000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="fAn-Zr-enl" id="k8e-be-I5h"/>
+                                </connections>
+                            </searchBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="OQ2-jB-AsH" firstAttribute="leading" secondItem="pbM-AZ-gom" secondAttribute="leading" id="3Y5-gv-BQ9"/>
                             <constraint firstItem="xI6-BE-WpU" firstAttribute="top" secondItem="RCE-I3-qsy" secondAttribute="bottom" id="8AB-nk-fRz"/>
-                            <constraint firstItem="OQ2-jB-AsH" firstAttribute="top" secondItem="pbM-AZ-gom" secondAttribute="top" constant="108" id="D1K-gs-i3j"/>
+                            <constraint firstItem="OQ2-jB-AsH" firstAttribute="top" secondItem="pbM-AZ-gom" secondAttribute="top" constant="156" id="D1K-gs-i3j"/>
                             <constraint firstAttribute="trailing" secondItem="OQ2-jB-AsH" secondAttribute="trailing" id="clX-6G-4ir"/>
                             <constraint firstAttribute="bottom" secondItem="OQ2-jB-AsH" secondAttribute="bottom" constant="44" id="czl-lX-Y6P"/>
                             <constraint firstItem="xI6-BE-WpU" firstAttribute="leading" secondItem="pbM-AZ-gom" secondAttribute="leading" id="fbc-qC-lZo"/>
@@ -480,6 +512,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Summer Programs" id="fTS-Oy-K8l"/>
                     <connections>
+                        <outlet property="jtSearchBar" destination="1hO-5W-BO9" id="lUM-fZ-J5g"/>
                         <outlet property="modernSearchBar" destination="xI6-BE-WpU" id="2fd-tT-fE4"/>
                         <outlet property="tableView" destination="OQ2-jB-AsH" id="9UR-qE-RtY"/>
                     </connections>
@@ -574,7 +607,7 @@
                         </connections>
                     </tabBarItem>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" id="ItF-fC-2BZ">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="ItF-fC-2BZ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.039215686270000001" green="0.66274509800000003" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
@@ -648,7 +681,7 @@
         <image name="summer" width="37" height="37"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="BmK-Wd-rkg"/>
+        <segue reference="HjL-Bf-MxL"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.039215686270000001" green="0.66274509800000003" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
 </document>

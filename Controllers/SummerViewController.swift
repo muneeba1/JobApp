@@ -13,18 +13,18 @@ import CheatyXML
 import MapKit
 import ModernSearchBar
 
-class SummerViewController: UIViewController, UISearchResultsUpdating, UISearchControllerDelegate, ModernSearchBarDelegate{
+class SummerViewController: UIViewController, ModernSearchBarDelegate{
     
     //IBOutlets
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var modernSearchBar: ModernSearchBar!
-    
+    @IBOutlet weak var jtSearchBar: UISearchBar!
+   
     var jobsArray: [JobPost] = []
     var searchCompleter = MKLocalSearchCompleter()
     var searchResults = [MKLocalSearchCompletion]()
     
     let scrollView = UIScrollView()
-    let searchController = UISearchController(searchResultsController: nil)
     
     var url: String = "http://api.indeed.com/ads/apisearch?publisher=2752372751835619&q=summer&start=&limit=25&jt=summer&l=&v=2"
     
@@ -39,38 +39,17 @@ class SummerViewController: UIViewController, UISearchResultsUpdating, UISearchC
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //searchbar stuff
-        searchController.searchResultsUpdater = self as UISearchResultsUpdating
-        searchController.hidesNavigationBarDuringPresentation = false
-        searchController.dimsBackgroundDuringPresentation = false
-        searchController.searchBar.sizeToFit()
-        self.tableView.tableHeaderView = searchController.searchBar
-        searchController.delegate = self
-        searchController.searchBar.placeholder = "keyword"
-        
-        //styling searchbar
-        searchController.searchBar.barTintColor = UIColor.white
-        
         //modernsearchbar
         self.modernSearchBar.delegateModernSearchBar = self
         searchCompleter.delegate = self as! MKLocalSearchCompleterDelegate
-        self.modernSearchBar.barTintColor = UIColor.white
+        modernSearchBar.setImage(UIImage(named: "location"), for: .search, state: .normal)
         
         //keywordSB Icon
-        let textField = searchController.searchBar.value(forKey: "searchField") as! UITextField
-        
+        let textField = jtSearchBar.value(forKey: "searchField") as! UITextField
         let glassIconView = textField.leftView as! UIImageView
         glassIconView.image = glassIconView.image?.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
         glassIconView.tintColor = UIColor.green
-        
-        //locationSB icon
-        if let textFieldInsideSearchBar = self.modernSearchBar.value(forKey: "searchField") as? UITextField,
-            let glassIconView = textFieldInsideSearchBar.leftView as? UIImageView {
-            
-            //Magnifying glass
-            glassIconView.image = glassIconView.image?.withRenderingMode(.alwaysTemplate)
-            glassIconView.tintColor = .green
-        }
+
         
         //Navigation Bar
         self.navigationController?.navigationBar.tintColor = UIColor.white
@@ -162,38 +141,7 @@ class SummerViewController: UIViewController, UISearchResultsUpdating, UISearchC
         tableView.reloadData()
     }
     
-    //cancel button stuff
-    func didDismissSearchController(_ searchController: UISearchController)
-    {
-        self.jobsArray.removeAll()
-        self.url = "http://api.indeed.com/ads/apisearch?publisher=2752372751835619&q=summer&start=&limit=25&jt=summer&l=&v=2"
-        loadData(url: url)
-    }
 }
-
-//locationbar stuff
-extension SummerViewController: UISearchBarDelegate {
-    
-    func searchBar(_ searchBar: ModernSearchBar, textDidChange searchText: String) {
-        
-        searchCompleter.queryFragment = searchText
-        modernSearchBar.showsCancelButton = true
-    }
-    
-    func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
-        modernSearchBar.showsCancelButton = true
-        return true
-    }
-  
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        self.jobsArray.removeAll()
-        self.url = "http://api.indeed.com/ads/apisearch?publisher=2752372751835619&q=summer&start=&limit=25&jt=summer&l=&v=2"
-        loadData(url: url)
-        searchBar.text = ""
-        modernSearchBar.showsCancelButton = false
-    }
-}
-
 
 //locationsearchbar
 extension SummerViewController: MKLocalSearchCompleterDelegate {
@@ -255,35 +203,7 @@ extension SummerViewController: UITableViewDelegate, UITableViewDataSource{
             }
         }
     }
-    
-    //searchbar
-    func updateSearchResults(for searchController: UISearchController) {
-        
-        self.userSearch = searchController.searchBar.text!
-        
-        url = "http://api.indeed.com/ads/apisearch?publisher=2752372751835619&q=\(userSearch)&start=&limit=25&jt=summer&l=&v=2"
-        
-        let urlEncoder = url.addingPercentEncoding( withAllowedCharacters: .urlQueryAllowed)
-        
-        Alamofire.request(urlEncoder!).validate().responseData(completionHandler: { (response) in
-            
-            let data: CXMLParser! = CXMLParser(data: response.data)
-            
-            let arrayXML = data["results"]["result"].array
-            
-            if (arrayXML.count > 0)
-            {
-                self.jobsArray.removeAll()
-                for result in arrayXML {
-                    let post = JobPost(data: result)
-                    self.jobsArray.append(post)
-                }
-            }
-            self.tableView.reloadData()
-            
-        })
-        
-    }
+
     //location searchbar
     func onClickItemSuggestionsView(item: String) {
         
@@ -310,3 +230,57 @@ extension SummerViewController: UIScrollViewDelegate{
         
     }
 }
+
+extension SummerViewController: UISearchBarDelegate
+{
+    func searchBar(_ searchBar: ModernSearchBar, textDidChange searchText: String)
+    {
+        
+        if searchBar == self.modernSearchBar
+        {
+            searchCompleter.queryFragment = searchText
+        }
+        else
+        {
+            self.userSearch = searchBar.text!
+            
+            self.createURL()
+            
+            Alamofire.request(self.url).validate().responseData(completionHandler: { (response) in
+                
+                let data: CXMLParser! = CXMLParser(data: response.data)
+                
+                let arrayXML = data["results"]["result"].array
+                
+                if (arrayXML.count > 0)
+                {
+                    self.jobsArray.removeAll()
+                    for result in arrayXML {
+                        let post = JobPost(data: result)
+                        self.jobsArray.append(post)
+                    }
+                }
+                self.tableView.reloadData()
+                print("COUNT \(self.jobsArray.count)")
+                print(self.start)
+            })
+            
+        }
+    }
+    
+    func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool
+    {
+        if searchBar == self.modernSearchBar
+        {
+            modernSearchBar.showsCancelButton = true
+        }
+        else
+        {
+            searchBar.showsCancelButton = true
+        }
+        
+        return true
+    }
+    
+}
+
