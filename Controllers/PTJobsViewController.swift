@@ -14,7 +14,7 @@ import MapKit
 import ModernSearchBar
 
 
-class PTJobsViewController: UIViewController, UISearchResultsUpdating, UISearchControllerDelegate, ModernSearchBarDelegate{
+class PTJobsViewController: UIViewController, UISearchResultsUpdating, ModernSearchBarDelegate, UISearchControllerDelegate{
     
     @IBOutlet weak var modernSearchBar: ModernSearchBar!
     @IBOutlet weak var ptTableView: UITableView!
@@ -46,7 +46,10 @@ class PTJobsViewController: UIViewController, UISearchResultsUpdating, UISearchC
         searchController.searchBar.sizeToFit()
         self.ptTableView.tableHeaderView = searchController.searchBar
         searchController.delegate = self
+        searchController.searchBar.delegate = self
         searchController.searchBar.placeholder = "Job Title"
+        
+        definesPresentationContext = true
         
         //styling searchbar
         searchController.searchBar.barTintColor = UIColor.white
@@ -133,19 +136,24 @@ class PTJobsViewController: UIViewController, UISearchResultsUpdating, UISearchC
             location = self.city + "%2C" + self.state
         }
         
+      //  self.url.addingPercentEncoding( withAllowedCharacters: .urlQueryAllowed)
+
+        
         if self.userSearch == ""{
             query = "part"
         }else{
-            query = self.userSearch
+            query = self.userSearch.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
+           // query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
         }
-        
+        print("search stuff city \(self.city) state \(self.state) search \(self.userSearch)")
         self.url = "http://api.indeed.com/ads/apisearch?publisher=2752372751835619&q=\(query)&start=\(self.start)&limit=25&jt=parttime&l=\(location)&v=2"
         
     }
     
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        self.searchController.isActive = false
         // 1
+        
         if let identifier = segue.identifier {
             // 2
             if identifier == "labelPressed" {
@@ -173,7 +181,23 @@ class PTJobsViewController: UIViewController, UISearchResultsUpdating, UISearchC
 }
 
 //location searchbar
-extension PTJobsViewController: UISearchBarDelegate {
+extension PTJobsViewController: UISearchBarDelegate
+{
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar)
+    {
+        if searchBar == self.modernSearchBar
+        {
+            //location stuff
+        }
+        else
+        {
+           //job search
+            //self.searchController.isActive = false
+           // self.searchController.dismiss(animated: true, completion: nil)
+            
+        }
+    }
     
     func searchBar(_ searchBar: ModernSearchBar, textDidChange searchText: String) {
         searchCompleter.queryFragment = searchText
@@ -225,6 +249,7 @@ extension PTJobsViewController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
+        print("jobsArray: \(jobsArray.count)")
         return jobsArray.count
     }
     
@@ -256,16 +281,17 @@ extension PTJobsViewController: UITableViewDelegate, UITableViewDataSource{
         }
     }
     
+    
     //searchbar
     func updateSearchResults(for searchController: UISearchController) {
         
         self.userSearch = searchController.searchBar.text!
         
-        url = "http://api.indeed.com/ads/apisearch?publisher=2752372751835619&q=\(userSearch)&start=&limit=25&jt=parttime&l=&v=2"
+     //url = "http://api.indeed.com/ads/apisearch?publisher=2752372751835619&q=\(userSearch)&start=&limit=25&jt=parttime&l=&v=2"
         
-        let urlEncoder = url.addingPercentEncoding( withAllowedCharacters: .urlQueryAllowed)
+        self.createURL()
         
-        Alamofire.request(urlEncoder!).validate().responseData(completionHandler: { (response) in
+        Alamofire.request(self.url).validate().responseData(completionHandler: { (response) in
             
             let data: CXMLParser! = CXMLParser(data: response.data)
             
@@ -280,7 +306,8 @@ extension PTJobsViewController: UITableViewDelegate, UITableViewDataSource{
                 }
             }
             self.ptTableView.reloadData()
-            
+            print("COUNT \(self.jobsArray.count)")
+            print(self.start)
         })
         
     }
@@ -323,12 +350,6 @@ extension String {
         return self.replace(string: " ", replacement: "")
     }
 }
-
-
-
-
-
-
 
 
 
