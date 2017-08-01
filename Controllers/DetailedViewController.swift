@@ -11,6 +11,7 @@ import UIKit
 
 class DetailedViewController: UIViewController{
     
+    let indeedUrl = URL(string: "https://www.indeed.com")
     
     @IBOutlet weak var jobNameLabel: UILabel!
     @IBOutlet weak var titleLabel: UINavigationItem!
@@ -18,6 +19,10 @@ class DetailedViewController: UIViewController{
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var aboutTextView: UITextView!
     @IBOutlet weak var applyButton: UIButton!
+    @IBOutlet weak var indeedButton: UIBarButtonItem!
+    @IBAction func indeedButtonPressed(_ sender: UIBarButtonItem) {
+        UIApplication.shared.open(indeedUrl!)
+    }
     
     var post: JobPost?
     
@@ -33,7 +38,6 @@ class DetailedViewController: UIViewController{
             compNameLabel.text = post.compName
             locationLabel.text = post.location
             aboutTextView.text = post.about
-            titleLabel.title = post.jobName
         }
     }
     

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		09398C06C18DFE25327C5183 /* Pods_JobApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B833FA3979DDDDED57E122B5 /* Pods_JobApp.framework */; };
+		FA2333441F30D535001F0C86 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2333431F30D535001F0C86 /* SettingsViewController.swift */; };
 		FA59E5391F2B999B006FB26E /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA59E5381F2B999B006FB26E /* FavoriteViewController.swift */; };
 		FADEFEBB1F1D095300C3548D /* DetailedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADEFEBA1F1D095300C3548D /* DetailedViewController.swift */; };
 		FADEFEBD1F1D674F00C3548D /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADEFEBC1F1D674F00C3548D /* WebViewController.swift */; };
@@ -29,6 +30,7 @@
 		B833FA3979DDDDED57E122B5 /* Pods_JobApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JobApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D24E420A6A830740C29EE437 /* Pods-JobApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JobApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-JobApp/Pods-JobApp.debug.xcconfig"; sourceTree = "<group>"; };
 		D4423828E1520D711C788B1B /* Pods-JobApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JobApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-JobApp/Pods-JobApp.release.xcconfig"; sourceTree = "<group>"; };
+		FA2333431F30D535001F0C86 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsViewController.swift; path = Controllers/SettingsViewController.swift; sourceTree = SOURCE_ROOT; };
 		FA59E5381F2B999B006FB26E /* FavoriteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FavoriteViewController.swift; path = Controllers/FavoriteViewController.swift; sourceTree = SOURCE_ROOT; };
 		FADEFEBA1F1D095300C3548D /* DetailedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DetailedViewController.swift; path = Controllers/DetailedViewController.swift; sourceTree = SOURCE_ROOT; };
 		FADEFEBC1F1D674F00C3548D /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WebViewController.swift; path = Controllers/WebViewController.swift; sourceTree = SOURCE_ROOT; };
@@ -135,6 +137,7 @@
 				FADEFEBA1F1D095300C3548D /* DetailedViewController.swift */,
 				FADEFEBC1F1D674F00C3548D /* WebViewController.swift */,
 				FA59E5381F2B999B006FB26E /* FavoriteViewController.swift */,
+				FA2333431F30D535001F0C86 /* SettingsViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -300,6 +303,7 @@
 				FAE262D31F152E4400CE3551 /* SummerViewController.swift in Sources */,
 				FAE262CF1F152E1000CE3551 /* PTJobsViewController.swift in Sources */,
 				FAE262D81F17C1FA00CE3551 /* PostsTableViewCell.swift in Sources */,
+				FA2333441F30D535001F0C86 /* SettingsViewController.swift in Sources */,
 				FA59E5391F2B999B006FB26E /* FavoriteViewController.swift in Sources */,
 				FAE262CC1F1523AD00CE3551 /* TabBarController.swift in Sources */,
 			);

@@ -110,8 +110,15 @@
                             <constraint firstAttribute="bottom" secondItem="FTx-BN-0lq" secondAttribute="bottom" constant="44" id="zpa-Gw-uQs"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Internships" id="XoM-bz-7r2"/>
+                    <navigationItem key="navigationItem" title="Internships" id="XoM-bz-7r2">
+                        <barButtonItem key="leftBarButtonItem" image="indeed" id="DDc-Sj-tWr">
+                            <connections>
+                                <action selector="indeedButtonPressed:" destination="DqZ-HF-d3Z" id="VRE-bG-3P4"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
+                        <outlet property="indeedButton" destination="DDc-Sj-tWr" id="UGF-ul-xbH"/>
                         <outlet property="jtSearchBar" destination="isW-1H-h7k" id="BdF-ae-Bfr"/>
                         <outlet property="modernSearchBar" destination="9Ff-VR-PqO" id="q3i-pd-VL5"/>
                         <outlet property="tableView" destination="FTx-BN-0lq" id="EIY-dJ-9QB"/>
@@ -223,6 +230,11 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Part Time Jobs" id="4VE-Ga-8Yl" colorLabel="IBBuiltInLabel-Blue" propertyAccessControl="none">
+                        <barButtonItem key="leftBarButtonItem" image="indeed" id="Sau-8S-bmd">
+                            <connections>
+                                <action selector="indeedButtonPressed:" destination="LO1-OY-C6e" id="AzU-Ev-NnJ"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="settings" id="fC7-2L-BEQ">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
@@ -232,6 +244,7 @@
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="indeedButton" destination="Sau-8S-bmd" id="uuh-ZV-e7Q"/>
                         <outlet property="jtSearchBar" destination="JnX-Mw-7Fj" id="Ulo-FE-0me"/>
                         <outlet property="modernSearchBar" destination="uo3-7I-D03" id="Bk0-rc-7hQ"/>
                         <outlet property="ptTableView" destination="LGv-uL-4pE" id="RYl-tW-iSJ"/>
@@ -244,7 +257,7 @@
         <!--Settings View Controller-->
         <scene sceneID="UQI-2Q-Ewg">
             <objects>
-                <viewController id="ZlP-lG-niw" customClass="SettingsViewController" sceneMemberID="viewController">
+                <viewController id="ZlP-lG-niw" customClass="SettingsViewController" customModule="JobApp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="8d4-yy-a8p"/>
                         <viewControllerLayoutGuide type="bottom" id="z0a-TF-zUG"/>
@@ -253,29 +266,29 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" text="API from Indeed:" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QAd-UA-wyH">
-                                <rect key="frame" x="67" y="72" width="240" height="128"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YP8-wH-AGC">
+                                <rect key="frame" x="22" y="239" width="330" height="134"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="30"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" text="All Icons from Icons8: https://icons8.com" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QJe-Gl-KLZ">
-                                <rect key="frame" x="16" y="320" width="343" height="94"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="30"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="40"/>
+                                <state key="normal" title="Thanks Icons8">
+                                    <color key="titleColor" red="0.039215686270000001" green="0.66274509800000003" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="thanksButtonPressed:" destination="ZlP-lG-niw" eventType="touchUpInside" id="ION-vA-AeJ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="thanksButton" destination="YP8-wH-AGC" id="M9g-h7-Rpo"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e0v-fv-Xrh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2820" y="-1125.7871064467768"/>
         </scene>
-        <!--Title-->
+        <!--Detailed View Controller-->
         <scene sceneID="YRB-Fe-ePT">
             <objects>
                 <viewController id="vTZ-aG-sQS" customClass="DetailedViewController" customModule="JobApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -359,11 +372,18 @@
                             <constraint firstItem="pVa-gN-mfA" firstAttribute="trailing" secondItem="F8z-gh-dsx" secondAttribute="trailing" id="ydm-1c-idF"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Title" id="aPy-nW-M51"/>
+                    <navigationItem key="navigationItem" id="aPy-nW-M51">
+                        <barButtonItem key="rightBarButtonItem" image="indeed" id="xUv-ap-evK">
+                            <connections>
+                                <action selector="indeedButtonPressed:" destination="vTZ-aG-sQS" id="T1s-7u-7t7"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="aboutTextView" destination="Bsj-j0-VeB" id="Rw3-mC-Fdh"/>
                         <outlet property="applyButton" destination="rOa-uB-jCT" id="gCk-Zy-U21"/>
                         <outlet property="compNameLabel" destination="F8z-gh-dsx" id="zam-4R-BwC"/>
+                        <outlet property="indeedButton" destination="xUv-ap-evK" id="Fv5-N2-wOt"/>
                         <outlet property="jobNameLabel" destination="Zhw-4p-ONp" id="u7o-6T-Kjr"/>
                         <outlet property="locationLabel" destination="pVa-gN-mfA" id="nA7-IL-tkC"/>
                         <outlet property="titleLabel" destination="aPy-nW-M51" id="a0q-zF-bga"/>
@@ -401,7 +421,9 @@
                             <constraint firstItem="nuU-rN-U9b" firstAttribute="leading" secondItem="zEz-hV-vsP" secondAttribute="leading" id="j9w-fW-sBn"/>
                         </constraints>
                     </view>
-                    <toolbarItems/>
+                    <toolbarItems>
+                        <barButtonItem title="Item" id="hYc-NP-KrQ"/>
+                    </toolbarItems>
                     <connections>
                         <outlet property="webView" destination="nuU-rN-U9b" id="hkk-FO-dnb"/>
                     </connections>
@@ -510,8 +532,15 @@
                             <constraint firstAttribute="trailing" secondItem="xI6-BE-WpU" secondAttribute="trailing" id="n4T-8G-WAV"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Summer Programs" id="fTS-Oy-K8l"/>
+                    <navigationItem key="navigationItem" title="Summer Programs" id="fTS-Oy-K8l">
+                        <barButtonItem key="leftBarButtonItem" image="indeed" id="4CT-2l-DJV">
+                            <connections>
+                                <action selector="indeedButtonPressed:" destination="fAn-Zr-enl" id="xBR-Ga-5Rp"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
+                        <outlet property="indeedButton" destination="4CT-2l-DJV" id="8r9-5Z-slS"/>
                         <outlet property="jtSearchBar" destination="1hO-5W-BO9" id="lUM-fZ-J5g"/>
                         <outlet property="modernSearchBar" destination="xI6-BE-WpU" id="2fd-tT-fE4"/>
                         <outlet property="tableView" destination="OQ2-jB-AsH" id="9UR-qE-RtY"/>
@@ -676,12 +705,13 @@
     </scenes>
     <resources>
         <image name="Image" width="30" height="30"/>
+        <image name="indeed" width="37" height="37"/>
         <image name="intern" width="37" height="37"/>
         <image name="settings" width="25" height="25"/>
         <image name="summer" width="37" height="37"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="HjL-Bf-MxL"/>
+        <segue reference="BmK-Wd-rkg"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.039215686270000001" green="0.66274509800000003" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
 </document>

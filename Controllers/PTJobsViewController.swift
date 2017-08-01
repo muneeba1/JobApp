@@ -16,46 +16,53 @@ import ModernSearchBar
 
 class PTJobsViewController: UIViewController, ModernSearchBarDelegate{
     
+    let indeedUrl = URL(string: "https://www.indeed.com")
+    
     @IBOutlet weak var modernSearchBar: ModernSearchBar!
     @IBOutlet weak var ptTableView: UITableView!
-    
     @IBOutlet weak var jtSearchBar: UISearchBar!
+    @IBOutlet weak var indeedButton: UIBarButtonItem!
+    @IBAction func indeedButtonPressed(_ sender: UIBarButtonItem) {
+        UIApplication.shared.open(indeedUrl!)
+    }
     
+    //variables
     var jobsArray: [JobPost] = []
+   
     var searchCompleter = MKLocalSearchCompleter()
     var searchResults = [MKLocalSearchCompletion]()
-    
     let scrollView = UIScrollView()
-    
     var url: String = "http://api.indeed.com/ads/apisearch?publisher=2752372751835619&q=part&start=&limit=25&jt=parttime&l=&v=2"
-    
     //url variables
     var userSearch: String = ""
     var city: String = ""
     var state: String = ""
     var start: Int = 0
-    
     var suggestionList = Array<String>()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         definesPresentationContext = true
+        
+        self.jtSearchBar.delegate = self
         
         //modernsearchbar
         self.modernSearchBar.delegateModernSearchBar = self
         searchCompleter.delegate = self as! MKLocalSearchCompleterDelegate
-        //self.modernSearchBar.barTintColor = UIColor.white
         self.modernSearchBar.suggestionsView_searchIcon_isRound = true
         
         //keywordSB Icon
         let textField = jtSearchBar.value(forKey: "searchField") as! UITextField
         let glassIconView = textField.leftView as! UIImageView
         glassIconView.image = glassIconView.image?.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
-        glassIconView.tintColor = UIColor.green
+        glassIconView.tintColor = UIColor.myGreenColor()
         
-        modernSearchBar.setImage(UIImage(named: "location"), for: .search, state: .normal)
+        //locationSB Icon
+        let origImage = UIImage(named: "location")
+        let tintedImage = origImage?.withRenderingMode(.alwaysTemplate)
+        modernSearchBar.setImage(tintedImage, for: .search, state: .normal)
+        modernSearchBar.tintColor = UIColor.myGreenColor()
         
         //navigation Bar
         self.navigationController?.navigationBar.tintColor = UIColor.white
@@ -115,14 +122,10 @@ class PTJobsViewController: UIViewController, ModernSearchBarDelegate{
             location = self.city + "%2C" + self.state
         }
         
-        //  self.url.addingPercentEncoding( withAllowedCharacters: .urlQueryAllowed)
-        
-        
         if self.userSearch == ""{
             query = "part"
         }else{
             query = self.userSearch.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
-            // query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
         }
         print("search stuff city \(self.city) state \(self.state) search \(self.userSearch)")
         self.url = "http://api.indeed.com/ads/apisearch?publisher=2752372751835619&q=\(query)&start=\(self.start)&limit=25&jt=parttime&l=\(location)&v=2"
@@ -148,21 +151,13 @@ class PTJobsViewController: UIViewController, ModernSearchBarDelegate{
     override func viewDidAppear(_ animated: Bool) {
         ptTableView.reloadData()
     }
-    
-    //locationBar cancel button
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        self.jobsArray.removeAll()
-        self.url = "http://api.indeed.com/ads/apisearch?publisher=2752372751835619&q=part&start=&limit=25&jt=parttime&l=&v=2"
-        loadData(url: url)
-        searchBar.text = ""
-        modernSearchBar.showsCancelButton = false
-        searchBar.showsCancelButton = false
-    }
 }
+
 //locationsearchbar
 extension PTJobsViewController: MKLocalSearchCompleterDelegate {
     
-    func completerDidUpdateResults(_ completer: MKLocalSearchCompleter) {
+    func completerDidUpdateResults(_ completer: MKLocalSearchCompleter)
+    {
         self.searchResults = completer.results
         
         for location in completer.results
@@ -197,7 +192,7 @@ extension PTJobsViewController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "postsCell", for: indexPath) as! PostsTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "postsCell", for: indexPath) as!PostsTableViewCell
         
         let post = jobsArray[indexPath.row]
         
@@ -208,17 +203,25 @@ extension PTJobsViewController: UITableViewDelegate, UITableViewDataSource{
         return cell
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
+    {
         
-        if searchResults.count >= 1 {
+        if tableView == self.ptTableView
+        {
             
-            let completion = self.searchResults[indexPath.row]
-            
-            let searchRequest = MKLocalSearchRequest(completion: completion)
-            let search = MKLocalSearch(request: searchRequest)
-            search.start { (response, error) in
-                let coordinate = response?.mapItems[0].placemark.coordinate
-                print(String(describing: coordinate))
+        }
+        else
+        {
+            if searchResults.count >= 1 {
+                
+                let completion = self.searchResults[indexPath.row]
+                
+                let searchRequest = MKLocalSearchRequest(completion: completion)
+                let search = MKLocalSearch(request: searchRequest)
+                search.start { (response, error) in
+                    let coordinate = response?.mapItems[0].placemark.coordinate
+                    print(String(describing: coordinate))
+                }
             }
         }
     }
@@ -232,10 +235,13 @@ extension PTJobsViewController: UITableViewDelegate, UITableViewDataSource{
         print(city)
         self.state = item[1].trimmingCharacters(in: .whitespaces)
         
+        self.modernSearchBar.text = "\(city), \(state)"
+        
         self.createURL()
         
         self.jobsArray.removeAll()
         loadData(url: self.url)
+        
     }
 }
 
@@ -263,22 +269,9 @@ extension String {
     }
 }
 
+//searchBars stuff
 extension PTJobsViewController: UISearchBarDelegate
 {
-    func searchBarTextDidEndEditing(_ searchBar: UISearchBar)
-    {
-        if searchBar == self.modernSearchBar
-        {
-            //location stuff
-        }
-        else
-        {
-            //job search
-            //self.searchController.isActive = false
-            // self.searchController.dismiss(animated: true, completion: nil)
-            
-        }
-    }
     
     func searchBar(_ searchBar: ModernSearchBar, textDidChange searchText: String)
     {
@@ -293,6 +286,8 @@ extension PTJobsViewController: UISearchBarDelegate
             
             self.createURL()
             
+            print(url)
+            
             Alamofire.request(self.url).validate().responseData(completionHandler: { (response) in
                 
                 let data: CXMLParser! = CXMLParser(data: response.data)
@@ -304,7 +299,10 @@ extension PTJobsViewController: UISearchBarDelegate
                     self.jobsArray.removeAll()
                     for result in arrayXML {
                         let post = JobPost(data: result)
-                        self.jobsArray.append(post)
+                        if self.jobsArray.contains(post) == false
+                        {
+                            self.jobsArray.append(post)
+                        }
                     }
                 }
                 self.ptTableView.reloadData()
@@ -319,17 +317,72 @@ extension PTJobsViewController: UISearchBarDelegate
     {
         if searchBar == self.modernSearchBar
         {
-        modernSearchBar.showsCancelButton = true
-        }
-        else
+            modernSearchBar.showsCancelButton = true
+        }else
         {
-         searchBar.showsCancelButton = true
+            searchBar.setShowsCancelButton(true, animated: true)
         }
-        
         return true
     }
-
+    
+    func searchBarShouldEndEditing(_ searchBar: UISearchBar) -> Bool {
+        searchBar.setShowsCancelButton(false, animated: true)
+        return true
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+        self.jtSearchBar.endEditing(true)
+        self.modernSearchBar.endEditing(true)
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        
+        if searchBar == modernSearchBar
+        {
+            if modernSearchBar.text == ""
+            {
+                self.url = "http://api.indeed.com/ads/apisearch?publisher=2752372751835619&q=part&start=&limit=25&jt=parttime&l=&v=2"
+                loadData(url: url)
+                self.modernSearchBar.endEditing(true)
+            }else
+            {
+                self.jobsArray.removeAll()
+                self.city = ""
+                self.state = ""
+                self.userSearch = jtSearchBar.text!
+                self.createURL()
+                loadData(url: self.url)
+                modernSearchBar.text = ""
+            }
+        }else
+        {
+            if jtSearchBar.text == ""
+            {
+                self.url = "http://api.indeed.com/ads/apisearch?publisher=2752372751835619&q=part&start=&limit=25&jt=parttime&l=&v=2"
+                loadData(url: url)
+                self.jtSearchBar.endEditing(true)
+            }
+            else{
+                self.jobsArray.removeAll()
+                self.city = ""
+                self.state = ""
+                self.userSearch = ""
+                self.createURL()
+                loadData(url: self.url)
+                jtSearchBar.text = ""
+                self.jtSearchBar.endEditing(true)
+            }
+        }
+    }
 }
 
+extension UIColor
+{
+    class func myGreenColor() -> UIColor
+    {
+        return UIColor(red:0.04, green:0.66, blue:0.47, alpha:1.0)
+    }
+}
 
 
