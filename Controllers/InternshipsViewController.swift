@@ -25,7 +25,6 @@ class InternshipsViewController: UIViewController, ModernSearchBarDelegate{
     @IBAction func indeedButtonPressed(_ sender: UIBarButtonItem) {
          UIApplication.shared.open(indeedUrl!)
     }
-
     
     //variables
     var jobsArray: [JobPost] = []
@@ -44,9 +43,14 @@ class InternshipsViewController: UIViewController, ModernSearchBarDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        definesPresentationContext = true
+        
+        self.jtSearchBar.delegate = self
+        
         //modernsearchbar
         self.modernSearchBar.delegateModernSearchBar = self
         searchCompleter.delegate = self as! MKLocalSearchCompleterDelegate
+         self.modernSearchBar.suggestionsView_searchIcon_isRound = true
         
         //keywordSB Icon
         let textField = jtSearchBar.value(forKey: "searchField") as! UITextField
@@ -66,6 +70,14 @@ class InternshipsViewController: UIViewController, ModernSearchBarDelegate{
             UINavigationBar.appearance().titleTextAttributes = [NSFontAttributeName: font]
         }
         
+        //indeedButton
+        let button = UIButton.init(type: .custom)
+        button.setImage(UIImage.init(named: "indeed.png"), for: UIControlState.normal)
+        button.addTarget(self, action:#selector(InternshipsViewController.callMethod), for: UIControlEvents.touchUpInside)
+        button.frame = CGRect.init(x: 0, y: 0, width: 60, height: 30) //CGRectMake(0, 0, 30, 30)
+        let barButton = UIBarButtonItem.init(customView: button)
+        self.navigationItem.leftBarButtonItem = barButton
+        
         //scrollview stuff
         self.scrollView.delegate = self
         
@@ -75,6 +87,11 @@ class InternshipsViewController: UIViewController, ModernSearchBarDelegate{
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 80
     }
+    
+    func callMethod() {
+        //do stuff here
+    }
+    
     
     func loadData(url: String){
         
@@ -114,7 +131,7 @@ class InternshipsViewController: UIViewController, ModernSearchBarDelegate{
         if self.city == ""{
             location = ""
         }else{
-            location = self.city + "%2C" + self.state
+            location = self.city.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)! + "%2C" + self.state
         }
         
         if self.userSearch == ""{
@@ -161,7 +178,7 @@ extension InternshipsViewController: MKLocalSearchCompleterDelegate {
         {
             let locationName  = location.title
             
-            if locationName.contains(",")
+            if locationName.contains(",") && !suggestionList.contains(locationName)
             {
                 suggestionList.append(locationName)
             }
@@ -172,6 +189,7 @@ extension InternshipsViewController: MKLocalSearchCompleterDelegate {
     
     func completer(_ completer: MKLocalSearchCompleter, didFailWithError error: Error) {
         // handle error
+        print("Could not find location")
     }
 }
 
@@ -228,7 +246,7 @@ extension InternshipsViewController: UITableViewDelegate, UITableViewDataSource{
         
         let item = item.components(separatedBy: ",")
         
-        self.city = item[0].removeWhitespace()
+        self.city = item[0].trimmingCharacters(in: .whitespaces)
         self.state = item[1].trimmingCharacters(in: .whitespaces)
         
         self.createURL()

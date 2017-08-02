@@ -28,8 +28,21 @@ class DetailedViewController: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //indeedButton
+        let button = UIButton.init(type: .custom)
+        button.setImage(UIImage.init(named: "indeed.png"), for: UIControlState.normal)
+        button.addTarget(self, action:#selector(DetailedViewController.callMethod), for: UIControlEvents.touchUpInside)
+        button.frame = CGRect.init(x: 0, y: 0, width: 60, height: 30) //CGRectMake(0, 0, 30, 30)
+        let barButton = UIBarButtonItem.init(customView: button)
+        self.navigationItem.rightBarButtonItem = barButton
     
     }
+    
+    func callMethod() {
+        //do stuff here
+    }
+
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)

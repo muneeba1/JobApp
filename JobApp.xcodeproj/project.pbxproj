@@ -36,7 +36,7 @@
 		FADEFEBC1F1D674F00C3548D /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WebViewController.swift; path = Controllers/WebViewController.swift; sourceTree = SOURCE_ROOT; };
 		FADEFEC41F1EACB300C3548D /* InternPostsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InternPostsCell.swift; path = Views/InternPostsCell.swift; sourceTree = SOURCE_ROOT; };
 		FADEFEC61F1EAE5300C3548D /* SpPostsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SpPostsCell.swift; path = Views/SpPostsCell.swift; sourceTree = SOURCE_ROOT; };
-		FAE262B41F15218700CE3551 /* JobApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JobApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FAE262B41F15218700CE3551 /* iApply.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iApply.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAE262B71F15218700CE3551 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FAE262BC1F15218700CE3551 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FAE262BE1F15218700CE3551 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -90,7 +90,7 @@
 		FAE262B51F15218700CE3551 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				FAE262B41F15218700CE3551 /* JobApp.app */,
+				FAE262B41F15218700CE3551 /* iApply.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -189,7 +189,7 @@
 			);
 			name = JobApp;
 			productName = JobApp;
-			productReference = FAE262B41F15218700CE3551 /* JobApp.app */;
+			productReference = FAE262B41F15218700CE3551 /* iApply.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -204,7 +204,7 @@
 				TargetAttributes = {
 					FAE262B31F15218700CE3551 = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = B8LC78N529;
+						DevelopmentTeam = 33VFW3HV3G;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -429,11 +429,11 @@
 			baseConfigurationReference = D24E420A6A830740C29EE437 /* Pods-JobApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = B8LC78N529;
+				DEVELOPMENT_TEAM = 33VFW3HV3G;
 				INFOPLIST_FILE = JobApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.JobApp;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.iApply;
+				PRODUCT_NAME = iApply;
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -443,11 +443,11 @@
 			baseConfigurationReference = D4423828E1520D711C788B1B /* Pods-JobApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = B8LC78N529;
+				DEVELOPMENT_TEAM = 33VFW3HV3G;
 				INFOPLIST_FILE = JobApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.JobApp;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.iApply;
+				PRODUCT_NAME = iApply;
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

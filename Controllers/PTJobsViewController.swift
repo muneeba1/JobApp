@@ -22,9 +22,11 @@ class PTJobsViewController: UIViewController, ModernSearchBarDelegate{
     @IBOutlet weak var ptTableView: UITableView!
     @IBOutlet weak var jtSearchBar: UISearchBar!
     @IBOutlet weak var indeedButton: UIBarButtonItem!
-    @IBAction func indeedButtonPressed(_ sender: UIBarButtonItem) {
-        UIApplication.shared.open(indeedUrl!)
+    @IBAction func indeedButtonPressed(_ sender: UIBarButtonItem)
+    {
+         UIApplication.shared.open(indeedUrl!)
     }
+    
     
     //variables
     var jobsArray: [JobPost] = []
@@ -70,6 +72,15 @@ class PTJobsViewController: UIViewController, ModernSearchBarDelegate{
             UINavigationBar.appearance().titleTextAttributes = [NSFontAttributeName: font]
         }
         
+        //indeedButton
+        let button = UIButton.init(type: .custom)
+        button.setImage(UIImage.init(named: "indeed.png"), for: UIControlState.normal)
+        button.addTarget(self, action:#selector(PTJobsViewController.callMethod), for: UIControlEvents.touchUpInside)
+        button.frame = CGRect.init(x: 0, y: 0, width: 60, height: 30) //CGRectMake(0, 0, 30, 30)
+        let barButton = UIBarButtonItem.init(customView: button)
+        self.navigationItem.leftBarButtonItem = barButton
+        
+        
         //scrollview stuff
         self.scrollView.delegate = self
         
@@ -79,6 +90,10 @@ class PTJobsViewController: UIViewController, ModernSearchBarDelegate{
         ptTableView.rowHeight = UITableViewAutomaticDimension
         ptTableView.estimatedRowHeight = 80
         
+    }
+    
+    func callMethod() {
+        //do stuff here
     }
     
     func loadData(url: String){
@@ -119,7 +134,7 @@ class PTJobsViewController: UIViewController, ModernSearchBarDelegate{
         if self.city == ""{
             location = ""
         }else{
-            location = self.city + "%2C" + self.state
+            location = self.city.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)! + "%2C" + self.state
         }
         
         if self.userSearch == ""{
@@ -186,7 +201,7 @@ extension PTJobsViewController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        print("jobsArray: \(jobsArray.count)")
+        //print("jobsArray: \(jobsArray.count)")
         return jobsArray.count
     }
     
@@ -231,7 +246,7 @@ extension PTJobsViewController: UITableViewDelegate, UITableViewDataSource{
         
         let item = item.components(separatedBy: ",")
         
-        self.city = item[0].removeWhitespace()
+        self.city = item[0].trimmingCharacters(in: .whitespaces)
         print(city)
         self.state = item[1].trimmingCharacters(in: .whitespaces)
         
@@ -259,15 +274,15 @@ extension PTJobsViewController: UIScrollViewDelegate{
 }
 
 //removing space
-extension String {
-    func replace(string:String, replacement:String) -> String {
-        return self.replacingOccurrences(of: string, with: replacement, options: NSString.CompareOptions.literal, range: nil)
-    }
-    
-    func removeWhitespace() -> String {
-        return self.replace(string: " ", replacement: "")
-    }
-}
+//extension String {
+//    func replace(string:String, replacement:String) -> String {
+//        return self.replacingOccurrences(of: string, with: replacement, options: NSString.CompareOptions.literal, range: nil)
+//    }
+//    
+//    func removeWhitespace() -> String {
+//        return self.replace(string: " ", replacement: "")
+//    }
+//}
 
 //searchBars stuff
 extension PTJobsViewController: UISearchBarDelegate

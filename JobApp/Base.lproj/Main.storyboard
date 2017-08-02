@@ -13,7 +13,7 @@
         <!--Internships-->
         <scene sceneID="bAb-20-k49">
             <objects>
-                <viewController id="DqZ-HF-d3Z" customClass="InternshipsViewController" customModule="JobApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="DqZ-HF-d3Z" customClass="InternshipsViewController" customModule="iApply" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="R3U-B2-aOa"/>
                         <viewControllerLayoutGuide type="bottom" id="nIR-eV-wz3"/>
@@ -34,7 +34,7 @@
                                 <rect key="frame" x="0.0" y="152" width="375" height="471"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="internPostsCell" rowHeight="70" id="ny7-9y-vHv" customClass="InternPostsCell" customModule="JobApp" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="internPostsCell" rowHeight="70" id="ny7-9y-vHv" customClass="InternPostsCell" customModule="iApply" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ny7-9y-vHv" id="hc8-5u-4W3">
@@ -42,19 +42,19 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="jobName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bm9-9o-LgE">
-                                                    <rect key="frame" x="18" y="10" width="325" height="18"/>
+                                                    <rect key="frame" x="18" y="10" width="718" height="18"/>
                                                     <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="15"/>
                                                     <color key="textColor" red="0.039215686270000001" green="0.66274509800000003" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="compName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qqp-6y-8pd">
-                                                    <rect key="frame" x="17" y="44" width="185" height="16"/>
+                                                    <rect key="frame" x="17" y="44" width="578" height="16"/>
                                                     <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ekK-UG-n7k">
-                                                    <rect key="frame" x="216" y="43" width="144" height="17.5"/>
+                                                    <rect key="frame" x="609" y="43" width="144" height="17.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="144" id="6vk-bg-Uhp"/>
                                                     </constraints>
@@ -111,7 +111,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Internships" id="XoM-bz-7r2">
-                        <barButtonItem key="leftBarButtonItem" image="indeed" id="DDc-Sj-tWr">
+                        <barButtonItem key="leftBarButtonItem" image="indeed" style="plain" id="DDc-Sj-tWr">
                             <connections>
                                 <action selector="indeedButtonPressed:" destination="DqZ-HF-d3Z" id="VRE-bG-3P4"/>
                             </connections>
@@ -131,7 +131,7 @@
         <!--Part Time Jobs-->
         <scene sceneID="qtd-8p-uw0">
             <objects>
-                <viewController id="LO1-OY-C6e" customClass="PTJobsViewController" customModule="JobApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="LO1-OY-C6e" customClass="PTJobsViewController" customModule="iApply" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="duG-mW-2pz"/>
                         <viewControllerLayoutGuide type="bottom" id="dqD-qK-QFg"/>
@@ -152,7 +152,7 @@
                                 <rect key="frame" x="0.0" y="152" width="375" height="471"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="postsCell" rowHeight="70" id="YeT-sW-KtB" customClass="PostsTableViewCell" customModule="JobApp" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="postsCell" rowHeight="70" id="YeT-sW-KtB" customClass="PostsTableViewCell" customModule="iApply" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YeT-sW-KtB" id="cit-qJ-Xxn">
@@ -160,13 +160,13 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="compName" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="80K-XY-0HC">
-                                                    <rect key="frame" x="17" y="43.5" width="185" height="17.5"/>
+                                                    <rect key="frame" x="17" y="44" width="578" height="16.5"/>
                                                     <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v0F-Iv-nQO">
-                                                    <rect key="frame" x="216" y="42.5" width="144" height="18.5"/>
+                                                    <rect key="frame" x="609" y="43" width="144" height="17.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="144" id="5aB-1h-uRV"/>
                                                     </constraints>
@@ -175,7 +175,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="jobName" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lle-Hj-SeA">
-                                                    <rect key="frame" x="18" y="10" width="325" height="17.5"/>
+                                                    <rect key="frame" x="18" y="10" width="718" height="18"/>
                                                     <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="15"/>
                                                     <color key="textColor" red="0.039215686270000001" green="0.66274509800000003" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -230,9 +230,9 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Part Time Jobs" id="4VE-Ga-8Yl" colorLabel="IBBuiltInLabel-Blue" propertyAccessControl="none">
-                        <barButtonItem key="leftBarButtonItem" image="indeed" id="Sau-8S-bmd">
+                        <barButtonItem key="leftBarButtonItem" image="indeed" style="plain" id="iai-qG-D9r">
                             <connections>
-                                <action selector="indeedButtonPressed:" destination="LO1-OY-C6e" id="AzU-Ev-NnJ"/>
+                                <action selector="indeedButtonPressed:" destination="LO1-OY-C6e" id="XvO-oW-44M"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="settings" id="fC7-2L-BEQ">
@@ -244,7 +244,7 @@
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="indeedButton" destination="Sau-8S-bmd" id="uuh-ZV-e7Q"/>
+                        <outlet property="indeedButton" destination="iai-qG-D9r" id="Pst-G2-bnU"/>
                         <outlet property="jtSearchBar" destination="JnX-Mw-7Fj" id="Ulo-FE-0me"/>
                         <outlet property="modernSearchBar" destination="uo3-7I-D03" id="Bk0-rc-7hQ"/>
                         <outlet property="ptTableView" destination="LGv-uL-4pE" id="RYl-tW-iSJ"/>
@@ -257,7 +257,7 @@
         <!--Settings View Controller-->
         <scene sceneID="UQI-2Q-Ewg">
             <objects>
-                <viewController id="ZlP-lG-niw" customClass="SettingsViewController" customModule="JobApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="ZlP-lG-niw" customClass="SettingsViewController" customModule="iApply" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="8d4-yy-a8p"/>
                         <viewControllerLayoutGuide type="bottom" id="z0a-TF-zUG"/>
@@ -266,21 +266,82 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YP8-wH-AGC">
-                                <rect key="frame" x="22" y="239" width="330" height="134"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="40"/>
-                                <state key="normal" title="Thanks Icons8">
-                                    <color key="titleColor" red="0.039215686270000001" green="0.66274509800000003" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="thanksButtonPressed:" destination="ZlP-lG-niw" eventType="touchUpInside" id="ION-vA-AeJ"/>
-                                </connections>
-                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Attributions &amp; Credits" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V2T-el-Rnp">
+                                <rect key="frame" x="8" y="72" width="359" height="39"/>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="30"/>
+                                <color key="textColor" red="0.039215686270000001" green="0.66274509800000003" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="IAf-lC-aep">
+                                <rect key="frame" x="71" y="245" width="237" height="90"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dc2-VV-HwY">
+                                        <rect key="frame" x="26" y="0.0" width="185" height="45"/>
+                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="25"/>
+                                        <state key="normal" title="API from Indeed"/>
+                                        <connections>
+                                            <action selector="indeedButtonPressed:" destination="ZlP-lG-niw" eventType="touchUpInside" id="Sj4-xw-Cij"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YP8-wH-AGC">
+                                        <rect key="frame" x="0.0" y="45" width="237" height="45"/>
+                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="25"/>
+                                        <state key="normal" title="All icons from Icons8">
+                                            <color key="titleColor" red="0.039215686270000001" green="0.66274509800000003" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="thanksButtonPressed:" destination="ZlP-lG-niw" eventType="touchUpInside" id="ION-vA-AeJ"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="DP7-vb-EQ4">
+                                <rect key="frame" x="88" y="389" width="202" height="77.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Special thanks to:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P3c-Ky-5JP">
+                                        <rect key="frame" x="0.0" y="0.0" width="202" height="32.5"/>
+                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="25"/>
+                                        <color key="textColor" red="0.4577143675" green="0.46224619290000002" blue="0.46224619290000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="46p-YQ-jSV">
+                                        <rect key="frame" x="26" y="32.5" width="150" height="45"/>
+                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="25"/>
+                                        <state key="normal" title="Make School"/>
+                                        <connections>
+                                            <action selector="makeButtonPressed:" destination="ZlP-lG-niw" eventType="touchUpInside" id="LtC-3N-doE"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="P3c-Ky-5JP" firstAttribute="leading" secondItem="DP7-vb-EQ4" secondAttribute="leading" id="Nnk-J2-ArP"/>
+                                    <constraint firstItem="46p-YQ-jSV" firstAttribute="leading" secondItem="DP7-vb-EQ4" secondAttribute="leading" constant="26" id="O2D-Fs-e4F"/>
+                                </constraints>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thanks to all!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ty5-Tx-1Ne">
+                                <rect key="frame" x="84" y="159" width="211" height="32.5"/>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="25"/>
+                                <color key="textColor" red="0.45771436747287741" green="0.46224619289340096" blue="0.46224619289340096" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="V2T-el-Rnp" firstAttribute="top" secondItem="8d4-yy-a8p" secondAttribute="bottom" constant="8" id="JPP-8s-qu0"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="V2T-el-Rnp" secondAttribute="trailing" constant="-8" id="M1B-kI-asu"/>
+                            <constraint firstItem="z0a-TF-zUG" firstAttribute="top" secondItem="DP7-vb-EQ4" secondAttribute="bottom" constant="156.5" id="OML-VZ-k6e"/>
+                            <constraint firstItem="IAf-lC-aep" firstAttribute="centerX" secondItem="V2T-el-Rnp" secondAttribute="centerX" constant="2" id="Wqi-HK-3oi"/>
+                            <constraint firstItem="Ty5-Tx-1Ne" firstAttribute="leading" secondItem="beS-B1-YWy" secondAttribute="leadingMargin" constant="68" id="e7P-gs-1Kr"/>
+                            <constraint firstItem="DP7-vb-EQ4" firstAttribute="leading" secondItem="beS-B1-YWy" secondAttribute="leadingMargin" constant="72" id="emb-yI-KL7"/>
+                            <constraint firstItem="DP7-vb-EQ4" firstAttribute="top" secondItem="IAf-lC-aep" secondAttribute="bottom" constant="54" id="kDn-fc-hzE"/>
+                            <constraint firstItem="V2T-el-Rnp" firstAttribute="leading" secondItem="beS-B1-YWy" secondAttribute="leadingMargin" constant="-8" id="kwq-93-bbw"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Ty5-Tx-1Ne" secondAttribute="trailing" constant="64" id="rT2-uX-uxf"/>
+                            <constraint firstItem="Ty5-Tx-1Ne" firstAttribute="top" secondItem="V2T-el-Rnp" secondAttribute="bottom" constant="48" id="wuu-ZL-iou"/>
+                        </constraints>
                     </view>
                     <connections>
+                        <outlet property="indeedButton" destination="Dc2-VV-HwY" id="ARS-AN-Amk"/>
+                        <outlet property="makeButton" destination="46p-YQ-jSV" id="e7f-aL-Sqx"/>
                         <outlet property="thanksButton" destination="YP8-wH-AGC" id="M9g-h7-Rpo"/>
                     </connections>
                 </viewController>
@@ -291,7 +352,7 @@
         <!--Detailed View Controller-->
         <scene sceneID="YRB-Fe-ePT">
             <objects>
-                <viewController id="vTZ-aG-sQS" customClass="DetailedViewController" customModule="JobApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="vTZ-aG-sQS" customClass="DetailedViewController" customModule="iApply" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="8yV-FP-fiL"/>
                         <viewControllerLayoutGuide type="bottom" id="aon-mk-2F4"/>
@@ -325,7 +386,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" indicatorStyle="white" editable="NO" text="About" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bsj-j0-VeB">
-                                <rect key="frame" x="36" y="281" width="323" height="147"/>
+                                <rect key="frame" x="36" y="281" width="323" height="142"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="15"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -338,7 +399,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rOa-uB-jCT">
-                                <rect key="frame" x="54" y="469" width="267" height="33"/>
+                                <rect key="frame" x="54" y="464" width="267" height="33"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="33" id="qaN-Ob-WRa"/>
                                 </constraints>
@@ -373,7 +434,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="aPy-nW-M51">
-                        <barButtonItem key="rightBarButtonItem" image="indeed" id="xUv-ap-evK">
+                        <barButtonItem key="rightBarButtonItem" image="indeed" width="100" style="plain" id="xUv-ap-evK">
                             <connections>
                                 <action selector="indeedButtonPressed:" destination="vTZ-aG-sQS" id="T1s-7u-7t7"/>
                             </connections>
@@ -396,7 +457,7 @@
         <!--Web View Controller-->
         <scene sceneID="Yci-nm-bao">
             <objects>
-                <viewController id="IWe-2p-r9Q" customClass="WebViewController" customModule="JobApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="IWe-2p-r9Q" customClass="WebViewController" customModule="iApply" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="JfU-XX-eee"/>
                         <viewControllerLayoutGuide type="bottom" id="PsB-9y-B0e"/>
@@ -435,7 +496,7 @@
         <!--Summer Programs-->
         <scene sceneID="okV-GN-Bpw">
             <objects>
-                <viewController id="fAn-Zr-enl" customClass="SummerViewController" customModule="JobApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="fAn-Zr-enl" customClass="SummerViewController" customModule="iApply" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="RCE-I3-qsy"/>
                         <viewControllerLayoutGuide type="bottom" id="FU3-U6-rJy"/>
@@ -456,7 +517,7 @@
                                 <rect key="frame" x="0.0" y="156" width="375" height="467"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="spPostsCell" rowHeight="70" id="fnc-fl-ZR1" customClass="SpPostsCell" customModule="JobApp" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="spPostsCell" rowHeight="70" id="fnc-fl-ZR1" customClass="SpPostsCell" customModule="iApply" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fnc-fl-ZR1" id="jS6-zJ-Lnf">
@@ -464,19 +525,19 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="jobName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n5Z-7t-WKi">
-                                                    <rect key="frame" x="18" y="10.5" width="325" height="17"/>
+                                                    <rect key="frame" x="18" y="10.5" width="718" height="17"/>
                                                     <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="15"/>
                                                     <color key="textColor" red="0.039215686270000001" green="0.66274509800000003" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="compName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mO9-rE-K0o">
-                                                    <rect key="frame" x="17" y="43.5" width="185" height="17"/>
+                                                    <rect key="frame" x="17" y="43.5" width="578" height="17"/>
                                                     <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W3G-fY-Fhe">
-                                                    <rect key="frame" x="216" y="42.5" width="144" height="18"/>
+                                                    <rect key="frame" x="609" y="42.5" width="144" height="18"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="144" id="hR3-i7-5VT"/>
                                                     </constraints>
@@ -533,7 +594,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Summer Programs" id="fTS-Oy-K8l">
-                        <barButtonItem key="leftBarButtonItem" image="indeed" id="4CT-2l-DJV">
+                        <barButtonItem key="leftBarButtonItem" image="indeed" style="plain" id="4CT-2l-DJV">
                             <connections>
                                 <action selector="indeedButtonPressed:" destination="fAn-Zr-enl" id="xBR-Ga-5Rp"/>
                             </connections>
@@ -705,13 +766,13 @@
     </scenes>
     <resources>
         <image name="Image" width="30" height="30"/>
-        <image name="indeed" width="37" height="37"/>
+        <image name="indeed" width="62" height="62"/>
         <image name="intern" width="37" height="37"/>
         <image name="settings" width="25" height="25"/>
         <image name="summer" width="37" height="37"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="BmK-Wd-rkg"/>
+        <segue reference="HjL-Bf-MxL"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.039215686270000001" green="0.66274509800000003" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
 </document>
