@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "FAE262B31F15218700CE3551"
-               BuildableName = "JobApp.app"
+               BuildableName = "iApply.app"
                BlueprintName = "JobApp"
                ReferencedContainer = "container:JobApp.xcodeproj">
             </BuildableReference>
@@ -33,7 +33,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "FAE262B31F15218700CE3551"
-            BuildableName = "JobApp.app"
+            BuildableName = "iApply.app"
             BlueprintName = "JobApp"
             ReferencedContainer = "container:JobApp.xcodeproj">
          </BuildableReference>
@@ -56,7 +56,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "FAE262B31F15218700CE3551"
-            BuildableName = "JobApp.app"
+            BuildableName = "iApply.app"
             BlueprintName = "JobApp"
             ReferencedContainer = "container:JobApp.xcodeproj">
          </BuildableReference>
@@ -75,7 +75,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "FAE262B31F15218700CE3551"
-            BuildableName = "JobApp.app"
+            BuildableName = "iApply.app"
             BlueprintName = "JobApp"
             ReferencedContainer = "container:JobApp.xcodeproj">
          </BuildableReference>

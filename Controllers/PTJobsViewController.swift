@@ -76,7 +76,7 @@ class PTJobsViewController: UIViewController, ModernSearchBarDelegate{
         let button = UIButton.init(type: .custom)
         button.setImage(UIImage.init(named: "indeed.png"), for: UIControlState.normal)
         button.addTarget(self, action:#selector(PTJobsViewController.callMethod), for: UIControlEvents.touchUpInside)
-        button.frame = CGRect.init(x: 0, y: 0, width: 60, height: 30) //CGRectMake(0, 0, 30, 30)
+        button.frame = CGRect.init(x: 0, y: 0, width: 80, height: 30) //CGRectMake(0, 0, 30, 30)
         let barButton = UIBarButtonItem.init(customView: button)
         self.navigationItem.leftBarButtonItem = barButton
         
