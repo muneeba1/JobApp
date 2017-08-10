@@ -13,6 +13,7 @@ class DetailedViewController: UIViewController{
     
     let indeedUrl = URL(string: "https://www.indeed.com")
     
+    @IBOutlet weak var addButton: UIButton!
     @IBOutlet weak var jobNameLabel: UILabel!
     @IBOutlet weak var titleLabel: UINavigationItem!
     @IBOutlet weak var compNameLabel: UILabel!
@@ -54,11 +55,14 @@ class DetailedViewController: UIViewController{
         }
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
+    {
         // 1
-        if let identifier = segue.identifier {
+        if let identifier = segue.identifier
+        {
             // 2
-            if identifier == "applyButtonPressed" {
+            if identifier == "applyButtonPressed"
+            {
                 
                 let urlString = post?.url
                 
@@ -67,6 +71,6 @@ class DetailedViewController: UIViewController{
                 
             }
         }
-    }
     
+    }
 }

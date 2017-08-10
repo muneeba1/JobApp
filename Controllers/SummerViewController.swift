@@ -196,7 +196,6 @@ extension SummerViewController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        //  print(jobsArray.count)
         return jobsArray.count
     }
     

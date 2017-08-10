@@ -87,6 +87,7 @@ class PTJobsViewController: UIViewController, ModernSearchBarDelegate{
         //viewdidload
         loadData(url: url)
         
+        //dynamic cell height
         ptTableView.rowHeight = UITableViewAutomaticDimension
         ptTableView.estimatedRowHeight = 80
         

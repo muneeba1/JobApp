@@ -25,10 +25,6 @@ class WebViewController: UIViewController, UIWebViewDelegate{
     {
         let urlLoad = URLRequest(url:URL(string:url!)!)
         webView.loadRequest(urlLoad)
-        
-//        let url = URL(string: self.url!)
-//        let requestObj = URLRequest(url: url!)
-//        webView.loadRequest(requestObj)
     }
     
 }
