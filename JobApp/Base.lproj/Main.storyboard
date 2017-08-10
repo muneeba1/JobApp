@@ -359,42 +359,87 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="77" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ktZ-3G-mod">
-                                <rect key="frame" x="0.0" y="125" width="375" height="498"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="93" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ktZ-3G-mod">
+                                <rect key="frame" x="0.0" y="64" width="375" height="510"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="77" id="FWr-ZI-nnv">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="77"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="postCell" rowHeight="93" id="QYY-r2-cSy" customClass="SavedPostsTableViewCell" customModule="iApply" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="93"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="FWr-ZI-nnv" id="0Oh-B4-lSJ">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="76.5"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="QYY-r2-cSy" id="Txq-67-fBK">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="92.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="jobName" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wjv-RY-bEt">
+                                                    <rect key="frame" x="19" y="8" width="314" height="18"/>
+                                                    <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="15"/>
+                                                    <color key="textColor" red="0.039215686270000001" green="0.66274509800000003" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="compName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eiK-g1-6DE">
+                                                    <rect key="frame" x="19" y="56" width="89" height="18"/>
+                                                    <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="15"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oem-DN-gdz">
+                                                    <rect key="frame" x="221" y="53" width="135" height="18"/>
+                                                    <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="15"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="wjv-RY-bEt" firstAttribute="leading" secondItem="Txq-67-fBK" secondAttribute="leadingMargin" constant="11" id="4ep-st-HfN"/>
+                                                <constraint firstItem="oem-DN-gdz" firstAttribute="top" secondItem="wjv-RY-bEt" secondAttribute="bottom" constant="27" id="8Pb-8s-LQc"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="wjv-RY-bEt" secondAttribute="trailing" constant="34" id="F0c-4T-s7P"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="oem-DN-gdz" secondAttribute="trailing" constant="11" id="SVH-0i-Szk"/>
+                                                <constraint firstItem="eiK-g1-6DE" firstAttribute="top" secondItem="Txq-67-fBK" secondAttribute="topMargin" constant="48" id="bVt-nu-SLh"/>
+                                                <constraint firstItem="wjv-RY-bEt" firstAttribute="top" secondItem="Txq-67-fBK" secondAttribute="topMargin" id="fpL-dd-D0k"/>
+                                                <constraint firstItem="eiK-g1-6DE" firstAttribute="leading" secondItem="Txq-67-fBK" secondAttribute="leadingMargin" constant="11" id="l8t-sq-Qrg"/>
+                                                <constraint firstItem="oem-DN-gdz" firstAttribute="leading" secondItem="eiK-g1-6DE" secondAttribute="trailing" constant="113.5" id="qPb-Mn-79F"/>
+                                                <constraint firstItem="oem-DN-gdz" firstAttribute="leading" secondItem="Txq-67-fBK" secondAttribute="leadingMargin" constant="213" id="v1I-iT-4Y0"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="compNameLabel" destination="eiK-g1-6DE" id="qc2-ER-yjF"/>
+                                            <outlet property="jobNameLabel" destination="wjv-RY-bEt" id="sb4-Ci-zTP"/>
+                                            <outlet property="locationLabel" destination="oem-DN-gdz" id="hSr-F8-E6O"/>
+                                            <segue destination="vTZ-aG-sQS" kind="show" identifier="savedJobPressed" id="EWj-Ac-Q0g"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Saved Jobs" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dRp-dB-ash">
-                                <rect key="frame" x="109" y="72" width="164" height="45"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Saved Jobs" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dRp-dB-ash">
+                                <rect key="frame" x="91" y="72" width="193" height="39"/>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="30"/>
                                 <color key="textColor" red="0.039215686270000001" green="0.66274509800000003" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="dRp-dB-ash" firstAttribute="centerX" secondItem="ktZ-3G-mod" secondAttribute="centerX" id="92N-Eq-iRP"/>
+                            <constraint firstItem="ktZ-3G-mod" firstAttribute="top" secondItem="ylu-q3-lnJ" secondAttribute="bottom" id="Egv-F3-cuv"/>
+                            <constraint firstItem="dRp-dB-ash" firstAttribute="leading" secondItem="8Q2-Cz-05A" secondAttribute="leadingMargin" constant="75" id="Vgf-0N-6dn"/>
+                            <constraint firstItem="g4G-8g-CAC" firstAttribute="top" secondItem="dRp-dB-ash" secondAttribute="bottom" constant="555" id="arS-he-dvs"/>
+                            <constraint firstItem="dRp-dB-ash" firstAttribute="top" secondItem="ylu-q3-lnJ" secondAttribute="bottom" constant="8" symbolic="YES" id="bcm-Jm-33m"/>
+                            <constraint firstItem="ktZ-3G-mod" firstAttribute="leading" secondItem="8Q2-Cz-05A" secondAttribute="leading" id="dQI-nj-uDZ"/>
+                            <constraint firstItem="g4G-8g-CAC" firstAttribute="top" secondItem="ktZ-3G-mod" secondAttribute="bottom" constant="44" id="eW9-2A-EYJ"/>
+                            <constraint firstAttribute="trailing" secondItem="ktZ-3G-mod" secondAttribute="trailing" id="nqT-88-rgq"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="XZQ-hx-BwP">
                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="qfc-Ev-vOA">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
-                                <segue destination="JIE-hx-kBy" kind="unwind" identifier="cancel" unwindAction="unwindToFavoritesViewControllerWithSender:" id="RnP-8f-yQD"/>
+                                <segue destination="JIE-hx-kBy" kind="unwind" identifier="cancel" unwindAction="unwindToDetailViewController:" id="kU0-3M-D7v"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Save" id="hIl-Fw-278">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
-                                <segue destination="JIE-hx-kBy" kind="unwind" identifier="save" unwindAction="unwindToFavoritesViewControllerWithSender:" id="crT-CU-Kfc"/>
+                                <segue destination="JIE-hx-kBy" kind="unwind" identifier="save" unwindAction="unwindToDetailViewController:" id="RzR-1s-58N"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -444,13 +489,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" indicatorStyle="white" editable="NO" text="About" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bsj-j0-VeB">
-                                <rect key="frame" x="36" y="281" width="323" height="147"/>
+                                <rect key="frame" x="36" y="281" width="323" height="191"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="15"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rOa-uB-jCT">
-                                <rect key="frame" x="54" y="469" width="267" height="33"/>
+                                <rect key="frame" x="54" y="513" width="267" height="33"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="33" id="qaN-Ob-WRa"/>
                                 </constraints>
@@ -468,6 +513,7 @@
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="30"/>
                                 <state key="normal" title="Add to Favorites"/>
                                 <connections>
+                                    <action selector="addButtonPressed:" destination="vTZ-aG-sQS" eventType="touchUpInside" id="LfO-se-cRk"/>
                                     <segue destination="1mP-rL-yaU" kind="show" identifier="addButtonPressed" id="baQ-d2-IvH"/>
                                 </connections>
                             </button>
@@ -528,7 +574,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nuU-rN-U9b">
-                                <rect key="frame" x="0.0" y="64" width="375" height="551"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="595"/>
                                 <color key="backgroundColor" red="0.99989169840000003" green="1" blue="0.99988096950000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <outlet property="delegate" destination="IWe-2p-r9Q" id="JvX-6C-6nX"/>
@@ -687,6 +733,7 @@
                         <segue destination="095-vi-G1v" kind="relationship" relationship="viewControllers" id="zWD-jU-30r"/>
                         <segue destination="Ose-LM-j6P" kind="relationship" relationship="viewControllers" id="dON-qc-cn8"/>
                         <segue destination="20z-bD-nta" kind="relationship" relationship="viewControllers" id="gnT-x8-yPD"/>
+                        <segue destination="1mP-rL-yaU" kind="relationship" relationship="viewControllers" id="Kz4-F1-axA"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OR4-IP-sM3" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -824,12 +871,22 @@
             </objects>
             <point key="canvasLocation" x="3791.1999999999998" y="190.25487256371815"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Favorites-->
         <scene sceneID="b05-rK-TRL">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="1mP-rL-yaU" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Favorites" image="favorite" id="106-Ud-ckm" customClass="RAMAnimatedTabBarItem" customModule="RAMAnimatedTabBarController">
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="textColor">
+                                <color key="value" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="iconColor">
+                                <color key="value" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </tabBarItem>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="lx3-Sw-bLN">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="lx3-Sw-bLN">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.039215686270000001" green="0.66274509800000003" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
@@ -840,19 +897,31 @@
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CZ4-zd-Ulo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <customObject id="TBL-3p-aNE" customClass="RAMBounceAnimation" customModule="RAMAnimatedTabBarController">
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="color" keyPath="textSelectedColor">
+                            <color key="value" red="0.039215686270000001" green="0.66274509800000003" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="iconSelectedColor">
+                            <color key="value" red="0.039215686270000001" green="0.66274509800000003" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </customObject>
             </objects>
             <point key="canvasLocation" x="1880.8" y="-1165.3673163418291"/>
         </scene>
     </scenes>
     <resources>
         <image name="Image" width="30" height="30"/>
+        <image name="favorite" width="30" height="30"/>
         <image name="indeed" width="62" height="62"/>
         <image name="intern" width="37" height="37"/>
         <image name="settings" width="25" height="25"/>
         <image name="summer" width="37" height="37"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="BmK-Wd-rkg"/>
+        <segue reference="Kz4-F1-axA"/>
+        <segue reference="EWj-Ac-Q0g"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.039215686270000001" green="0.66274509800000003" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
 </document>

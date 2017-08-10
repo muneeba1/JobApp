@@ -8,10 +8,13 @@
 
 import Foundation
 import UIKit
+import CoreData
 
 class DetailedViewController: UIViewController{
     
     let indeedUrl = URL(string: "https://www.indeed.com")
+    var job: SavedJobs?
+    var post: JobPost?
     
     @IBOutlet weak var addButton: UIButton!
     @IBOutlet weak var jobNameLabel: UILabel!
@@ -21,11 +24,20 @@ class DetailedViewController: UIViewController{
     @IBOutlet weak var aboutTextView: UITextView!
     @IBOutlet weak var applyButton: UIButton!
     @IBOutlet weak var indeedButton: UIBarButtonItem!
-    @IBAction func indeedButtonPressed(_ sender: UIBarButtonItem) {
+    @IBAction func indeedButtonPressed(_ sender: UIBarButtonItem)
+    {
         UIApplication.shared.open(indeedUrl!)
     }
-    
-    var post: JobPost?
+    @IBAction func addButtonPressed(_ sender: UIButton)
+    {
+        let job = self.job ?? CoreDataHelper.newJob()
+        job.jobName = jobNameLabel.text
+        job.compName = compNameLabel.text
+        job.location = locationLabel.text
+        job.snippet = aboutTextView.text
+        print(job.snippet)
+        CoreDataHelper.saveJob()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,18 +52,29 @@ class DetailedViewController: UIViewController{
     
     }
     
-    func callMethod() {
+    func callMethod()
+    {
         //do stuff here
     }
-
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if let post = post{
+      
+        if let post = post
+        {
             jobNameLabel.text = post.jobName
             compNameLabel.text = post.compName
             locationLabel.text = post.location
             aboutTextView.text = post.about
+        }
+        
+        if let job = job
+        {
+            jobNameLabel.text = job.jobName
+            compNameLabel.text = job.compName
+            locationLabel.text = job.location
+            aboutTextView.text = job.snippet
+            
         }
     }
     
@@ -63,14 +86,17 @@ class DetailedViewController: UIViewController{
             // 2
             if identifier == "applyButtonPressed"
             {
-                
                 let urlString = post?.url
                 
                 let webViewController = segue.destination as! WebViewController
                 webViewController.url = urlString
-                
             }
         }
+    }
     
+    @IBAction func unwindToDetailViewController(_ segue: UIStoryboardSegue) {
+        
+      //  addButton.isHidden = true
+        
     }
 }

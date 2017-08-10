@@ -12,6 +12,7 @@
 		FACD9B201F3B9DDC00DBED78 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACD9B1F1F3B9DDC00DBED78 /* FavoritesViewController.swift */; };
 		FACD9B2B1F3CA05C00DBED78 /* jobApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FACD9B291F3CA05C00DBED78 /* jobApp.xcdatamodeld */; };
 		FACD9B2D1F3CAE1500DBED78 /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACD9B2C1F3CAE1500DBED78 /* CoreDataHelper.swift */; };
+		FACD9B2F1F3CC51A00DBED78 /* SavedPostsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACD9B2E1F3CC51A00DBED78 /* SavedPostsTableViewCell.swift */; };
 		FADEFEBB1F1D095300C3548D /* DetailedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADEFEBA1F1D095300C3548D /* DetailedViewController.swift */; };
 		FADEFEBD1F1D674F00C3548D /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADEFEBC1F1D674F00C3548D /* WebViewController.swift */; };
 		FADEFEC51F1EACB300C3548D /* InternPostsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADEFEC41F1EACB300C3548D /* InternPostsCell.swift */; };
@@ -36,6 +37,7 @@
 		FACD9B1F1F3B9DDC00DBED78 /* FavoritesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FavoritesViewController.swift; path = Controllers/FavoritesViewController.swift; sourceTree = SOURCE_ROOT; };
 		FACD9B2A1F3CA05C00DBED78 /* jobApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = jobApp.xcdatamodel; sourceTree = "<group>"; };
 		FACD9B2C1F3CAE1500DBED78 /* CoreDataHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CoreDataHelper.swift; path = Models/CoreDataHelper.swift; sourceTree = SOURCE_ROOT; };
+		FACD9B2E1F3CC51A00DBED78 /* SavedPostsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SavedPostsTableViewCell.swift; path = Views/SavedPostsTableViewCell.swift; sourceTree = SOURCE_ROOT; };
 		FADEFEBA1F1D095300C3548D /* DetailedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DetailedViewController.swift; path = Controllers/DetailedViewController.swift; sourceTree = SOURCE_ROOT; };
 		FADEFEBC1F1D674F00C3548D /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WebViewController.swift; path = Controllers/WebViewController.swift; sourceTree = SOURCE_ROOT; };
 		FADEFEC41F1EACB300C3548D /* InternPostsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InternPostsCell.swift; path = Views/InternPostsCell.swift; sourceTree = SOURCE_ROOT; };
@@ -162,6 +164,7 @@
 				FAE262D71F17C1FA00CE3551 /* PostsTableViewCell.swift */,
 				FADEFEC41F1EACB300C3548D /* InternPostsCell.swift */,
 				FADEFEC61F1EAE5300C3548D /* SpPostsCell.swift */,
+				FACD9B2E1F3CC51A00DBED78 /* SavedPostsTableViewCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -306,6 +309,7 @@
 				FAE262D11F152E2200CE3551 /* InternshipsViewController.swift in Sources */,
 				FADEFEBD1F1D674F00C3548D /* WebViewController.swift in Sources */,
 				FAE262D51F15717400CE3551 /* JobPost.swift in Sources */,
+				FACD9B2F1F3CC51A00DBED78 /* SavedPostsTableViewCell.swift in Sources */,
 				FADEFEBB1F1D095300C3548D /* DetailedViewController.swift in Sources */,
 				FAE262B81F15218700CE3551 /* AppDelegate.swift in Sources */,
 				FADEFEC51F1EACB300C3548D /* InternPostsCell.swift in Sources */,
