@@ -35,7 +35,6 @@ class DetailedViewController: UIViewController{
         job.compName = compNameLabel.text
         job.location = locationLabel.text
         job.snippet = aboutTextView.text
-        print(job.snippet)
         CoreDataHelper.saveJob()
     }
     
@@ -68,13 +67,14 @@ class DetailedViewController: UIViewController{
             aboutTextView.text = post.about
         }
         
-        if let job = job
+        else if let job = job
         {
             jobNameLabel.text = job.jobName
             compNameLabel.text = job.compName
             locationLabel.text = job.location
             aboutTextView.text = job.snippet
             
+            addButton.isHidden = true
         }
     }
     

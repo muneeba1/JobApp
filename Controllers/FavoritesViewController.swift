@@ -20,20 +20,43 @@ class FavoritesViewController: UIViewController
     }
     
     @IBOutlet weak var tableView: UITableView!
-    
+   
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        
+        definesPresentationContext = true
         
         self.tableView.delegate = self
         self.tableView.dataSource = self
         
         jobsArray = CoreDataHelper.retrieveJobs()
         
-//        //dynamic cell height
-//        tableView.rowHeight = UITableViewAutomaticDimension
-//        tableView.estimatedRowHeight = 80
+        self.navigationController?.navigationBar.tintColor = UIColor.white
+        
+        self.navigationItem.rightBarButtonItems = [self.editButtonItem]
+        self.editButtonItem.tintColor = UIColor.white
+        self.editButtonItem.target = self
+        self.editButtonItem.action = #selector(onEditPressed)
+        
+        
+    }
+    
+    func onEditPressed ()
+    {
+        if self.tableView.isEditing
+        {
+            self.editButtonItem.title = "Edit"
+        }
+        else
+        {
+            self.editButtonItem.title = "Done"
+        }
+        
+        self.tableView.setEditing(!self.tableView.isEditing, animated: false)
+        
+
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -51,7 +74,7 @@ class FavoritesViewController: UIViewController
             }
         }
     }
-
+    
 }
 
 extension FavoritesViewController: UITableViewDelegate, UITableViewDataSource
@@ -78,12 +101,23 @@ extension FavoritesViewController: UITableViewDelegate, UITableViewDataSource
     {
         if editingStyle == .delete
         {
-            //1
             CoreDataHelper.delete(job: jobsArray[indexPath.row])
-            //2
             jobsArray = CoreDataHelper.retrieveJobs()
             
+            self.tableView.reloadData()
         }
     }
     
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle
+    {
+        return UITableViewCellEditingStyle.delete
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath)
+    {
+        //dynamic cell height
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 80
+    }
+
 }
